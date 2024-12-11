@@ -1,0 +1,137 @@
+# Create a new Laravel project
+cd /Users/Shared/Gits/phunsanit/E-Problems
+
+composer create-project --prefer-dist laravel/laravel SourceCode
+
+# Change directory to your project
+cd SourceCode
+
+# Install Livewire
+composer require livewire/livewire
+
+# Install Vue
+npm install vue
+
+# Install Laravel Mix (if not already installed)
+npm install laravel-mix --save-dev
+
+# Create a new Vue component
+mkdir resources/js/components
+touch resources/js/components/ExampleComponent.vue
+
+# Add the following content to ExampleComponent.vue
+echo "<template>
+    <div>
+        <h1>Hello, Vue!</h1>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'ExampleComponent',
+};
+</script>" > resources/js/components/ExampleComponent.vue
+
+# Install Tailwind CSS
+npm install tailwindcss
+
+# Initialize Tailwind CSS
+npx tailwindcss init
+
+# Configure Tailwind to remove unused styles in production
+echo "module.exports = {
+    purge: ['./resources/**/*.blade.php', './resources/**/*.js', './resources/**/*.vue'],
+    darkMode: false, // or 'media' or 'class'
+    theme: {
+        extend: {},
+    },
+    variants: {
+        extend: {},
+    },
+    plugins: [],
+}" > tailwind.config.js
+
+# Include Tailwind in your CSS
+echo "@tailwind base;
+@tailwind components;
+@tailwind utilities;" > resources/css/app.css
+
+# Update webpack.mix.js to compile Tailwind CSS
+echo "const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
+
+mix.js('resources/js/app.js', 'public/js')
+        .sass('resources/sass/app.scss', 'public/css')
+        .options({
+                postCss: [tailwindcss('./tailwind.config.js')],
+        });" > webpack.mix.js
+
+
+# Update resources/js/app.js to include Vue and the new component
+echo "import Vue from 'vue';
+import ExampleComponent from './components/ExampleComponent.vue';
+
+const app = new Vue({
+    el: '#app',
+    components: {
+        ExampleComponent,
+    },
+});" > resources/js/app.js
+
+# Update webpack.mix.js to compile the assets
+echo "const mix = require('laravel-mix');
+
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css');" > webpack.mix.js
+
+#
+npm install vue@next
+
+# Compile the assets
+npm run dev
+
+ln -s /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/public /opt/homebrew/var/www/E-Problems
+
+--------
+
+# Authentication and Authorization
+
+# Install Laravel Breeze (basic authentication)
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install
+npm run dev
+
+# Create and migrate authentication tables
+php artisan migrate
+
+# Generate basic auth scaffolding
+php artisan make:auth
+
+# Create a new Policy
+php artisan make:policy PostPolicy --model=Post
+
+# Create a new middleware
+php artisan make:middleware CheckRole
+
+# Add role checking to middleware
+# Add to app/Http/Middleware/CheckRole.php:
+public function handle($request, Closure $next, $role)
+{
+    if (! $request->user()->hasRole($role)) {
+        abort(403);
+    }
+    return $next($request);
+}
+
+# Register middleware in Kernel.php
+protected $routeMiddleware = [
+    'role' => \App\Http\Middleware\CheckRole::class,
+];
+
+# Use middleware in routes
+Route::get('/admin', function () {
+    // ...
+})->middleware('role:admin');
+
+--------
