@@ -1,3 +1,11 @@
+# create table
+php artisan migrate
+
+# add data
+php artisan db:seed
+
+---------------------------------------------------------------------------------------------------
+
 ln -s /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/public /opt/homebrew/var/www/E-Problems
 
 http://localhost:8080/E-Problems
@@ -42,6 +50,7 @@ php artisan make:seeder ServiceLinesVesselsSeeder
 php artisan make:seeder SupportEngineerSeeder
 php artisan make:seeder TicketsSeeder
 php artisan make:seeder VesselsSeeder
+php artisan make:seeder UsersSeeder
 
 #insert database
 php artisan db:seed
@@ -59,3 +68,6 @@ cd /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/database/migrations
 
 
 composer install
+
+
+
