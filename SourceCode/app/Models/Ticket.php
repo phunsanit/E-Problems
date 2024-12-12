@@ -27,4 +27,20 @@ class Ticket extends Model
         'vessel_id',
         'working_time',
     ];
+
+    // Relationships
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function supportEngineer()
+    {
+        return $this->belongsTo(SupportEngineer::class, 'support_engineer_id');
+    }
+
+    public function vessel()
+    {
+        return $this->belongsTo(Vessel::class);
+    }
 }
