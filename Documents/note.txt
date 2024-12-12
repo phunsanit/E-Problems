@@ -1,8 +1,30 @@
+#command
+
+#info
+php artisan about
+
+#clear cache
+php artisan cache:clear
+php artisan config:clear
+php artisan optimize:clear
+php artisan route:clear
+php artisan view:clear
+
+#create / update cache
+php artisan config:cache
+php artisan route:cache
+
+#database
 # create table
 php artisan migrate
-
 # add data
 php artisan db:seed
+
+# Set owner to current user and group
+sudo chown -R $(whoami):_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
+
+# Set directory permissions (755 = rwxr-xr-x)
+sudo chmod -R 755 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
 ---------------------------------------------------------------------------------------------------
 
@@ -11,18 +33,6 @@ ln -s /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/public /opt/homebrew/va
 http://localhost:8080/E-Problems
 
 cd /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
-
-php artisan about
-php artisan cache:clear
-php artisan config:clear
-php artisan config:publish --all
-php artisan event:cache
-php artisan event:cache
-php artisan migrate
-php artisan optimize
-php artisan optimize:clear
-php artisan optimize:clear
-php artisan view:cache
 
 APP_URL=http://localhost:8080/E-Problems
 
@@ -60,15 +70,20 @@ php artisan db:seed
 php artisan db:seed --class=OrganizationsSeeder
 php artisan db:seed --class=OrganizationsSeeder
 
+//Create a Model
+php artisan make:model Ticket
 
+//request ( validation )
+php artisan make:request TicketStoreRequest
 
-cd /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/database/migrations
+//Create a Controller
 
+php artisan make:controller TicketController --resource --model=Ticket
 
+php artisan make:command MakeViewCommand
 
-
-
-composer install
-
-
-
+php artisan make:view tickets.create
+php artisan make:view tickets.edit
+php artisan make:view tickets.index
+php artisan make:view tickets.layout
+php artisan make:view tickets.show
