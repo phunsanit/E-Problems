@@ -48,6 +48,14 @@ sudo chown -R _www /Users/Shared/Gits/phunsanit/E-Problems
 sudo chmod -R g+rw /Users/Shared/Gits/phunsanit/E-Problems
 sudo chgrp -R _www /Users/Shared/Gits/phunsanit/E-Problems
 
+sudo touch  storage/logs/laravel.log
+
+sudo chmod -R 666 storage/logs/laravel.log
+sudo chmod -R 775 storage/framework/cache
+sudo chmod -R 755 resources/css
+sudo chmod -R 755 resources/js
+
+
 # Set owner to current user and group
 sudo chown -R $(whoami):_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
