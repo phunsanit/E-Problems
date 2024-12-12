@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('Case ID');
+            $table->id()->comment('Case ID');
 
             $table->tinyInteger('status_id')->comment('Status');
-            $table->unsignedInteger('category_id')->comment('Category');
-            $table->unsignedInteger('vessel_id')->comment('Vessel');
+            $table->unsignedTinyInteger('category_id')->comment('Category');
+            $table->unsignedBigInteger('vessel_id')->comment('Vessel');
             $table->unsignedTinyInteger('service_lines_id')->comment('Service Lines');
             $table->unsignedBigInteger('support_engineer_id')->comment('Support Engineer ID');
             $table->dateTime('sla_dt')->comment('SLA');

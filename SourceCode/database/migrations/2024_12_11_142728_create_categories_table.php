@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id()->comment('Category ID');
+            $table->unsignedTinyInteger('id', true)->comment('Category ID');
 
             $table->boolean('enable')->default(true)->comment('Enable');
             $table->unsignedTinyInteger('priority_id')->comment('Priority');

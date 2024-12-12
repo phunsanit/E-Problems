@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('service_lines_vessels', function (Blueprint $table) {
-            $table->unsignedInteger('service_line_id')->comment('Service Line ID');
-            $table->unsignedInteger('vessel_id')->comment('Vessel ID');
+            $table->unsignedTinyInteger('service_line_id')->length(3)->unsigned()->comment('Service Line ID');
+            $table->unsignedBigInteger('vessel_id')->length(3)->unsigned()->comment('Vessel ID');
         });
     }
 

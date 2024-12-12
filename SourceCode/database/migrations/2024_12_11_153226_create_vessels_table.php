@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('vessels', function (Blueprint $table) {
             $table->id()->comment('Organization ID');
 
-            $table->unsignedInteger('organization_id');
+            $table->unsignedTinyInteger('organization_id');
             $table->boolean('enable')->default(true)->comment('Enable');
             $table->string('title', 256);
 

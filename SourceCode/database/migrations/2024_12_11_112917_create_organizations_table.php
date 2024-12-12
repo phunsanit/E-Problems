@@ -15,7 +15,7 @@ return new class extends Migration
          * php artisan migrate --path=/database/migrations/2024_12_11_112917_create_organizations_table.php
          */
         Schema::create('organizations', function (Blueprint $table) {
-            $table->id()->comment('Organization ID');
+            $table->unsignedTinyInteger('id', true)->comment('Organization ID');
 
             $table->boolean('enable')->default(true)->comment('Enable');
             $table->string('title', 256)->uniqid()->comment('Title');

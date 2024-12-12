@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('service_lines', function (Blueprint $table) {
-            $table->increments('id')->comment('Service Line');
+            $table->unsignedTinyInteger('id')->autoIncrement()->comment('Service Line');
 
             $table->boolean('enable')->default(true)->comment('Enable');
             $table->unsignedBigInteger('organization_id');
