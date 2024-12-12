@@ -11,6 +11,11 @@ php artisan route:clear
 php artisan view:clear
 
 #create / update cache
+
+sudo chmod -R 775 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/storage/logs
+
+sudo chmod -R 775 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/bootstrap/cache
+
 php artisan config:cache
 php artisan route:cache
 
@@ -20,8 +25,22 @@ php artisan migrate
 # add data
 php artisan db:seed
 
+---------------------------------------------------------------------------------------------------
+
+
+chmod -R +x artisan
+
+# run with Laravel server
+
+php artisan serve
+
+---------------------------------------------------------------------------------------------------
+
 # Set owner to current user and group
 sudo chown -R $(whoami):_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
+
+# Set owner to current user and group to _www
+sudo chown -R _www:_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
 # Set directory permissions (755 = rwxr-xr-x)
 sudo chmod -R 755 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
