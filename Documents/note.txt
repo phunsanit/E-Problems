@@ -33,6 +33,7 @@ php artisan make:migration create_support_engineer_table --create=support_engine
 php artisan make:migration create_vessels_table --create=vessels
 php artisan make:migration create_tickets_table --create=tickets
 php artisan make:migration create_vessels_table --create=vessels
+php artisan make:migration create_relational_table
 
 php artisan migrate
 
