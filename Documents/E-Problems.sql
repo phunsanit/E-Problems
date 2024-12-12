@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2024 at 05:35 PM
+-- Generation Time: Dec 12, 2024 at 07:27 AM
 -- Server version: 11.6.2-MariaDB
 -- PHP Version: 8.4.1
 
@@ -57,8 +57,8 @@ CREATE TABLE `categories` (
   `priority_id` tinyint(3) UNSIGNED NOT NULL COMMENT 'Priority',
   `title` varchar(100) NOT NULL COMMENT 'Title',
   `description` varchar(500) NOT NULL COMMENT 'Description',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -66,10 +66,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `enable`, `priority_id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, 'Web Site blocker', 'add new web site blocker', NULL, NULL),
-(2, 1, 0, 'Allow access to websites', 'Allow access to websites', NULL, NULL),
-(3, 1, 0, 'install program', 'allow install program', NULL, NULL),
-(4, 1, 0, 'blocking program', 'blocking program, disallow install program, remove program', NULL, NULL);
+(1, 1, 1, 'Web Site blocker', 'add new web site blocker', '2024-12-12 05:59:33', '2024-12-12 05:59:33'),
+(2, 1, 2, 'Allow access to websites', 'Allow access to websites', '2024-12-12 05:59:34', '2024-12-12 05:59:34'),
+(3, 1, 3, 'install program', 'allow install program', '2024-12-12 06:00:15', '2024-12-12 06:00:15'),
+(4, 1, 4, 'blocking program', 'blocking program, disallow install program, remove program', '2024-12-12 05:59:35', '2024-12-12 05:59:35');
 
 -- --------------------------------------------------------
 
@@ -154,9 +154,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `organizations` (
   `id` int(20) UNSIGNED NOT NULL COMMENT 'Organization ID',
   `enable` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Enable',
-  `title` varchar(256) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `title` varchar(256) NOT NULL COMMENT 'Title',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -198,20 +198,22 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `service_lines` (
-  `id` int(10) UNSIGNED NOT NULL COMMENT 'Service Line',
+  `id` int(3) UNSIGNED NOT NULL COMMENT 'Service Line',
   `enable` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Enable',
   `organization_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(100) NOT NULL COMMENT 'Title',
-  `descriptions` varchar(500) NOT NULL COMMENT 'Descriptions'
+  `descriptions` varchar(500) NOT NULL COMMENT 'Descriptions',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='service_lines';
 
 --
 -- Dumping data for table `service_lines`
 --
 
-INSERT INTO `service_lines` (`id`, `enable`, `organization_id`, `title`, `descriptions`) VALUES
-(1, 1, 0, 'Asia-Europe Express', ' It would connect major ports in East Asia (e.g., Shanghai, Ningbo, Yantian) with key hubs in Europe (e.g., Rotterdam, Hamburg, Antwerp).'),
-(2, 1, 0, 'Silk Route Service', ' It would likely connect major ports in East Asia (e.g., Shanghai, Ningbo, Hong Kong) with key hubs in the Mediterranean region and Europe (e.g., Piraeus, Istanbul, Venice, Genoa). It might also include ports in Southeast Asia and the Indian Subcontinent, reflecting the historical Silk Road.');
+INSERT INTO `service_lines` (`id`, `enable`, `organization_id`, `title`, `descriptions`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, 'Asia-Europe Express', ' It would connect major ports in East Asia (e.g., Shanghai, Ningbo, Yantian) with key hubs in Europe (e.g., Rotterdam, Hamburg, Antwerp).', '2024-12-12 05:56:12', '2024-12-12 05:56:12'),
+(2, 1, 0, 'Silk Route Service', ' It would likely connect major ports in East Asia (e.g., Shanghai, Ningbo, Hong Kong) with key hubs in the Mediterranean region and Europe (e.g., Piraeus, Istanbul, Venice, Genoa). It might also include ports in Southeast Asia and the Indian Subcontinent, reflecting the historical Silk Road.', '2024-12-12 05:56:12', '2024-12-12 05:56:12');
 
 -- --------------------------------------------------------
 
@@ -220,7 +222,7 @@ INSERT INTO `service_lines` (`id`, `enable`, `organization_id`, `title`, `descri
 --
 
 CREATE TABLE `service_lines_vessels` (
-  `service_line_id` int(11) UNSIGNED NOT NULL COMMENT 'Service Line ID',
+  `service_line_id` int(3) UNSIGNED NOT NULL COMMENT 'Service Line ID',
   `vessel_id` int(11) UNSIGNED NOT NULL COMMENT 'Vessel ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -260,6 +262,29 @@ CREATE TABLE `sessions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `support_engineer`
+--
+
+CREATE TABLE `support_engineer` (
+  `user_id` bigint(20) UNSIGNED NOT NULL COMMENT 'User ID',
+  `level` tinyint(4) NOT NULL COMMENT 'Level ',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='support engineer';
+
+--
+-- Dumping data for table `support_engineer`
+--
+
+INSERT INTO `support_engineer` (`user_id`, `level`, `created_at`, `updated_at`) VALUES
+(2, 1, '2024-12-12 06:16:36', '2024-12-12 06:16:36'),
+(3, 2, '2024-12-12 06:16:36', '2024-12-12 06:16:36'),
+(4, 3, '2024-12-12 06:16:36', '2024-12-12 06:16:36'),
+(5, 4, '2024-12-12 06:16:36', '2024-12-12 06:16:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tickets`
 --
 
@@ -267,14 +292,27 @@ CREATE TABLE `tickets` (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT 'Case ID',
   `status_id` tinyint(4) NOT NULL COMMENT 'Status',
   `category_id` int(10) UNSIGNED NOT NULL COMMENT 'Category',
+  `vessel_id` int(10) UNSIGNED NOT NULL COMMENT 'Vessel',
+  `service_lines_id` int(3) UNSIGNED NOT NULL COMMENT 'Service Lines',
+  `support_engineer_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Support Engineer ID',
   `opened_dt` datetime NOT NULL COMMENT 'Opened',
   `colsed_dt` datetime NOT NULL COMMENT 'Closed',
   `sla_dt` datetime NOT NULL COMMENT 'SLA',
   `descriptions` text NOT NULL COMMENT 'Descriptions',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `created_by` bigint(20) UNSIGNED NOT NULL COMMENT 'Created By',
-  `updated_by` bigint(20) UNSIGNED NOT NULL COMMENT 'Updated By',
-  `deleted_by` bigint(20) UNSIGNED NOT NULL COMMENT 'Deleted By'
+  `updated_by` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Updated By',
+  `deleted_by` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'Deleted By'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tickets`
+--
+
+INSERT INTO `tickets` (`id`, `status_id`, `category_id`, `vessel_id`, `service_lines_id`, `support_engineer_id`, `opened_dt`, `colsed_dt`, `sla_dt`, `descriptions`, `created_at`, `updated_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+(3, 1, 1, 10, 1, 3, '2024-12-12 07:13:30', '2024-12-12 07:13:30', '2024-12-12 07:13:30', 'please upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed', '2024-12-12 07:16:40', '2024-12-12 07:16:40', 1, 2, 1),
+(4, 2, 2, 8, 2, 4, '2024-12-12 07:13:30', '2024-12-12 07:13:30', '2024-12-12 07:13:30', 'SSL failed please fixed', '2024-12-12 07:16:40', '2024-12-12 07:16:40', 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -298,7 +336,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Test User', 'test@example.com', '2024-12-11 07:44:57', '$2y$12$SgSyl97fEs/7DsXDT/uH2ukSTpQjg0jqMRtRcai8eCmytpucjjKK.', 'zVCvkZD3I3', '2024-12-11 07:44:57', '2024-12-11 07:44:57');
+(1, 'pitt phunsanit', 'phunsani@gmail.com', '2024-12-11 07:44:57', 'f315ec52b0f080581bc2be4fb602a480', 'zVCvkZD3I3', '2024-12-11 07:44:57', '2024-12-11 07:44:57'),
+(2, 'supporter 1', 'supporter1@plusmagi.internal', '2024-12-12 04:52:10', '7f6729f1bcf83e3bb5bb1215c9e9b855', 'remember_token 	', '2024-12-12 04:52:10', '2024-12-12 04:52:10'),
+(3, 'supporter 2', 'supporter2@plusmagi.internal', '2024-12-12 04:57:10', 'fb89cd3050bfa2388c55cdbdd9d71126', 'remember_token ', '2024-12-12 04:57:10', '2024-12-12 04:57:10'),
+(4, 'supporter 3', 'supporter3@plusmagi.internal', '2024-12-12 04:57:11', '4ad8eb6cdac65347da2f0a4882269091', 'remember_token ', '2024-12-12 04:57:11', '2024-12-12 04:57:11'),
+(5, 'supporter 4', 'supporter4@plusmagi.internal', '2024-12-12 04:57:11', '59849eef7b512344be7f56eb40297339', 'remember_token ', '2024-12-12 04:57:11', '2024-12-12 04:57:11');
 
 -- --------------------------------------------------------
 
@@ -311,8 +353,8 @@ CREATE TABLE `vessels` (
   `organization_id` int(10) UNSIGNED NOT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'Enable',
   `title` varchar(256) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -320,16 +362,16 @@ CREATE TABLE `vessels` (
 --
 
 INSERT INTO `vessels` (`id`, `organization_id`, `enable`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'MSC Irina Class', NULL, NULL),
-(2, 2, 1, 'OOCL G Class (2023)', NULL, NULL),
-(3, 3, 1, 'ONE I Class', NULL, NULL),
-(4, 4, 1, 'MSC Tessa Class', NULL, NULL),
-(5, 5, 1, 'Evergreen A Class (2022)', NULL, NULL),
-(6, 6, 1, 'Evergreen A Class (2021)', NULL, NULL),
-(7, 7, 1, 'HMM Algeciras Class (Daewoo)', NULL, NULL),
-(8, 8, 1, 'HMM Algeciras Class (SHI)', NULL, NULL),
-(9, 9, 1, 'MSC Gülsün Class', NULL, NULL),
-(10, 10, 1, 'Hapag Lloyd Berlin Express Class (2023)', NULL, NULL);
+(1, 1, 1, 'MSC Irina Class', '2024-12-12 06:26:03', '2024-12-12 06:26:03'),
+(2, 2, 1, 'OOCL G Class (2023)', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(3, 3, 1, 'ONE I Class', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(4, 4, 1, 'MSC Tessa Class', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(5, 5, 1, 'Evergreen A Class (2022)', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(6, 6, 1, 'Evergreen A Class (2021)', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(7, 7, 1, 'HMM Algeciras Class (Daewoo)', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(8, 8, 1, 'HMM Algeciras Class (SHI)', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(9, 9, 1, 'MSC Gülsün Class', '2024-12-12 06:26:04', '2024-12-12 06:26:04'),
+(10, 10, 1, 'Hapag Lloyd Berlin Express Class (2023)', '2024-12-12 06:26:04', '2024-12-12 06:26:04');
 
 --
 -- Indexes for dumped tables
@@ -396,8 +438,7 @@ ALTER TABLE `password_reset_tokens`
 -- Indexes for table `service_lines`
 --
 ALTER TABLE `service_lines`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `title` (`title`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `service_lines_vessels`
@@ -415,14 +456,23 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `support_engineer`
+--
+ALTER TABLE `support_engineer`
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `tickets`
 --
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `deleted_by` (`deleted_by`),
+  ADD UNIQUE KEY `vessel_id` (`vessel_id`),
+  ADD UNIQUE KEY `support_engineer_id` (`support_engineer_id`),
   ADD KEY `creator_id` (`created_by`),
   ADD KEY `category_id` (`category_id`),
-  ADD KEY `updated_by` (`updated_by`);
+  ADD KEY `updated_by` (`updated_by`),
+  ADD KEY `service_lines_id` (`service_lines_id`);
 
 --
 -- Indexes for table `users`
@@ -476,19 +526,19 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `service_lines`
 --
 ALTER TABLE `service_lines`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Service Line', AUTO_INCREMENT=17;
+  MODIFY `id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Service Line', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Case ID';
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Case ID', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vessels`
@@ -508,13 +558,21 @@ ALTER TABLE `service_lines_vessels`
   ADD CONSTRAINT `service_lines_vessels_ibfk_vessel_id` FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Constraints for table `support_engineer`
+--
+ALTER TABLE `support_engineer`
+  ADD CONSTRAINT `support_engineer_ibfk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `tickets`
 --
 ALTER TABLE `tickets`
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`support_engineer_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tickets_ibfk_category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tickets_ibfk_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `tickets_ibfk_deleted_by` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `tickets_ibfk_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `tickets_ibfk_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tickets_ibfk_vessel_id` FOREIGN KEY (`vessel_id`) REFERENCES `vessels` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `vessels`

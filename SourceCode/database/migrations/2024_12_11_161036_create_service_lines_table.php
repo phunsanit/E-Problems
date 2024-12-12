@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        /**
-         * php artisan migrate --path=/database/migrations/2024_12_11_112917_create_organizations_table.php
-         */
-        Schema::create('organizations', function (Blueprint $table) {
-            $table->id()->comment('Organization ID');
+        Schema::create('service_lines', function (Blueprint $table) {
+            $table->increments('id')->comment('Service Line');
 
             $table->boolean('enable')->default(true)->comment('Enable');
-            $table->string('title', 256)->uniqid()->comment('Title');
+            $table->unsignedBigInteger('organization_id');
+            $table->string('title', 100)->comment('Title');
+            $table->string('descriptions', 500)->comment('Descriptions');
 
             $table->timestamps(0);
         });
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('service_lines');
     }
 };

@@ -19,8 +19,12 @@ php artisan view:cache
 APP_URL=http://localhost:8080/E-Problems
 
 php artisan make:migration create_organizations_table --create=organizations
-php artisan make:migration create_vessels_table --create=vessels
 php artisan make:migration create_service_lines_table --create=service_lines
+php artisan make:migration create_service_lines_vessels_table --create=service_lines_vessels
+php artisan make:migration create_support_engineer_table --create=support_engineer
+php artisan make:migration create_vessels_table --create=vessels
+php artisan make:migration create_tickets_table --create=tickets
+php artisan make:migration create_vessels_table --create=vessels
 
 php artisan migrate
 
@@ -30,9 +34,14 @@ php artisan migrate --force --path=/database/migrations/2024_12_11_112917_create
 php artisan migrate --path=/database/migrations/0001_01_01_000000_create_users_table.php
 php artisan migrate --path=/database/migrations/2024_12_11_142728_create_categories_table.php
 
-#create seed 
-php artisan make:seeder OrganizationsSeeder
+#create seed
 php artisan make:seeder CategoriesSeeder
+php artisan make:seeder OrganizationsSeeder
+php artisan make:seeder ServiceLinesSeeder
+php artisan make:seeder ServiceLinesVesselsSeeder
+php artisan make:seeder SupportEngineerSeeder
+php artisan make:seeder TicketsSeeder
+php artisan make:seeder VesselsSeeder
 
 #insert database
 php artisan db:seed

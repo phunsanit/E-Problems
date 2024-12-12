@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id()->comment('Category ID');
 
             $table->boolean('enable')->default(true)->comment('Enable');
-
+            $table->unsignedTinyInteger('priority_id')->comment('Priority');
             $table->string('title', 100)->comment('Title');
             $table->string('description', 500)->comment('Description');
 
-            $table->timestamps();
+            $table->timestamps(0);
         });
     }
 
