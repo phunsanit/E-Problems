@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TicketsController extends Controller
 {
@@ -40,7 +41,7 @@ class TicketsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ticket $ticket)
+    public function show(string $id)
     {
         return view('tickets.show', compact('ticket'));
     }
@@ -48,7 +49,7 @@ class TicketsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit(string $id)
     {
         return view('tickets.edit', compact('ticket'));
     }
@@ -56,7 +57,7 @@ class TicketsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(Request $request, string $id)
     {
         $ticket->update($request->validated());
 
@@ -67,7 +68,7 @@ class TicketsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ticket $ticket)
+    public function destroy(string $id)
     {
         $ticket->delete();
 
