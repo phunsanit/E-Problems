@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('service_lines_id')->comment('Service Lines');
             $table->unsignedBigInteger('support_engineer_id')->comment('Support Engineer ID');
             $table->dateTime('sla_dt')->comment('SLA');
+            $table->integer('working_time', false, true)->length(4)->nullable()->comment('Working Time');
             $table->text('descriptions')->comment('Descriptions');
 
             $table->timestamps();

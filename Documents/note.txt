@@ -1,7 +1,9 @@
-#command
+--------------------------------------------------------------------------------------------------- command
 
 #info
 php artisan about
+# all command list
+php artisan list
 
 #clear cache
 php artisan cache:clear
@@ -12,12 +14,12 @@ php artisan view:clear
 
 #create / update cache
 
-sudo chmod -R 775 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/storage/logs
-
-sudo chmod -R 775 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/bootstrap/cache
-
 php artisan config:cache
 php artisan route:cache
+php artisan view:cache
+
+php artisan optimize
+php artisan optimize:clear
 
 #database
 # create table
@@ -25,8 +27,13 @@ php artisan migrate
 # add data
 php artisan db:seed
 
----------------------------------------------------------------------------------------------------
+# API scaffolding
+php artisan install:api 
 
+# login system
+php artisan ui:auth
+
+--------------------------------------------------------------------------------------------------- run test
 
 chmod -R +x artisan
 
@@ -34,7 +41,11 @@ chmod -R +x artisan
 
 php artisan serve
 
----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------- permissions
+
+sudo chown -R _www /Users/Shared/Gits/phunsanit/E-Problems
+sudo chmod -R g+rw /Users/Shared/Gits/phunsanit/E-Problems
+sudo chgrp -R _www /Users/Shared/Gits/phunsanit/E-Problems
 
 # Set owner to current user and group
 sudo chown -R $(whoami):_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
@@ -90,14 +101,20 @@ php artisan db:seed --class=OrganizationsSeeder
 php artisan db:seed --class=OrganizationsSeeder
 
 //Create a Model
+php artisan make:model Category
+php artisan make:model Organization
+php artisan make:model ServiceLine
+php artisan make:model ServiceLineVessel
+php artisan make:model SupportEngineer
 php artisan make:model Ticket
+php artisan make:model Vessel
 
 //request ( validation )
 php artisan make:request TicketStoreRequest
 
 //Create a Controller
 
-php artisan make:controller TicketController --resource --model=Ticket
+php artisan make:controller TicketsController --resource --model=Ticket
 
 php artisan make:command MakeViewCommand
 
@@ -106,3 +123,5 @@ php artisan make:view tickets.edit
 php artisan make:view tickets.index
 php artisan make:view tickets.layout
 php artisan make:view tickets.show
+
+
