@@ -14,6 +14,8 @@
             @csrf
             @method('PUT')
 
+            @include('tickets.from')
+
             <div class="mb-3">
                 <label for="inputStatusId" class="form-label"><strong>Status ID:</strong></label>
                 <input

@@ -2,6 +2,7 @@
 
 #info
 php artisan about
+
 # all command list
 php artisan list
 
@@ -120,6 +121,7 @@ php artisan make:command MakeViewCommand
 
 php artisan make:view tickets.create
 php artisan make:view tickets.edit
+php artisan make:view tickets.from
 php artisan make:view tickets.index
 php artisan make:view tickets.layout
 php artisan make:view tickets.show

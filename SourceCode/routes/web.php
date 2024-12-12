@@ -26,14 +26,16 @@ Route::get('/refresh', function () {
 });
 
 //Route::resource('tickets', TicketsController::class);
-/*
+
 Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
+    Route::get('/tickets', 'index');
     Route::get('/tickets/{id}', 'show');
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });
-*/
+/*
 Route::resources([
-    'tickets' => TicketsController::class,
+'tickets' => TicketsController::class,
 ]);
+ */

@@ -13,6 +13,8 @@
         <form action="{{ route('tickets.store') }}" method="POST">
             @csrf
 
+            @include('tickets.from')
+
             <div class="mb-3">
                 <label for="inputStatusId" class="form-label"><strong>Status ID:</strong></label>
                 <input
