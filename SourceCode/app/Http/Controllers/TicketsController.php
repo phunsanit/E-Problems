@@ -41,7 +41,7 @@ class TicketsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Ticket $ticket)
     {
         return view('tickets.show', compact('ticket'));
     }
@@ -49,7 +49,7 @@ class TicketsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Ticket $ticket)
     {
         return view('tickets.edit', compact('ticket'));
     }
@@ -57,7 +57,7 @@ class TicketsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Ticket $ticket)
     {
         $ticket->update($request->validated());
 
@@ -68,7 +68,7 @@ class TicketsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Ticket $ticket)
     {
         $ticket->delete();
 

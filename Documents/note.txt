@@ -1,3 +1,20 @@
+--------------------------------------------------------------------------------------------------- install
+
+composer create-project --prefer-dist laravel/laravel E-Problems
+cd E-Problems
+
+npm install -g vitex
+npm install vue vue-router@next
+npm install -D typescript @vitejs/plugin-vue vite laravel-vite-plugin tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npx tsc --init
+
+sudo chown -R _www /Users/Shared/Gits/phunsanit/E-Problems
+sudo chmod -R g+rw /Users/Shared/Gits/phunsanit/E-Problems
+sudo chgrp -R _www /Users/Shared/Gits/phunsanit/E-Problems
+
+php artisan serve
+
 --------------------------------------------------------------------------------------------------- command
 
 #info
@@ -45,24 +62,11 @@ chmod -R +x artisan
 
 php artisan serve
 
---------------------------------------------------------------------------------------------------- install package
 
-composer create-project --prefer-dist laravel/laravel E-Problems
-cd E-Problems
-
-npm install -g vitex
-npm install fsevents --force
-npm install vue@next vue-router@next
-npm install -D typescript @vitejs/plugin-vue vite laravel-vite-plugin tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-npx tsc --init
-npm run dev
 
 --------------------------------------------------------------------------------------------------- permissions
 
-sudo chown -R _www /Users/Shared/Gits/phunsanit/E-Problems
-sudo chmod -R g+rw /Users/Shared/Gits/phunsanit/E-Problems
-sudo chgrp -R _www /Users/Shared/Gits/phunsanit/E-Problems
+
 
 sudo touch  storage/logs/laravel.log
 
@@ -139,6 +143,7 @@ php artisan make:request TicketStoreRequest
 
 //Create a Controller
 
+php artisan make:controller TicketsController
 php artisan make:controller TicketsController --resource --model=Ticket
 
 php artisan make:command MakeViewCommand

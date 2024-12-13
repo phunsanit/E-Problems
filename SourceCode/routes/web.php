@@ -6,18 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //return view('welcome');
+    
     return view('layouts/main');
 });
 
-Route::get('/test', function () {
-    dd('Test route reached');
-  });
-
 //refresh cache
 Route::get('/refresh', function () {
-    dd('Reached refresh route');
-
-
     //clear
     Artisan::call('cache:clear');
     Artisan::call('clear-compiled');
@@ -26,7 +20,6 @@ Route::get('/refresh', function () {
 
     //add
     Artisan::call('cache:table');
-    Artisan::call('cache:cache');
     Artisan::call('lang:publish');
     Artisan::call('optimize');
 
@@ -37,6 +30,8 @@ Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
     Route::get('/tickets', 'index');
     Route::get('/tickets/{id}', 'show');
+    Route::get('/tickets/{id}/edit', 'edit');
+    Route::get('/tickets/create', 'create');
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });
