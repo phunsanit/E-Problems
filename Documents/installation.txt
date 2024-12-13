@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------------------------- installation
+
+https://laravel.com/docs/11.x#meet-laravel
+
+0 cd to project root
+cd ln -s /Users/Shared/Gits/phunsanit/E-Problems
+
+1 create with command
+laravel new SourceCode
+
+2 select No starter kit
+
+3 select testing framework
+Pest
+
+4 select database
+MariaDB
+
+5 link public folder to document root as
+ln -s /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/public /opt/homebrew/var/www/E-Problems
+
+5 go SourceCode
+cd SourceCode
+
+6 Environment Based Configuration
+edit file .env in /SourceCode
+
+APP_NAME=E-Problems
+APP_URL=http://localhost
+
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+
+7 add database 
+- copy migrations to /database/migrations
+- copy seed to /database/seeders
+- run command
+php artisan migrate
+php artisan db:seed
+
+8 open in browser like
+http://localhost:8080/E-Problems/

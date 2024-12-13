@@ -6,32 +6,42 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //return view('welcome');
-
     return view('layouts/main');
 });
 
 //refresh cache
 Route::get('/refresh', function () {
-    //clear
-    Artisan::call('cache:clear');
-    Artisan::call('clear-compiled');
-    Artisan::call('optimize:clear');
-    Artisan::call('schedule:clear-cache');
+    $commnds = [
+        //clear
+        'cache:clear',
+        'clear-compiled',
+        'optimize:clear',
+        'schedule:clear-cache',
+        //add
+        'cache:table',
+        'cache:cache',
+        'lang:publish',
+        'optimize',
+        //infotmation
+        'about',
+        'route:list',
+    ];
+    $output = '<dl>';
 
-    //add
-    Artisan::call('cache:table');
-    Artisan::call('lang:publish');
-    Artisan::call('optimize');
+    foreach ($commnds as $command) {
+        Artisan::call($command);
+        $output = Artisan::output();
+        $output .= "<dt>{$command} Output:</dt><dd>{$output}</dd>";
+    }
+    $output = '</dl>';
 
-    return "All caches have been cleared and recreated.";
+    return $output;
 });
 
 Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
     Route::get('/tickets', 'index');
     Route::get('/tickets/{id}', 'show');
-    Route::get('/tickets/{id}/edit', 'edit');
-    Route::get('/tickets/create', 'create');
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });

@@ -1,3 +1,16 @@
+--------------------------------------------------------------------------------------------------- 
+
+development
+
+--------------------------------------------------------------------------------------------------- chache and refresh
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------------------------- install
 
 composer create-project --prefer-dist laravel/laravel E-Problems
@@ -156,3 +169,22 @@ php artisan make:view tickets.layout
 php artisan make:view tickets.show
 
 
+---------
+
+/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.4)"
+
+laravel new SourceCode
+
+select Laravel Breeze
+
+https://laravel.com/docs/11.x/starter-kits#laravel-breeze-installation
+
+or
+
+composer require laravel/breeze --dev
+
+not select
+Vue with Imertia
+beacuse it single-page applications (SPAs)
+
+Alpine.js https://alpinejs.dev/
