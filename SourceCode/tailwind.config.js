@@ -5,7 +5,6 @@ export default {
         "./resources/**/*.vue",
     ],
     plugins: [],
-    purge: ['./resources/**/*.blade.php', './resources/**/*.js', './resources/**/*.vue'],
     theme: {
         extend: {},
     },
