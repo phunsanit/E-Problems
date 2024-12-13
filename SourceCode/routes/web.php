@@ -12,9 +12,8 @@ Route::get('/', function () {
 Route::get('/refresh', function () {
     $commands = [
         //clear,
-        'cache:clear',
-        'clear-compiled',
         'optimize:clear',
+        //'queue:clear',
         'schedule:clear-cache',
 
         //add,
@@ -24,6 +23,7 @@ Route::get('/refresh', function () {
 
         //info
         'about',
+        //'list',//all commands
         'route:list',
     ];
     $output = '<dl>';
@@ -46,6 +46,8 @@ Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
     Route::get('/tickets', 'index');
     Route::get('/tickets/{id}', 'show');
+    Route::get('/tickets/{id}/edit', 'edit');
+    Route::get('/tickets/create', 'create');
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });
