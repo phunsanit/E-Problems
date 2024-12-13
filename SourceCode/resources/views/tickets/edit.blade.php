@@ -1,16 +1,15 @@
 @extends('tickets.layout')
 
 @section('content')
-
 <div class="card mt-5">
     <h2 class="card-header">Edit Ticket</h2>
     <div class="card-body">
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary btn-sm" href="{{ route('tickets.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+            <a class="btn btn-primary btn-sm" href="{{ url('tickets.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
         </div>
 
-        <form action="{{ route('tickets.update',$ticket->id) }}" method="POST">
+        <form action="{{ url('tickets.update',$ticket->id) }}" method="POST">
             @csrf
             @method('PUT')
 

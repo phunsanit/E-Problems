@@ -1,3 +1,6 @@
-<div class="container" id="app">
-    @yield('content')
-</div>
+@extends('layouts.main')
+
+@section('module')
+<h3>Tickets: Support Ticket</h3>
+@yield('content')
+@endsection

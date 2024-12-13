@@ -2,6 +2,71 @@
 
 development
 
+---------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------- Laravel Installer
+
+https://laravel.com/docs/11.x#meet-laravel
+
+0 cd to project root
+cd ln -s /Users/Shared/Gits/phunsanit/E-Problems
+
+1 create with command
+laravel new SourceCode
+
+2 select starter kit
+vue
+-Dark model
+-TypeScript
+-ESLint with Prettier
+
+3 select testing framework
+Pest
+
+4 select database
+MariaDB
+
+5 link public folder to document root as
+ln -s /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/public /opt/homebrew/var/www/E-Problems
+
+5 go SourceCode
+cd SourceCode
+
+6 Environment Based Configuration
+edit file .env in /SourceCode
+
+APP_NAME=E-Problems
+APP_URL=http://localhost
+
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+
+7 add database 
+- copy migrations to /database/migrations
+- copy seed to /database/seeders
+- run command
+php artisan migrate
+php artisan db:seed
+
+8 open in browser like
+http://localhost:8080/E-Problems/
+
+--------------------------------------------------------------------------------------------------- Authentication, Authorization, User
+
+composer require laravel/ui
+php artisan ui bootstrap --auth
+
+- replace old controler
+
+npm install && npm run dev
+
+npm install -D @vitejs/plugin-vue
+
+npm update vue-tsc
+
+php artisan migrate
+
 --------------------------------------------------------------------------------------------------- chache and refresh
 
 --------------------------------------------------------------------------------------------------- vite
@@ -34,10 +99,17 @@ export default defineConfig({
 5
 npm run dev
 
---------- error
+--------------------------------------------------------------------------------------------------- breeze
 
-Vite manifest not found at: /SourceCode/public/build/manifest.json 
+composer require laravel/breeze --dev
 
+php artisan breeze:install
+
+npm install
+
+npm run dev
+
+php artisan migrate
 
 
 --------------------------------------------------------------------------------------------------- install
@@ -54,6 +126,11 @@ npx tsc --init
 sudo chown -R _www /Users/Shared/Gits/phunsanit/E-Problems
 sudo chmod -R g+rw /Users/Shared/Gits/phunsanit/E-Problems
 sudo chgrp -R _www /Users/Shared/Gits/phunsanit/E-Problems
+
+sudo chmod -R 666 storage/logs/laravel.log
+sudo chmod -R 775 storage/framework/cache
+sudo chmod -R 755 resources/css
+sudo chmod -R 755 resources/js
 
 php artisan serve
 

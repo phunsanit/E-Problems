@@ -7,10 +7,10 @@
     <div class="card-body">
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary btn-sm" href="{{ route('tickets.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+            <a class="btn btn-primary btn-sm" href="{{ url('tickets.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
         </div>
 
-        <form action="{{ route('tickets.store') }}" method="POST">
+        <form action="{{ url('tickets.store') }}" method="POST">
             @csrf
 
             @include('tickets.from')
