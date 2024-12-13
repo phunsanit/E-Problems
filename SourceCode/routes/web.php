@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\TicketsController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,29 +10,34 @@ Route::get('/', function () {
 
 //refresh cache
 Route::get('/refresh', function () {
-    $commnds = [
-        //clear
+    $commands = [
+        //clear,
         'cache:clear',
         'clear-compiled',
         'optimize:clear',
         'schedule:clear-cache',
-        //add
+
+        //add,
         'cache:table',
-        'cache:cache',
         'lang:publish',
         'optimize',
-        //infotmation
+
+        //info
         'about',
         'route:list',
     ];
     $output = '<dl>';
 
-    foreach ($commnds as $command) {
+    foreach ($commands as $command) {
         Artisan::call($command);
-        $output = Artisan::output();
-        $output .= "<dt>{$command} Output:</dt><dd>{$output}</dd>";
+        $results = Artisan::output();
+
+        $results = explode("\n", $results);
+        $results = implode("</dd><dd>", $results);
+
+        $output .= '<dt>php artisan ' . $command . '</dt><dd>' . $results . '</dd>';
     }
-    $output = '</dl>';
+    $output .= '</dl><br>All caches have been cleared and recreated.';
 
     return $output;
 });
