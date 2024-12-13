@@ -6,6 +6,9 @@ php artisan about
 # all command list
 php artisan list
 
+# route
+php artisan route:list
+
 #clear cache
 php artisan cache:clear
 php artisan config:clear
@@ -41,6 +44,19 @@ chmod -R +x artisan
 # run with Laravel server
 
 php artisan serve
+
+--------------------------------------------------------------------------------------------------- install package
+
+composer create-project --prefer-dist laravel/laravel E-Problems
+cd E-Problems
+
+npm install -g vitex
+npm install fsevents --force
+npm install vue@next vue-router@next
+npm install -D typescript @vitejs/plugin-vue vite laravel-vite-plugin tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npx tsc --init
+npm run dev
 
 --------------------------------------------------------------------------------------------------- permissions
 

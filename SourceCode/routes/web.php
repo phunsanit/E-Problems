@@ -9,8 +9,15 @@ Route::get('/', function () {
     return view('layouts/main');
 });
 
+Route::get('/test', function () {
+    dd('Test route reached');
+  });
+
 //refresh cache
 Route::get('/refresh', function () {
+    dd('Reached refresh route');
+
+
     //clear
     Artisan::call('cache:clear');
     Artisan::call('clear-compiled');
@@ -26,8 +33,6 @@ Route::get('/refresh', function () {
     return "All caches have been cleared and recreated.";
 });
 
-//Route::resource('tickets', TicketsController::class);
-
 Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
     Route::get('/tickets', 'index');
@@ -35,8 +40,3 @@ Route::controller(TicketsController::class)->group(function () {
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });
-/*
-Route::resources([
-'tickets' => TicketsController::class,
-]);
- */
