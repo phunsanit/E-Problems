@@ -9,6 +9,7 @@ export default {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
+    plugins: [],
     theme: {
         extend: {
             fontFamily: {
@@ -16,5 +17,7 @@ export default {
             },
         },
     },
-    plugins: [],
+    variants: {
+        extend: {},
+    },
 };
