@@ -4,10 +4,39 @@ development
 
 --------------------------------------------------------------------------------------------------- chache and refresh
 
+--------------------------------------------------------------------------------------------------- vite
 
+1
+npm install laravel-vite-plugin --save-dev
 
+2
+touch vite.config.js
 
+3
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
 
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: [
+                'resources/css/app.css', 
+                'resources/js/app.js' 
+            ],
+            refresh: true,
+        }),
+    ],
+});
+
+4 add /SourceCode/resources/views/welcome.blade.php undet tag title
+@vite(['resources/css/app.css', 'resources/js/app.js']) 
+
+5
+npm run dev
+
+--------- error
+
+Vite manifest not found at: /SourceCode/public/build/manifest.json 
 
 
 
