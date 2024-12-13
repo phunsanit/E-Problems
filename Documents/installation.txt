@@ -8,7 +8,11 @@ cd ln -s /Users/Shared/Gits/phunsanit/E-Problems
 1 create with command
 laravel new SourceCode
 
-2 select No starter kit
+2 select starter kit
+vue
+-Dark model
+-TypeScript
+-ESLint with Prettier
 
 3 select testing framework
 Pest

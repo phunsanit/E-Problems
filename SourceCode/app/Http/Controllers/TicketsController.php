@@ -13,11 +13,23 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::latest()->paginate(5);
+        $title = 'Tickets';
+        $tickets = Ticket::select(
+            'categories.title as category_title', 
+            'service_lines.title as service_line_title',
+            'vessels.title as vessel_title', 
+            'tickets.*')
+            
+            ->join('categories', 'tickets.category_id', '=', 'categories.id')
+            ->join('service_lines', 'tickets.service_lines_id', '=', 'service_lines.id')
+            ->join('vessels', 'tickets.vessel_id', '=', 'vessels.id')
 
-        return view('tickets.index', compact('tickets'))
+            ->latest()
+            ->paginate(5);
+
+        return view('tickets.index', compact('tickets', 'title'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-    }
+        }
 
     /**
      * Show the form for creating a new resource.
