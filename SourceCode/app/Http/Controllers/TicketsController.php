@@ -11,25 +11,65 @@ class TicketsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'Tickets';
-        $tickets = Ticket::select(
-            'categories.title as category_title', 
-            'service_lines.title as service_line_title',
-            'vessels.title as vessel_title', 
-            'tickets.*')
-            
-            ->join('categories', 'tickets.category_id', '=', 'categories.id')
-            ->join('service_lines', 'tickets.service_lines_id', '=', 'service_lines.id')
-            ->join('vessels', 'tickets.vessel_id', '=', 'vessels.id')
+        $json = [
+            'data' => [],
+            'draw' => $request->input('draw', 1),
+            'recordsFiltered' => 0,
+            'recordsTotal' => 0,
+        ];
+        $title = 'Tickets List';
 
-            ->latest()
-            ->paginate(5);
+        $query = Ticket::query();
+        $json['recordsTotal'] = $query->count();
 
-        return view('tickets.index', compact('tickets', 'title'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        if ($request->has('search') && !empty($request->search)) {
+
+            if ($request->search['id']) {
+                $query->where('id', $request->search['id']);
+            }
+
+            if ($request->search['category_id']) {
+                $query->where('category_id', $request->search['category_id']);
+            }
+
+            if ($request->search['service_lines_id']) {
+                $query->where('service_lines_id', $request->search['service_lines_id']);
+            }
+
+            if ($request->search['status_id']) {
+                $query->where('status_id', $request->search['status_id']);
+            }
+
+            if ($request->search['support_engineer_id']) {
+                $query->where('support_engineer_id', $request->search['support_engineer_id']);
+            }
+
         }
+
+        $json['data'] = $query->get()->map(function ($ticket) {
+            return [
+                'id' => $ticket->id,
+                'category_id' => $ticket->category_id,
+                'vessel_id' => $ticket->vessel_id,
+                'service_lines_id' => $ticket->service_lines_id,
+                'support_engineer_id' => $ticket->support_engineer_id,
+                'sla_dt' => $ticket->sla_dt,
+                'working_time' => $ticket->working_time,
+            ];
+        })
+            ->skip(request()->input('start', $request->input('start', 0)))
+            ->take(request()->input('length', $request->input('length', -1)))
+            ->toArray();
+
+        $json['recordsFiltered'] = $query->count();
+
+        dd($json);
+
+        return view('tickets.index', compact('items', 'title'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
 
     /**
      * Show the form for creating a new resource.
