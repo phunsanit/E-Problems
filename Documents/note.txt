@@ -49,6 +49,8 @@ DB_PASSWORD
 php artisan migrate
 php artisan db:seed
 
+php artisan serve
+
 8 open in browser like
 http://localhost:8080/E-Problems/
 
@@ -111,6 +113,25 @@ npm run dev
 
 php artisan migrate
 
+--------------------------------------------------------------------------------------------------- Vue.js DataTable Component
+
+how to add Vue.js DataTable Component from https://datatables.net/manual/vue in laravel and vite
+
+https://datatables.net/manual/vue
+
+#composer require yajra/laravel-datatables-oracle
+
+npm install --save datatables.net-vue3 datatables.net-dt
+
+code /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/resources/js/app.ts
+
+import DataTable from 'datatables.net-vue3';
+import DataTablesCore from 'datatables.net-dt';
+DataTable.use(DataTablesCore);
+
+--------------------------------------------------------------------------------------------------- Vue.js DataTables Wrapper Component
+
+may Vue.js Components can create  new name DataTables and include DataTable Components inside has default config if user not specific in DataTable Components  must used config  from DataTables  send to DataTable Components
 
 --------------------------------------------------------------------------------------------------- install
 
@@ -181,11 +202,7 @@ chmod -R +x artisan
 
 php artisan serve
 
-
-
 --------------------------------------------------------------------------------------------------- permissions
-
-
 
 sudo touch  storage/logs/laravel.log
 
@@ -203,6 +220,10 @@ sudo chown -R _www:_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
 # Set directory permissions (755 = rwxr-xr-x)
 sudo chmod -R 755 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
+
+--------------------------------------------------------------------------------------------------- 
+
+
 
 ---------------------------------------------------------------------------------------------------
 
@@ -274,7 +295,6 @@ php artisan make:view tickets.index
 php artisan make:view tickets.layout
 php artisan make:view tickets.show
 
-
 ---------
 
 /bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.4)"
@@ -294,3 +314,14 @@ Vue with Imertia
 beacuse it single-page applications (SPAs)
 
 Alpine.js https://alpinejs.dev/
+
+--------------------------------------------------------------------------------------------------- change template
+
+- create duplicate table
+
+2024_12_12_160337_create_personal_access_tokens_table.php
+2024_12_15_103439_create_personal_access_tokens_table.php
+
+select one
+
+--------------------------------------------------------------------------------------------------- 
