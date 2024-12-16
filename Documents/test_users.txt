@@ -1,8 +1,5 @@
-user@test.internal
+user@plusmagi.internal
 ZhDbjptFzegDHkGUS3fYT6W42AKeNKcn
-
-Administrator@test.internal
-eMQbyvz8qZahWSjeK5rpAEdDeGqP7sKy
 
 supporter1@plusmagi.internal
 Fy6VLmkwRNNnTgvpFDUFdFjN3yqavqHN
@@ -18,3 +15,6 @@ VTqWvphc8tbFqx8f6wKPUQknTxGYMP5H
 
 supporter5@plusmagi.internal
 3SHdpszVdf43PH9hNsfc7pLLW9Rg7858
+
+Administrator@plusmagi.internal
+eMQbyvz8qZahWSjeK5rpAEdDeGqP7sKy

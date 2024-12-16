@@ -13,30 +13,38 @@ class SupportEngineerSeeder extends Seeder
      */
     public function run(): void
     {
+        $currentTime = Carbon::now();
+
         DB::table('support_engineer')->insert([
             [
                 'user_id' => 2,
                 'level' => 1,
-                'created_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
-                'updated_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ],
             [
                 'user_id' => 3,
                 'level' => 2,
-                'created_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
-                'updated_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ],
             [
                 'user_id' => 4,
                 'level' => 3,
-                'created_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
-                'updated_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ],
             [
                 'user_id' => 5,
                 'level' => 4,
-                'created_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
-                'updated_at' => Carbon::create('2024', '12', '12', '06', '16', '36'),
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
+            ],
+            [
+                'user_id' => 6,
+                'level' => 1,
+                'created_at' => $currentTime,
+                'updated_at' => $currentTime,
             ],
         ]);
     }
