@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TicketsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,7 @@ Route::get('/refresh', function () {
     $commands = [
         //clear,
         'optimize:clear',
-        //'queue:clear',
+        'queue:clear',
         'schedule:clear-cache',
 
         //add,
@@ -38,9 +39,10 @@ Route::get('/refresh', function () {
 
         //info
         'about',
-        //'list',//all commands
-        'route:list',
+        'list',//all commands
+        //'route:list',
     ];
+
     $output = '<dl>';
 
     foreach ($commands as $command) {
@@ -56,6 +58,8 @@ Route::get('/refresh', function () {
 
     return $output;
 });
+
+Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');

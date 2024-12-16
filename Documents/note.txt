@@ -324,4 +324,17 @@ Alpine.js https://alpinejs.dev/
 
 select one
 
---------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------- Dashboard
+
+composer require livewire/livewire
+
+php artisan make:livewire Dashboard
+
+code app/Livewire/Dashboard.php
+
+code resources/views/livewire/dashboard.blade.php
+
+--------------------------------------------------------------------------------------------------- team
+
+php artisan ziggy:generate
+
