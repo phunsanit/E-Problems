@@ -238,7 +238,6 @@ APP_URL=http://localhost:8080/E-Problems
 php artisan make:migration create_organizations_table --create=organizations
 php artisan make:migration create_service_lines_table --create=service_lines
 php artisan make:migration create_service_lines_vessels_table --create=service_lines_vessels
-php artisan make:migration create_support_engineer_table --create=support_engineer
 php artisan make:migration create_vessels_table --create=vessels
 php artisan make:migration create_tickets_table --create=tickets
 php artisan make:migration create_vessels_table --create=vessels
@@ -257,17 +256,16 @@ php artisan make:seeder CategoriesSeeder
 php artisan make:seeder OrganizationsSeeder
 php artisan make:seeder ServiceLinesSeeder
 php artisan make:seeder ServiceLinesVesselsSeeder
-php artisan make:seeder SupportEngineerSeeder
 php artisan make:seeder TicketsSeeder
-php artisan make:seeder VesselsSeeder
 php artisan make:seeder UsersSeeder
+php artisan make:seeder VesselsSeeder
 
 #insert database
 php artisan db:seed
 
 #each table
 php artisan db:seed --class=OrganizationsSeeder
-php artisan db:seed --class=OrganizationsSeeder
+php artisan db:seed --class=TeamSeeder
 
 //Create a Model
 php artisan make:model Category
@@ -337,4 +335,26 @@ code resources/views/livewire/dashboard.blade.php
 --------------------------------------------------------------------------------------------------- team
 
 php artisan ziggy:generate
+
+code /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/app/Models/Team.php
+
+add
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+code /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/app/Models/User.php
+
+add 
+
+ public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
+
+php artisan make:seeder TeamSeeder 
+
+php artisan db:seed --class=TeamSeeder
 

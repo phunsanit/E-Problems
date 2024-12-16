@@ -30,8 +30,8 @@ class Team extends JetstreamTeam
      */
     protected $dispatchesEvents = [
         'created' => TeamCreated::class,
-        'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
+        'updated' => TeamUpdated::class,
     ];
 
     /**
@@ -45,4 +45,10 @@ class Team extends JetstreamTeam
             'personal_team' => 'boolean',
         ];
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

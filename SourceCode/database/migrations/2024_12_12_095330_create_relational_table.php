@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 //add Relational Constraints to the tables
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,10 +15,6 @@ return new class extends Migration
             $table->foreign('category_id', 'fk_tickets_categories')
                 ->references('id')
                 ->on('categories');
-
-            $table->foreign('support_engineer_id', 'fk_tickets_support_engineer')
-                ->references('user_id')
-                ->on('support_engineer');
 
             $table->foreign('vessel_id', 'fk_tickets_vessels')
                 ->references('id')
@@ -47,12 +42,13 @@ return new class extends Migration
 
             $table->unique(['service_line_id', 'vessel_id'], 'unique_service_line_vessel');
         });
-
-        Schema::table('support_engineer', function (Blueprint $table) {
-            $table->foreign('user_id', 'fk_support_engineer_users')
-                ->references('id')
-                ->on('users');
-        });
+        /*
+                Schema::table('teams', function (Blueprint $table) {
+                    $table->foreign('user_id', 'fk_teams_users')
+                        ->references('user_id')
+                        ->on('users');
+                });
+        */
     }
 
     /**
@@ -62,7 +58,6 @@ return new class extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropForeign('fk_tickets_categories');
-            $table->dropForeign('fk_tickets_support_engineer');
             $table->dropForeign('fk_tickets_vessels');
         });
 
@@ -73,10 +68,6 @@ return new class extends Migration
         Schema::table('service_lines_vessels', function (Blueprint $table) {
             $table->dropForeign('fk_service_lines');
             $table->dropForeign('fk_vessels');
-        });
-
-        Schema::table('support_engineer', function (Blueprint $table) {
-            $table->dropForeign('fk_support_engineer_users');
         });
     }
 };
