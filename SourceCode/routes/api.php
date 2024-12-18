@@ -1,5 +1,6 @@
 <?php
 
+//use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,4 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::apiResource('tickets', TicketsController::class);
 
-Route::get('/users', [UserController::class, 'index']);
+//Route::get('/users', [UserController::class, 'index']);

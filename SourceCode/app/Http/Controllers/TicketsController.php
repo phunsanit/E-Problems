@@ -13,11 +13,7 @@ class TicketsController extends Controller
      */
     public function index(Request $request)
     {
-        \Log::info('Request Headers', [
-            'headers' => $request->headers->all(),
-        ]);
-
-        if ($request->ajax() || $request->expectsJson() || $request->hasHeader('X-Requested-With') || $request->wantsJson()) {
+        if ($request->ajax()) {
             $json = [
                 'data' => [],
                 'draw' => $request->input('draw', 1),
@@ -68,19 +64,8 @@ class TicketsController extends Controller
 
             $json['recordsFiltered'] = $query->count();
 
-            \Log::info('Tickets retrieved', [
-                'user_id' => $request->user()->id,
-                'search' => $request->search,
-                'recordsFiltered' => $json['recordsFiltered'],
-                'recordsTotal' => $json['recordsTotal'],
-                'json' => $json,
-            ]);
-
             return response()->json($json);
         } else {
-            \Log::info('Tickets index page viewed', [
-                'timestamp' => now(),
-            ]);
             return view('tickets.index', ['title' => 'Tickets List']);
         }
     }
