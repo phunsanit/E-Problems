@@ -13,7 +13,11 @@ class TicketsController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
+        \Log::info('Request Headers', [
+            'headers' => $request->headers->all(),
+        ]);
+
+        if ($request->ajax() || $request->expectsJson() || $request->hasHeader('X-Requested-With') || $request->wantsJson()) {
             $json = [
                 'data' => [],
                 'draw' => $request->input('draw', 1),
@@ -25,7 +29,6 @@ class TicketsController extends Controller
             $json['recordsTotal'] = $query->count();
 
             if ($request->has('search') && !empty($request->search)) {
-
                 if (!empty($request->search['id']) && is_int((int) $request->search['id'])) {
                     $query->where('id', (int) $request->search['id']);
                 }
@@ -45,28 +48,39 @@ class TicketsController extends Controller
                 if ($request->search['support_engineer_id'] && is_int((int) $request->search['support_engineer_id'])) {
                     $query->where('support_engineer_id', $request->search['support_engineer_id']);
                 }
-
             }
 
-            $json['data'] = $query->get()->map(function ($ticket) {
-                return [
-                    'id' => $ticket->id,
-                    'category_id' => $ticket->category_id,
-                    'vessel_id' => $ticket->vessel_id,
-                    'service_lines_id' => $ticket->service_lines_id,
-                    'support_engineer_id' => $ticket->support_engineer_id,
-                    'sla_dt' => $ticket->sla_dt,
-                    'working_time' => $ticket->working_time,
-                ];
-            })
-                ->skip(request()->input('start', $request->input('start', 0)))
-                ->take(request()->input('length', $request->input('length', -1)))
+            $json['data'] = $query->skip($request->input('start', 0))
+                ->take($request->input('length', -1))
+                ->get()
+                ->map(function ($ticket) {
+                    return [
+                        'id' => $ticket->id,
+                        'category_id' => $ticket->category_id,
+                        'vessel_id' => $ticket->vessel_id,
+                        'service_lines_id' => $ticket->service_lines_id,
+                        'support_engineer_id' => $ticket->support_engineer_id,
+                        'sla_dt' => $ticket->sla_dt,
+                        'working_time' => $ticket->working_time,
+                    ];
+                })
                 ->toArray();
 
             $json['recordsFiltered'] = $query->count();
 
+            \Log::info('Tickets retrieved', [
+                'user_id' => $request->user()->id,
+                'search' => $request->search,
+                'recordsFiltered' => $json['recordsFiltered'],
+                'recordsTotal' => $json['recordsTotal'],
+                'json' => $json,
+            ]);
+
             return response()->json($json);
         } else {
+            \Log::info('Tickets index page viewed', [
+                'timestamp' => now(),
+            ]);
             return view('tickets.index', ['title' => 'Tickets List']);
         }
     }
