@@ -218,7 +218,6 @@ sudo chmod -R 775 storage/framework/cache
 sudo chmod -R 755 resources/css
 sudo chmod -R 755 resources/js
 
-
 # Set owner to current user and group
 sudo chown -R $(whoami):_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
