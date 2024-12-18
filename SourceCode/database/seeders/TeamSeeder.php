@@ -21,7 +21,7 @@ class TeamSeeder extends Seeder
             [
                 'id' => 1,
                 'user_id' => 2,
-                'name' => 'TIER 1 SUPPORT (L1)',
+                'name' => 'Tier 1 support (L1)',
                 'personal_team' => 1,
                 'created_at' => $currentTime,
                 'updated_at' => $currentTime
@@ -29,7 +29,7 @@ class TeamSeeder extends Seeder
             [
                 'id' => 2,
                 'user_id' => 3,
-                'name' => 'TIER 2 SUPPORT (L2)',
+                'name' => 'Tier 2 support (L2)',
                 'personal_team' => 1,
                 'created_at' => $currentTime,
                 'updated_at' => $currentTime
@@ -37,7 +37,7 @@ class TeamSeeder extends Seeder
             [
                 'id' => 3,
                 'user_id' => 4,
-                'name' => 'TIER 3 SUPPORT (L3)',
+                'name' => 'Tier 3 support (L3)',
                 'personal_team' => 1,
                 'created_at' => $currentTime,
                 'updated_at' => $currentTime
@@ -45,7 +45,7 @@ class TeamSeeder extends Seeder
             [
                 'id' => 4,
                 'user_id' => 5,
-                'name' => 'TIER 4 SUPPORT (L4)',
+                'name' => 'Tier 4 support (L4)',
                 'personal_team' => 1,
                 'created_at' => $currentTime,
                 'updated_at' => $currentTime

@@ -1,5 +1,9 @@
 <div>
-    {{-- Success is as dangerous as failure. --}}
-    <h1>Success is as dangerous as failure.</h1>
-
+    Dashboard
+    <livewire:dashboard />
 </div>
+<script>
+    Livewire.on('someEvent', () => {
+        console.log(@this); // Log the component's data
+    });
+</script>

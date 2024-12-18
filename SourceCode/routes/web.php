@@ -14,53 +14,66 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
+/*
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
+'auth:sanctum',
+config('jetstream.auth_session'),
+'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+return Inertia::render('Dashboard');
+})->name('dashboard');
+});
+ */
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
 });
 
 //refresh cache
 Route::get('/refresh', function () {
+    //php artisan optimize:clear
     $commands = [
-        //clear,
+
+        //clear
+        'auth:clear-resets',
         'optimize:clear',
         'queue:clear',
         'schedule:clear-cache',
 
-        //add,
+        //add
         'cache:table',
         'lang:publish',
         'optimize',
+        'stub:publish',
+        //'ziggy:generate',
 
-        //info
+        //infomation
         'about',
-        'list',//all commands
-        //'route:list',
+        //'db:show',
+        'env',
+        'list', //all commands
+        'package:discover',
+        //'route:list',//all routes but must be in console only
     ];
 
-    $output = '<dl>';
+    $output = '<!DOCTYPE html><html lang="en"><head><title>refresh</title></head><body><dl>';
 
     foreach ($commands as $command) {
-        Artisan::call($command);
-        $results = Artisan::output();
-
-        $results = explode("\n", $results);
-        $results = implode("</dd><dd>", $results);
-
-        $output .= '<dt>php artisan ' . $command . '</dt><dd>' . $results . '</dd>';
+        if (Artisan::call($command) === 0) {
+            $results = Artisan::output();
+            $results = explode("\n", $results);
+            $results = implode("</dd><dd>", $results);
+            $output .= '<dt>php artisan ' . $command . '</dt><dd>' . $results . '</dd>';
+        } else {
+            $output .= '<dt>php artisan ' . $command . '</dt><dd><h2>Error executing command</h2></dd>';
+        }
     }
-    $output .= '</dl><br>All caches have been cleared and recreated.';
 
-    return $output;
+    $output .= '</dl><br>All caches have been cleared and recreated.</body></html>';
+
+    return response($output)->header('Content-Type', 'text/html');
 });
-
-Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 Route::controller(TicketsController::class)->group(function () {
     Route::delete('/tickets/{id}', 'destroy');
