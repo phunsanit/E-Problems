@@ -46,6 +46,13 @@ DB_PASSWORD
 - copy migrations to /database/migrations
 - copy seed to /database/seeders
 - run command
+
+//migrate:fresh //Drop all tables and re-run all migrations
+//migrate:install //Create the migration repository
+//migrate:reset                         Rollback all database migrations
+//migrate:rollback                      Rollback the last database migration
+//migrate:status                        Show the status of each migration
+
 php artisan migrate
 php artisan db:seed
 
@@ -221,9 +228,9 @@ sudo chown -R _www:_www /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 # Set directory permissions (755 = rwxr-xr-x)
 sudo chmod -R 755 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode
 
---------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------- API
 
-
+php artisan install:api 
 
 ---------------------------------------------------------------------------------------------------
 
@@ -268,6 +275,9 @@ php artisan db:seed --class=OrganizationsSeeder
 php artisan db:seed --class=TeamSeeder
 
 //Create a Model
+//model:prune                           Prune models that are no longer needed
+php artisan model:show                            Show information about an Eloquent model
+
 php artisan make:model Category
 php artisan make:model Organization
 php artisan make:model ServiceLine
@@ -332,6 +342,17 @@ code app/Livewire/Dashboard.php
 
 code resources/views/livewire/dashboard.blade.php
 
+--------------------------------------------------------------------------------------------------- livewire:publish
+
+Fatal error: Uncaught Error: Named parameter $api overwrites previous argument in /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/bootstrap/app.php:11
+Stack trace:
+#0 /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/artisan(12): require_once()
+#1 {main}
+  thrown in /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/bootstrap/app.php on line 11
+
+goto /Users/Shared/Gits/phunsanit/E-Problems/SourceCode/bootstrap/app.php
+delete duplicate loading file
+
 --------------------------------------------------------------------------------------------------- team
 
 php artisan ziggy:generate
@@ -358,3 +379,10 @@ php artisan make:seeder TeamSeeder
 
 php artisan db:seed --class=TeamSeeder
 
+--------------------------------------------------------------------------------------------------- Ziggy
+
+You run an Artisan command to generate the JavaScript file containing your routes:
+
+php artisan ziggy:generate
+
+--------------------------------------------------------------------------------------------------- 
