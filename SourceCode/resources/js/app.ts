@@ -1,39 +1,46 @@
-import './bootstrap';
 import '../css/app.css';
-
+import './bootstrap';
 import { createApp, h } from 'vue';
-import App from './App.vue';
-import $ from 'jquery';
-window.jQuery = window.$ = $;
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import Modal from './Components/Modal.vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+
+// Import datatables and jQuery in the correct order
+import $ from 'jquery'; 
+window.jQuery = window.$ = $; // Ensure jQuery is globally available
+import 'datatables.net-dt/css/dataTables.dataTables.min.css'; 
 import DataTable from 'datatables.net-vue3';
-import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import $ from 'jquery';
-window.jQuery = window.$ = $;
+
+// Components
+import Modal from './components/Modal.vue';
+import Welcome from './Components/Welcome.vue'; 
+import NavLinks from './Components/NavLinks.vue'; 
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
-const el = document.getElementById('app');
-if (!el) {
-    throw new Error('Could not find element with id "app"');
-}
-createInertiaApp({
-    progress: {
-        color: '#4B5563',
-    },
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        const app = createApp({ render: () => h(App, props) });
-        app
-            .use(plugin)
-                .mount(el);
-            app.component('DataTables', DataTables);
-            app.component('Modal', Modal);
 
-            app.mount(el);
-            return app;
-    },
-    title: (title) => `${title} - ${appName}`,
+// Remove unnecessary console logs in production
+if (import.meta.env.MODE === 'development') {
+  console.log('/Users/Shared/Gits/phunsanit/ll-E-Problems/SourceCode/resources/js/app.ts', appName);
+  console.log('el', document.getElementById('app'));
+}
+
+createInertiaApp({
+  progress: {
+    color: '#4B5563',
+  },
+  resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+  setup({ el, App, props, plugin }) {
+    const app = createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .use(ZiggyVue, Ziggy) // Use Ziggy plugin
+      .component('DataTables', DataTable)
+      .component('Modal', Modal) // Make Modal component globally available
+      .component('navlinks', NavLinks) 
+      .component('welcome', Welcome);
+
+    app.mount(el);
+
+    return app;
+  },
+  title: (title) => `${title} - ${appName}`,
 });

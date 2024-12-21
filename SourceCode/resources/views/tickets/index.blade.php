@@ -7,6 +7,21 @@
 		@if(session('success'))
 		<div class="alert alert-success" role="alert">{{ session('success') }}</div>
 		@endif
+
+
+
+
+
+		<welcome />
+
+
+
+
+
+
+
+
+
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<a class="btn btn-success btn-sm" href="{{ url('/tickets/create') }}"><i class="fa fa-plus"></i> Create New Ticket</a>
 		</div>
