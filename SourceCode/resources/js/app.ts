@@ -1,7 +1,6 @@
 import '../css/app.css';
 import './bootstrap';
 import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 
 // Import datatables and jQuery in the correct order
@@ -23,26 +22,3 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 if (import.meta.env.MODE === 'development') {
   console.log('el', document.getElementById('app'));
 }
-
-createInertiaApp({
-  progress: {
-    color: '#4B5563',
-  },
-  resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-  setup({ el, App, props, plugin }) {
-    const app = createApp({
-      render: () => h(App, props)
-    })
-      .use(plugin)
-
-      .component('DataTables', DataTables)
-      .component('Modal', Modal) // Make Modal component globally available
-      .component('navlinks', NavLinks)
-      .component('welcome', Welcome)
-
-      .mount(el);
-
-    return app;
-  },
-  title: (title) => `${title} - ${appName}`,
-});
