@@ -2,7 +2,7 @@
 
 @section('body')
 <div class="flex gap-4" id="app">
-    <div class="w-500 p-4">
+    <div class="p-4 w-500">
         <h2 class="text-xl font-bold mb-4">E-Problems</h2>
         <ul>
             <li><a href="{{ url('/tickets') }}" class="block py-2">Tickets</a></li>

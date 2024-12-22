@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
 @section('module')
-<h3>Tickets: Support Ticket</h3>
+<h1><b>Tickets:</b> Support Ticket</h1>
 @yield('content')
 @endsection
