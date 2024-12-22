@@ -149,8 +149,9 @@ may Vue.js Components can create  new name DataTables and include DataTable Comp
 
 --------------------------------------------------------------------------------------------------- install
 
-composer create-project --prefer-dist laravel/laravel E-Problems
-cd E-Problems
+composer create-project --prefer-dist laravel/laravel SourceCodeN
+
+cd SourceCodeN
 
 npm create vue@latest resources/js/app
 

@@ -7,28 +7,26 @@ import type { DataTableOptions } from 'datatables.net';
 
 const props = defineProps<{
     caption: {
-        default: 'DataTable',
+        default: '',
         type: String
     },
     class: {
         default: 'table table-bordered table-striped mt-4',
         type: String
-    }
+    },
     columns: {
         default: () => [
             { data: 'no', title: 'No' },
             { data: 'id', title: 'ID' },
             { data: 'title', title: 'Title' },
             { data: 'action', title: 'Action' }
-        ],
-        type: Array as() => Array<{ data: string, title: string }>
+        ]
     },
     data: {
         default: () => [
             [1, 2, "", ""],
             [2, 3, "", ""],
-        ],
-        type: Array as() => Array<{ data: string, title: string }>
+        ]
     },
     draw: {
         default: 1,
@@ -48,7 +46,7 @@ const props = defineProps<{
     },
     url: {
         default: null,
-        type: [String, null]
+        type: [String, Object]
     }
 }>();
 
@@ -103,7 +101,6 @@ onMounted(async () => {
 
 <template>
     <p>pooooooo</p>
-    <DataTable :columns="props.columns" :data="props.data" :options="options"></DataTable>
     <caption>{{ props.caption }}</caption>
-    </DataTable>
+    <DataTable :columns="props.columns" :data="props.data" :options="options"></DataTable>
 </template>

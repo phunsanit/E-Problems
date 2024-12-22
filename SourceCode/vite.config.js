@@ -6,10 +6,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
-                'resources/js/app.js',
+                'resources/sass/app.scss', // SCSS file to compile into CSS
+                'resources/js/app.ts',    // TypeScript file
             ],
-            refresh: true,
+            refresh: true,              // Enables live reloading
         }),
         vue({
             template: {
