@@ -2,10 +2,15 @@
 import { ref, onMounted, defineProps } from 'vue';
 import axios from 'axios';
 import DataTable from 'datatables.net-vue3';
-import DataTablesCore from 'datatables.net';
+import DataTablesCore from 'datatables.net-dt';
+import DataTablesLib from 'datatables.net';
 import type { DataTableOptions } from 'datatables.net';
 
 const props = defineProps<{
+    ajax: {
+        default: null,
+        type: [String, Object]
+    },
     caption: {
         default: '',
         type: String
@@ -15,18 +20,8 @@ const props = defineProps<{
         type: String
     },
     columns: {
-        default: () => [
-            { data: 'no', title: 'No' },
-            { data: 'id', title: 'ID' },
-            { data: 'title', title: 'Title' },
-            { data: 'action', title: 'Action' }
-        ]
-    },
-    data: {
-        default: () => [
-            [1, 2, "", ""],
-            [2, 3, "", ""],
-        ]
+        default: [],
+        type: Array
     },
     draw: {
         default: 1,
@@ -44,32 +39,35 @@ const props = defineProps<{
         default: 0,
         type: Number
     },
-    url: {
-        default: null,
-        type: [String, Object]
-    }
+    options: {
+        type: Object
+    },
+    uri: {
+        default: '',
+        type: String
+    },
 }>();
 
 const tableData = ref<any[]>([]);
-const columns = ref([
-    { data: 'id', title: 'ID' },
-    { data: 'name', title: 'Name' },
-    { data: 'email', title: 'Email' },
-]);
-const data = [
-    [1, 2],
-    [3, 4],
-];
-
-const options = ref<DataTableOptions>({
-    order: [[0, 'asc']],
-    pageLength: 10
-});
 
 onMounted(async () => {
     console.log('Fetching data...');
+
+    console.log('Props.options', props.options);
+
+    console.log('Props.uri', props.uri);
+
+    if (props.uri) {
+        try {
+            const uriResponse = await axios.get(props.uri);
+            console.log('URI data fetched:', uriResponse.data);
+        } catch (error) {
+            console.error('Error fetching URI data:', error);
+        }
+    }
+
     try {
-        const response = await axios.get(props.url, {
+        const response = await axios.get(props.ajax, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             },
@@ -82,13 +80,11 @@ onMounted(async () => {
 
         console.log('Data fetched:', response.data.data);
 
-        tableData.value = response.data.data;
-
-        console.log('Data fetched:', response.data.data);
+        props.data = response.data.data;
 
         // Initialize DataTables after data is fetched
 
-        const table = $('#' + props.id).DataTable(options.value);
+        const table = $('#' + props.id).DataTable(props);
 
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -103,7 +99,7 @@ onMounted(async () => {
 </style>
 
 <template>
-    <p>DataTables</p>
-    <caption>{{ props.caption }}</caption>
-    <DataTable :columns="props.columns" :data="props.data" :options="options"></DataTable>
+    <DataTable :options="props">
+        <caption>{{ props.caption }}</caption>
+    </DataTable>
 </template>
