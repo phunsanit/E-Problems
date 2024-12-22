@@ -47,7 +47,7 @@ class TicketsController extends Controller
             }
 
             $json['data'] = $query->skip($request->input('start', 0))
-                ->take($request->input('length', -1))
+                ->take($request->input('length', 10))
                 ->get()
                 ->map(function ($ticket) {
                     return [
@@ -63,7 +63,7 @@ class TicketsController extends Controller
                 ->toArray();
 
             $json['recordsFiltered'] = $query->count();
-
+            \Log::info('TicketsController@index', ['json' => $json]);
             return response()->json($json);
         } else {
             return view('tickets.index', ['title' => 'Tickets List']);

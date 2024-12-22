@@ -10,9 +10,6 @@
         </ul>
     </div>
     <div class="w-7/10 p-4">
-    ---------------
-        <NavLinks>กกกก</NavLinks>
-        ---------------
         @yield('module')
     </div>
 </div>

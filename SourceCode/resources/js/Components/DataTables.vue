@@ -74,11 +74,14 @@ onMounted(async () => {
                 'X-Requested-With': 'XMLHttpRequest'
             },
             params: {
-                draw: props.draw,
+                draw: props.draw + 1,
                 length: props.length,
-                start: props.start
+                start: props.start,
             }
         });
+
+        console.log('Data fetched:', response.data.data);
+
         tableData.value = response.data.data;
 
         console.log('Data fetched:', response.data.data);

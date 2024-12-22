@@ -3,13 +3,13 @@ import './bootstrap';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 // Import datatables and jQuery in the correct order
 import $ from 'jquery';
-window.jQuery = window.$ = $; // Ensure jQuery is globally available
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
 import DataTable from 'datatables.net-vue3';
+
+window.jQuery = window.$ = $; // Ensure jQuery is globally available
 
 // Components
 import DataTables from './Components/DataTables.vue';
@@ -30,15 +30,17 @@ createInertiaApp({
   },
   resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
   setup({ el, App, props, plugin }) {
-    const app = createApp({ render: () => h(App, props) })
+    const app = createApp({
+      render: () => h(App, props)
+    })
       .use(plugin)
-      .use(ZiggyVue, Ziggy) // Use Ziggy plugin
+
       .component('DataTables', DataTables)
       .component('Modal', Modal) // Make Modal component globally available
       .component('navlinks', NavLinks)
-      .component('welcome', Welcome);
+      .component('welcome', Welcome)
 
-    app.mount(el);
+      .mount(el);
 
     return app;
   },
