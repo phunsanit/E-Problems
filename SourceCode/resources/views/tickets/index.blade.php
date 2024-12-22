@@ -10,5 +10,8 @@
 	@if(session('success'))
 		<p class="aze bdk">{{ session('success') }}</p>
 	@endif
+	<DataTable />
+	<DataTables />
+	<data-tables></data-tables>
 </div>
 @endsection

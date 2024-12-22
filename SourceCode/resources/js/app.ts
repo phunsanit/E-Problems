@@ -1,24 +1,64 @@
 import '../css/app.css';
-//import './bootstrap';
-import { createApp, h } from 'vue';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-
-// Import datatables and jQuery in the correct order
-import $ from 'jquery';
 import 'datatables.net-dt/css/dataTables.dataTables.min.css';
-import DataTable from 'datatables.net-vue3';
 
+//import './bootstrap';
+
+// Import jQuery
+import $ from 'jquery';
+
+// @ts-ignore
 window.jQuery = window.$ = $; // Ensure jQuery is globally available
 
-// Components
+// Import Vue.js and Inertia
+import { createApp, h } from 'vue';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { createInertiaApp } from '@inertiajs/inertia-vue3';
+// Vue.js Components
+import DataTable from 'datatables.net-vue3';
 import DataTables from './Components/DataTables.vue';
 import Modal from './Components/Modal.vue';
 import NavLinks from './Components/NavLink.vue';
 import Welcome from './Components/Welcome.vue';
+import 'datatables.net';
+import 'datatables.net-dt';
 
+// Inertia.js
+/* not needed routes
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+createInertiaApp({
+  resolve: name => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/** / *.vue')),
+  setup({ el, app, props, plugin }) {
+    createApp({ render: () => h(app, props) })
+      .use(plugin)
+      .use(DataTable)
+      .component('DataTables', DataTables)
+      .component('Modal', Modal)
+      .component('NavLinks', NavLinks)
+      .component('Welcome', Welcome)
+      .mount(el);
+  },
+});
+*/
 
 // Remove unnecessary console logs in production
 if (import.meta.env.MODE === 'development') {
   //console.log('el', document.getElementById('app'));
 }
+
+// intialize
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOMContentLoaded');
+  console.log('DataTables', DataTables);
+  console.log('DataTables', DataTablesComponent);
+  const app = createApp({
+    components: {
+      DataTable,
+      DataTables,
+      Modal,
+      NavLinks,
+      Welcome
+    }
+  })
+    .mount('#app');
+  console.log('Vue initialized');
+});
