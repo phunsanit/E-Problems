@@ -48,8 +48,8 @@ if (import.meta.env.MODE === 'development') {
 // intialize
 document.addEventListener('DOMContentLoaded', function () {
   console.log('DOMContentLoaded');
+  console.log('DataTable', DataTable);
   console.log('DataTables', DataTables);
-  console.log('DataTables', DataTablesComponent);
   const app = createApp({
     components: {
       DataTable,
