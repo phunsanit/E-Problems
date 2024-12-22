@@ -20,5 +20,5 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 // Remove unnecessary console logs in production
 if (import.meta.env.MODE === 'development') {
-  console.log('el', document.getElementById('app'));
+  //console.log('el', document.getElementById('app'));
 }

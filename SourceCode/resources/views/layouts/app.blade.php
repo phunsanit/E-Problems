@@ -9,10 +9,7 @@
             <li><a href="{{ url('/tickets/create') }}" class="block py-2">Create Ticket</a></li>
         </ul>
     </div>
-    <div class="w-7/10 p-4">
-
-    sssffff
-    
+    <div>
         @yield('module')
     </div>
 </div>
