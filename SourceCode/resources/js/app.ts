@@ -50,15 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('DOMContentLoaded');
   console.log('DataTable', DataTable);
   console.log('DataTables', DataTables);
-  const app = createApp({
-    components: {
-      DataTable,
-      DataTables,
-      Modal,
-      NavLinks,
-      Welcome
-    }
-  })
-    .mount('#app');
+  const app = createApp({});
+
+  // Register Vue components globally
+  app.component('DataTables', DataTables);
+  app.component('Modal', Modal);
+  app.component('NavLinks', NavLinks);
+  app.component('Welcome', Welcome);
+
+  app.mount('#app');
   console.log('Vue initialized');
 });

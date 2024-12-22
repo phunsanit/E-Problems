@@ -103,7 +103,7 @@ onMounted(async () => {
 </style>
 
 <template>
-    <p>pooooooo</p>
+    <p>DataTables</p>
     <caption>{{ props.caption }}</caption>
     <DataTable :columns="props.columns" :data="props.data" :options="options"></DataTable>
 </template>
