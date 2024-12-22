@@ -1,5 +1,5 @@
 import '../css/app.css';
-import './bootstrap';
+//import './bootstrap';
 import { createApp, h } from 'vue';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 

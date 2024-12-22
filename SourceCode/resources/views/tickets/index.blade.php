@@ -1,16 +1,14 @@
 @extends('tickets.layout')
 
 @section('content')
-<div class="card mt-5">
-	<h2 class="card-header">Tickets</h2>
-	<div class="flex justify-end w-full p-2.5">
-		<a class="btn btn-success btn-sm" href="{{ url('/tickets/create') }}"><i class="fa fa-plus"></i> Create New Ticket</a>
+
+<div class="border border-gray-300 my-4 nt-bold p-4 rounded-lg shadow-lg">
+	<div class="flex justify-between items-center">
+		<h3>Tickets</h3>
+		<a class="bg-green-500 font-bold hover:bg-green-700 px-2 py-1 rounded text-white text-xs" href="{{ url('/tickets/create') }}"><i class="fa-solid fa-plus"></i> Create New Ticket</a>
 	</div>
-	<div class="card-body w-100">
-		@if(session('success'))
-		<div class="alert alert-success" role="alert">{{ session('success') }}</div>
-		@endif
-		<data-tables></data-tables>
-	</div>
+	@if(session('success'))
+		<p class="aze bdk">{{ session('success') }}</p>
+	@endif
 </div>
 @endsection
