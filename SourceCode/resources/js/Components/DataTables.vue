@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue';
+import type { PropType } from 'vue';
 import axios from 'axios';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-dt';
@@ -42,13 +43,11 @@ const props = defineProps<{
     options: {
         type: Object
     },
-    uri: {
+    url: {
         default: '',
         type: String
-    },
+    }
 }>();
-
-const tableData = ref<any[]>([]);
 
 onMounted(async () => {
     console.log('Fetching data...');
@@ -57,9 +56,9 @@ onMounted(async () => {
 
     console.log('Props.uri', props.uri);
 
-    if (props.uri) {
+    if (props.url) {
         try {
-            const uriResponse = await axios.get(props.uri);
+            const uriResponse = await axios.get(props.url);
             console.log('URI data fetched:', uriResponse.data);
         } catch (error) {
             console.error('Error fetching URI data:', error);
