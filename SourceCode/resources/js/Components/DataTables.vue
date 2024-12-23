@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import 'datatables.net-select';
 import { ref, onMounted, defineProps } from 'vue';
-import type { PropType } from 'vue';
 import axios from 'axios';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-dt';
 import DataTablesLib from 'datatables.net';
+import type { PropType } from 'vue';
+
+DataTable.use(DataTablesLib);
 
 const props = defineProps<{
     ajax: {
