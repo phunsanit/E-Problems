@@ -11,7 +11,9 @@
 		<p class="aze bdk">{{ session('success') }}</p>
 	@endif
 	<hr><br>
+	<template>
 	<DataTables :config="{{ url('/assets/tickets.list.js') }}" :url="{{ url('/tickets/create') }}" />
+	</template>
 	<hr><br>
 </div>
 @endsection
