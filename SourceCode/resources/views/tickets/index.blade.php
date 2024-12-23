@@ -11,7 +11,7 @@
 		<p class="aze bdk">{{ session('success') }}</p>
 	@endif
 	<hr><br>
-	<DataTables :uri="{{ url('/tickets/create') }}" />
+	<DataTables :config="{{ url('/assets/tickets.list.js') }}" :url="{{ url('/tickets/create') }}" />
 	<hr><br>
 </div>
 @endsection
