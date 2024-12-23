@@ -31,12 +31,12 @@ class Ticket extends Model
     // Define the relationship to the other model
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function serviceLine()
     {
-        return $this->belongsTo(ServiceLine::class, 'service_lines_id');
+        return $this->belongsTo(ServiceLine::class. 'service_lines_id');
     }
 
     public function supportEngineer()
@@ -46,6 +46,6 @@ class Ticket extends Model
 
     public function vessel()
     {
-        return $this->belongsTo(Vessel::class);
+        return $this->belongsTo(Vessel::class, 'vessel_id');
     }
 }

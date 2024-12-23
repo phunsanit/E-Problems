@@ -16,7 +16,8 @@
 
 @section('contentScript')
 <script>
-	const base = "{{ url('') }}";
+	const base = '{{ url('') }}';
+	const csrf_token = '{{ csrf_token() }}';
 </script>
 <script src="{{ asset('assets/tickets.list.js') }}"></script>
 @endsection

@@ -24,6 +24,15 @@ class TicketsController extends Controller
             $query = Ticket::query();
             $json['recordsTotal'] = $query->count();
 
+            if ($request->has('order')) {
+                foreach ($request->order as $order) {
+                    $dir = $order['dir'];
+                    $name= $order['name'];
+
+                    $query->orderBy($name, $dir);
+                }
+            }
+
             if ($request->has('search') && !empty($request->search)) {
 
                 if (!empty($request->search['id']) && is_int((int) $request->search['id'])) {
@@ -33,15 +42,15 @@ class TicketsController extends Controller
                 if (isset($request->search['category_id']) && is_int((int) $request->search['category_id'])) {
                     $query->where('category_id', $request->search['category_id']);
                 }
-                
+
                 if (isset($request->search['service_lines_id']) && is_int((int) $request->search['service_lines_id'])) {
                     $query->where('service_lines_id', $request->search['service_lines_id']);
                 }
-                
+
                 if (isset($request->search['status_id']) && is_int((int) $request->search['status_id'])) {
                     $query->where('status_id', $request->search['status_id']);
                 }
-                
+
                 if (isset($request->search['support_engineer_id']) && is_int((int) $request->search['support_engineer_id'])) {
                     $query->where('support_engineer_id', $request->search['support_engineer_id']);
                 }
@@ -52,19 +61,24 @@ class TicketsController extends Controller
                 ->get()
                 ->map(function ($ticket) {
                     return [
-                        'id' => $ticket->id,
                         'category_id' => $ticket->category_id,
-                        'vessel_id' => $ticket->vessel_id,
+                        'category' => $ticket->category->title,
+                        'id' => $ticket->id,
                         'service_lines_id' => $ticket->service_lines_id,
-                        'support_engineer_id' => $ticket->support_engineer_id,
+                        //'service_lines' => $ticket->service_lines->title,
                         'sla_dt' => $ticket->sla_dt,
+                        'support_engineer_id' => $ticket->support_engineer_id,
+                        'vessel_id' => $ticket->vessel_id,
+                        'vessel' => $ticket->vessel->title,
                         'working_time' => $ticket->working_time,
                     ];
                 })
                 ->toArray();
 
             $json['recordsFiltered'] = $query->count();
-            \Log::info('TicketsController@index', ['json' => $json]);
+
+            \Log::info('SQL Query: ' . $query->toSql());
+
             return response()->json($json);
         } else {
             return view('tickets.index', ['title' => 'Tickets List']);
