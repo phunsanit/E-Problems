@@ -25,23 +25,24 @@ class TicketsController extends Controller
             $json['recordsTotal'] = $query->count();
 
             if ($request->has('search') && !empty($request->search)) {
+
                 if (!empty($request->search['id']) && is_int((int) $request->search['id'])) {
                     $query->where('id', (int) $request->search['id']);
                 }
 
-                if ($request->search['category_id'] && is_int((int) $request->search['category_id'])) {
+                if (isset($request->search['category_id']) && is_int((int) $request->search['category_id'])) {
                     $query->where('category_id', $request->search['category_id']);
                 }
-
-                if ($request->search['service_lines_id'] && is_int((int) $request->search['service_lines_id'])) {
+                
+                if (isset($request->search['service_lines_id']) && is_int((int) $request->search['service_lines_id'])) {
                     $query->where('service_lines_id', $request->search['service_lines_id']);
                 }
-
-                if ($request->search['status_id'] && is_int((int) $request->search['status_id'])) {
+                
+                if (isset($request->search['status_id']) && is_int((int) $request->search['status_id'])) {
                     $query->where('status_id', $request->search['status_id']);
                 }
-
-                if ($request->search['support_engineer_id'] && is_int((int) $request->search['support_engineer_id'])) {
+                
+                if (isset($request->search['support_engineer_id']) && is_int((int) $request->search['support_engineer_id'])) {
                     $query->where('support_engineer_id', $request->search['support_engineer_id']);
                 }
             }
