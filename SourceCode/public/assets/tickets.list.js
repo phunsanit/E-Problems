@@ -35,7 +35,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'category_id',
-                    orderable: false,
+                    orderable: true,
                     render: function (data, type, row) {
                         return row.category;
                     },
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'vessel_id',
-                    orderable: false,
+                    orderable: true,
                     render: function (data, type, row) {
                         return row.vessel;
                     },
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'service_line_id',
-                    orderable: false,
+                    orderable: true,
                     render: function (data, type, row) {
                         return row.service_line;
                     },
@@ -60,7 +60,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'support_engineer_id',
-                    orderable: false,
+                    orderable: true,
                     render: function (data, type, row) {
                         return row.support_engineer;
                     },

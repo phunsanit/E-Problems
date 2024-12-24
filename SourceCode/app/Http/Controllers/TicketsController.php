@@ -26,14 +26,37 @@ class TicketsController extends Controller
 
             if ($request->has('order')) {
                 foreach ($request->order as $order) {
-                    $dir = $order['dir'];
-                    $name= $order['name'];
+                    $name = $order['name'];
+                    if ($name) {
+                        $dir = $order['dir'];
 
-                    $query->orderBy($name, $dir);
+                        $query->orderBy($name, $dir);
+                    }
                 }
             }
 
             if ($request->has('search') && !empty($request->search)) {
+
+                //global search
+                if (!empty($request->search['value'])) {
+                    if ($request->search['regex']) {
+                        $query->orWhere('id', 'regexp', $request->search['value'])
+                            ->orWhereHas('supportEngineer', function ($query) use ($request) {
+                                $query->where('name', 'regexp', $request->search['value']);
+                            })
+                            ->orWhereHas('vessel', function ($query) use ($request) {
+                                $query->where('title', 'regexp', $request->search['value']);
+                            });
+                    } else {
+                        $query->orWhere('id', 'like', '%' . $request->search['value'] . '%')
+                            ->orWhereHas('supportEngineer', function ($query) use ($request) {
+                                $query->where('name', 'like', '%' . $request->search['value'] . '%');
+                            })
+                            ->orWhereHas('vessel', function ($query) use ($request) {
+                                $query->where('title', 'like', '%' . $request->search['value'] . '%');
+                            });
+                    }
+                }
 
                 if (!empty($request->search['id']) && is_int((int) $request->search['id'])) {
                     $query->where('id', (int) $request->search['id']);
@@ -76,9 +99,9 @@ class TicketsController extends Controller
                 })
                 ->toArray();
 
-            $json['recordsFiltered'] = $query->count();
+            //\Log::info('SQL Query: ' . $query->toSql());
 
-            \Log::info('SQL Query: ' . $query->toSql());
+            $json['recordsFiltered'] = $query->count();
 
             return response()->json($json);
         } else {
