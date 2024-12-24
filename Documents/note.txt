@@ -274,6 +274,7 @@ php artisan make:seeder CategoriesSeeder
 php artisan make:seeder OrganizationsSeeder
 php artisan make:seeder ServiceLinesSeeder
 php artisan make:seeder ServiceLinesVesselsSeeder
+php artisan make:seeder SupportEngineersSeeder
 php artisan make:seeder TicketsSeeder
 php artisan make:seeder UsersSeeder
 php artisan make:seeder VesselsSeeder

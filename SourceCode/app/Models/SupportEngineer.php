@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SupportEngineer extends Model
 {
-    //
+    protected $table = 'support_engineers';
+
+    // Define the relationship to the other model
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     /**
      * The attributes that are mass assignable.

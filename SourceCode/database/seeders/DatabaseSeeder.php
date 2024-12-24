@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             OrganizationsSeeder::class,
             ServiceLinesSeeder::class,
+            SupportEngineersSeeder::class,
             TeamSeeder::class,
             VesselsSeeder::class,
 

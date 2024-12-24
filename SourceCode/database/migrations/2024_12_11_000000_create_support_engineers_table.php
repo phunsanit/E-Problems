@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('support_engineer', function (Blueprint $table) {
+        Schema::create('support_engineers', function (Blueprint $table) {
             $table->bigIncrements('user_id')->comment('User ID');
 
             $table->tinyInteger('level')->comment('Level');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('support_engineer');
+        Schema::dropIfExists('support_engineers');
     }
 };

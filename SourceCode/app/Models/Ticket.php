@@ -36,12 +36,13 @@ class Ticket extends Model
 
     public function serviceLine()
     {
-        return $this->belongsTo(ServiceLine::class. 'service_lines_id');
+        return $this->belongsTo(ServiceLine::class, 'service_lines_id');
     }
 
     public function supportEngineer()
     {
-        return $this->belongsTo(SupportEngineer::class, 'support_engineer_id');
+        // skip table support_engineers because don't use current status
+        return $this->belongsTo(User::class, 'support_engineer_id');
     }
 
     public function vessel()
