@@ -5,10 +5,10 @@
 // @use 'bootstrap/scss/bootstrap';
 
 // Font Awesome
-@use "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@use "../../node_modules/@fortawesome/fontawesome-free/scss/regular";
-@use "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
-@use "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@use '@fortawesome/fontawesome-free/scss/fontawesome' as fontawesome;
+@use '@fortawesome/fontawesome-free/scss/regular' as regular;
+@use '@fortawesome/fontawesome-free/scss/solid' as solid;
+@use '@fortawesome/fontawesome-free/scss/brands' as brands;
 
 // Fonts (External URLs)
 @import url('https://fonts.bunny.net/css?family=Nunito');
