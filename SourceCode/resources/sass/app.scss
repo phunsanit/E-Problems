@@ -1,14 +1,14 @@
-// Variables
-@import 'variables';
+// app.scss
+@use 'variables' as vars;
 
 // Bootstrap
-//@import 'bootstrap/scss/bootstrap';
+// @use 'bootstrap/scss/bootstrap';
 
 // Font Awesome
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@use "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@use "../../node_modules/@fortawesome/fontawesome-free/scss/regular";
+@use "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@use "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
 
-// Fonts
+// Fonts (External URLs)
 @import url('https://fonts.bunny.net/css?family=Nunito');
