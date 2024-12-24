@@ -12,19 +12,21 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 
 // Vue.js Components
+import 'datatables.net-dt';
+import 'datatables.net';
+import DataTable from 'datatables.net-vue3'; 
 import DataTables from './Components/DataTables.vue';
+import Dropdown from './Components/Dropdown.vue';
 import Modal from './Components/Modal.vue';
 import NavLinks from './Components/NavLink.vue';
 import Welcome from './Components/Welcome.vue';
-import 'datatables.net';
-import 'datatables.net-dt';
-import DataTable from 'datatables.net-vue3'; 
 
 // Define your root Vue instance
 const app = createApp({}); 
 
 // Register Vue components globally
 app.component('DataTables', DataTables);
+app.component('dropdown', Dropdown);
 app.component('Modal', Modal);
 app.component('NavLinks', NavLinks);
 app.component('Welcome', Welcome);

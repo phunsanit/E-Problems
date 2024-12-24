@@ -6,15 +6,12 @@ import typography from '@tailwindcss/typography';
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        './resources/js/**/*.vue',
-        './resources/views/**/*.blade.php',
+        './resources/js/**/*.vue', 
+        './resources/views/**/*.blade.php', 
         './storage/framework/views/*.php',
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
+        "./resources/**/*.js", // Keep this to include any JavaScript files with Tailwind directives
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -22,6 +19,5 @@ export default {
             },
         },
     },
-
     plugins: [forms],
 };
