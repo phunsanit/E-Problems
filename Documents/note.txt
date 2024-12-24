@@ -68,7 +68,7 @@ npm run dev
 8 open in browser like
 http://localhost:8080/E-Problems/
 
-vite build --minify false 
+vite build --minify false
 
 --------------------------------------------------------------------------------------------------- Authentication, Authorization, User
 

@@ -368,7 +368,7 @@ CREATE TABLE `tickets` (
   `status_id` tinyint(4) NOT NULL COMMENT 'Status',
   `category_id` tinyint(3) UNSIGNED NOT NULL COMMENT 'Category',
   `vessel_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Vessel',
-  `service_lines_id` tinyint(3) UNSIGNED NOT NULL COMMENT 'Service Lines',
+  `service_line_id` tinyint(3) UNSIGNED NOT NULL COMMENT 'Service Lines',
   `support_engineer_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Support Engineer ID',
   `sla_dt` datetime NOT NULL COMMENT 'SLA',
   `working_time` int(10) UNSIGNED DEFAULT NULL COMMENT 'Working Time',
@@ -384,7 +384,7 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `status_id`, `category_id`, `vessel_id`, `service_lines_id`, `support_engineer_id`, `sla_dt`, `working_time`, `descriptions`, `created_at`, `updated_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+INSERT INTO `tickets` (`id`, `status_id`, `category_id`, `vessel_id`, `service_line_id`, `support_engineer_id`, `sla_dt`, `working_time`, `descriptions`, `created_at`, `updated_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
 (1, 1, 1, 1, 1, 2, '2024-12-12 08:00:01', NULL, 'descriptions about issue', '2024-12-12 01:01:38', NULL, 1, NULL, NULL),
 (2, 2, 2, 2, 2, 3, '2024-12-12 08:00:01', NULL, 'detail', '2024-12-12 01:01:38', NULL, 1, NULL, NULL);
 

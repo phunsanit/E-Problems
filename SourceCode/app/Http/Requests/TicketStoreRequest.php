@@ -26,7 +26,7 @@ class TicketStoreRequest extends FormRequest
             'created_by' => 'required|integer',
             'deleted_by' => 'nullable|integer',
             'descriptions' => 'required|string',
-            'service_lines_id' => 'required|integer',
+            'service_line_id' => 'required|integer',
             'sla_dt' => 'required|date',
             'status_id' => 'required|integer',
             'support_engineer_id' => 'required|integer',

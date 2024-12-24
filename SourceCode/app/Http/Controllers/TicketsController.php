@@ -43,8 +43,8 @@ class TicketsController extends Controller
                     $query->where('category_id', $request->search['category_id']);
                 }
 
-                if (isset($request->search['service_lines_id']) && is_int((int) $request->search['service_lines_id'])) {
-                    $query->where('service_lines_id', $request->search['service_lines_id']);
+                if (isset($request->search['service_line_id']) && is_int((int) $request->search['service_line_id'])) {
+                    $query->where('service_line_id', $request->search['service_line_id']);
                 }
 
                 if (isset($request->search['status_id']) && is_int((int) $request->search['status_id'])) {
@@ -64,8 +64,8 @@ class TicketsController extends Controller
                         'category_id' => $ticket->category_id,
                         'category' => $ticket->category->title,
                         'id' => $ticket->id,
-                        'service_lines_id' => $ticket->service_lines_id,
-                        'service_lines' => $ticket->serviceLine->title,
+                        'service_line_id' => $ticket->service_line_id,
+                        'service_line' => $ticket->serviceLine->title,
                         'sla_dt' => $ticket->sla_dt,
                         'support_engineer_id' => $ticket->support_engineer_id,
                         'support_engineer' => $ticket->supportEngineer->name,

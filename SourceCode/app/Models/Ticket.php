@@ -19,7 +19,7 @@ class Ticket extends Model
         'created_by',
         'deleted_by',
         'descriptions',
-        'service_lines_id',
+        'service_line_id',
         'sla_dt',
         'status_id',
         'support_engineer_id',
@@ -36,7 +36,7 @@ class Ticket extends Model
 
     public function serviceLine()
     {
-        return $this->belongsTo(ServiceLine::class, 'service_lines_id');
+        return $this->belongsTo(ServiceLine::class, 'service_line_id');
     }
 
     public function supportEngineer()

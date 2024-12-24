@@ -293,7 +293,7 @@ CREATE TABLE `tickets` (
   `status_id` tinyint(4) NOT NULL COMMENT 'Status',
   `category_id` int(10) UNSIGNED NOT NULL COMMENT 'Category',
   `vessel_id` int(10) UNSIGNED NOT NULL COMMENT 'Vessel',
-  `service_lines_id` int(3) UNSIGNED NOT NULL COMMENT 'Service Lines',
+  `service_line_id` int(3) UNSIGNED NOT NULL COMMENT 'Service Lines',
   `support_engineer_id` bigint(20) UNSIGNED NOT NULL COMMENT 'Support Engineer ID',
   `opened_dt` datetime NOT NULL COMMENT 'Opened',
   `colsed_dt` datetime NOT NULL COMMENT 'Closed',
@@ -310,7 +310,7 @@ CREATE TABLE `tickets` (
 -- Dumping data for table `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `status_id`, `category_id`, `vessel_id`, `service_lines_id`, `support_engineer_id`, `opened_dt`, `colsed_dt`, `sla_dt`, `descriptions`, `created_at`, `updated_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
+INSERT INTO `tickets` (`id`, `status_id`, `category_id`, `vessel_id`, `service_line_id`, `support_engineer_id`, `opened_dt`, `colsed_dt`, `sla_dt`, `descriptions`, `created_at`, `updated_at`, `created_by`, `updated_by`, `deleted_by`) VALUES
 (3, 1, 1, 10, 1, 3, '2024-12-12 07:13:30', '2024-12-12 07:13:30', '2024-12-12 07:13:30', 'please upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed\r\nplease upgrade internet speed', '2024-12-12 07:16:40', '2024-12-12 07:16:40', 1, 2, 1),
 (4, 2, 2, 8, 2, 4, '2024-12-12 07:13:30', '2024-12-12 07:13:30', '2024-12-12 07:13:30', 'SSL failed please fixed', '2024-12-12 07:16:40', '2024-12-12 07:16:40', 1, 3, 2);
 
@@ -472,7 +472,7 @@ ALTER TABLE `tickets`
   ADD KEY `creator_id` (`created_by`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `updated_by` (`updated_by`),
-  ADD KEY `service_lines_id` (`service_lines_id`);
+  ADD KEY `service_line_id` (`service_line_id`);
 
 --
 -- Indexes for table `users`

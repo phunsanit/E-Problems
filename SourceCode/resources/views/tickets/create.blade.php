@@ -58,11 +58,11 @@
                 <label for="inputServiceLinesId" class="form-label"><strong>Service Lines ID:</strong></label>
                 <input
                     type="number"
-                    name="service_lines_id"
-                    class="form-control @error('service_lines_id') is-invalid @enderror"
-                    id="inputServiceLinesId"
+                    name="service_line_id"
+                    class="form-control @error('service_line_id') is-invalid @enderror"
+                    id="inputServiceLineId"
                     placeholder="Service Lines ID">
-                @error('service_lines_id')
+                @error('service_line_id')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>

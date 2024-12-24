@@ -38,7 +38,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group">
                     <strong>Service Lines:</strong> <br/>
-                    {{ $ticket->service_lines_id }}
+                    {{ $ticket->service_line_id }}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">

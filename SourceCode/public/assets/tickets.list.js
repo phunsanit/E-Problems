@@ -51,14 +51,21 @@ $(document).ready(function () {
 
                 },
                 {
-                    data: 'service_lines_id',
+                    data: 'service_line_id',
                     orderable: false,
                     render: function (data, type, row) {
                         return row.service_line;
                     },
                     title: 'Service Line'
                 },
-                { data: 'support_engineer_id' },
+                {
+                    data: 'support_engineer_id',
+                    orderable: false,
+                    render: function (data, type, row) {
+                        return row.support_engineer;
+                    },
+                    title: 'Support Engineer'
+                },
                 { data: 'sla_dt' },
                 { data: 'working_time' }
             ],
