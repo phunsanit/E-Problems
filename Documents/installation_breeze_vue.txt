@@ -1,0 +1,23 @@
+https://laravel.com/docs/11.x/installation#installing-php
+
+/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.4)"
+or windows / linux
+
+composer global require laravel/installer
+
+laravel new SourceCode
+
+- Laravel Breeze
+
+- Vue with Inertia
+
+Dark mode
+TypeScript
+ESLint with Prettier
+
+Pest
+
+MariaDB
+
+.env
+

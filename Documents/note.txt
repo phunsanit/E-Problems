@@ -79,10 +79,6 @@ php artisan ui bootstrap --auth
 
 npm install && npm run dev
 
-npm install -D @vitejs/plugin-vue
-
-npm update vue-tsc
-
 php artisan migrate
 
 --------------------------------------------------------------------------------------------------- chache and refresh
@@ -143,6 +139,36 @@ npm install
 npm run dev
 
 php artisan migrate
+
+--------------------------------------------------------------------------------------------------- Tailwind CSS
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+Clear the Vite cache by deleting the node_modules/.vite directory in your project's root.
+
+- use @vite(['resources/css/app.css']) in view
+- use Tailwind CSS in some view
+
+php artisan config:cache
+php artisan route:cache
+npm run dev
+
+--------------------------------------------------------------------------------------------------- Vue.js
+
+npm install vue@next \\error on mac os
+
+or
+
+npm install vue
+
+Install the Vite plugin for Vue
+
+npm install -D @vitejs/plugin-vue
+
+convert to TypeScript
+
+npm update vue-tsc
 
 --------------------------------------------------------------------------------------------------- Vue.js DataTable Component
 
@@ -417,16 +443,5 @@ php artisan ziggy:generate
 composer require laravel/ui
 php artisan ui vue
 npm install && npm run dev
-
---------------------------------------------------------------------------------------------------- Tailwind CSS
-
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-
-Clear the Vite cache by deleting the node_modules/.vite directory in your project's root.
-
-php artisan config:cache
-php artisan route:cache
-
 
 ---------------------------------------------------------------------------------------------------

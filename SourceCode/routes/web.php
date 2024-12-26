@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-//require __DIR__.'/auth.php';
 
 //refresh cache
 Route::get('/refresh', function () {
@@ -81,3 +80,5 @@ Route::controller(TicketsController::class)->group(function () {
     Route::post('/tickets', 'store');
     Route::put('/tickets/{id}', 'update');
 });
+
+require __DIR__.'/auth.php';
