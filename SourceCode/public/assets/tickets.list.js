@@ -67,7 +67,15 @@ $(document).ready(function () {
                     title: 'Support Engineer'
                 },
                 { data: 'sla_dt' },
-                { data: 'working_time' }
+                { data: 'working_time' },
+                {
+                    orderable: false,
+                    render: function (data, type, row) {
+                        return '<a href="' + base + '/tickets"><i class="fa fa-pen"></i> Edit</a> | ' +
+                            '<a href="' + base + '/tickets"><i class="fa fa-trash"></i> Delete</i></a>';
+                    },
+                    width: '200px'
+                }
             ],
             lengthMenu: [10, 25, 50, 75, 100],
             order: [[0, 'asc']],
