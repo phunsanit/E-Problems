@@ -15,9 +15,9 @@
 @endsection
 
 @section('contentScript')
-<script>
-	const base = '{{ url('') }}';
-	const csrf_token = '{{ csrf_token() }}';
+<script type="module">
+	window.base = '{{ url('') }}';
+	window.csrf_token = '{{ csrf_token() }}';
 </script>
-<script src="{{ asset('assets/tickets.list.js') }}"></script>
+<script src="{{ asset('assets/tickets.list.js') }}" type="module"></script>
 @endsection

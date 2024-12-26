@@ -89,18 +89,18 @@ php artisan migrate
 
 --------------------------------------------------------------------------------------------------- Font Awesome
 
-npm install @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons 
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons
 
 SourceCode/resources/js/app.ts
 
 //Font Awesome
 import { config, library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faUser, faEnvelope, faPlus, faM, faMinus, faHome, faPhone, faMailBulk, faDownload, faStar, faEraser, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'; 
+import { faCoffee, faUser, faEnvelope, faPlus, faM, faMinus, faHome, faPhone, faMailBulk, faDownload, faStar, faEraser, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faEdit } from '@fortawesome/free-regular-svg-icons';
 import { faAmilia, faGithub } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faDownload, faEnvelope, faHome, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser); 
-config.autoReplaceSvg = 'nest'; 
+library.add(faDownload, faEnvelope, faHome, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser);
+config.autoReplaceSvg = 'nest';
 
 --------------------------------------------------------------------------------------------------- vite
 
@@ -417,5 +417,16 @@ php artisan ziggy:generate
 composer require laravel/ui
 php artisan ui vue
 npm install && npm run dev
+
+--------------------------------------------------------------------------------------------------- Tailwind CSS
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+Clear the Vite cache by deleting the node_modules/.vite directory in your project's root.
+
+php artisan config:cache
+php artisan route:cache
+
 
 ---------------------------------------------------------------------------------------------------
