@@ -6,9 +6,9 @@ import { config, library, dom } from '@fortawesome/fontawesome-svg-core';
 
 import { faFacebook, faInstagram, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faAddressBook, faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
-import { faDownload, faEnvelope, faHome, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faDownload, faEnvelope, faFloppyDisk, faHome, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 
-library.add( faAddressBook, faClock, faCopy, faDownload, faEnvelope, faFacebook, faHome, faInstagram, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser, faXTwitter );//all icons
+library.add( faAddressBook, faArrowLeft, faClock, faCopy, faDownload, faEnvelope, faFacebook, faFloppyDisk, faHome, faInstagram, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser, faXTwitter );//all icons
 
 config.autoReplaceSvg = 'nest';
 

@@ -71,7 +71,7 @@ $(document).ready(function () {
                 {
                     orderable: false,
                     render: function (data, type, row) {
-                        return '<a href="' + base + '/tickets"><i class="fa fa-pen"></i> Edit</a> | ' +
+                        return '<a href="' + base + '/tickets/'+ row.id +'/edit"><i class="fa fa-pen"></i> Edit</a> | ' +
                             '<a href="' + base + '/tickets"><i class="fa fa-trash"></i> Delete</i></a>';
                     },
                     width: '200px'
