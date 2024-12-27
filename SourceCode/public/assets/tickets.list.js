@@ -72,7 +72,11 @@ $(document).ready(function () {
                     orderable: false,
                     render: function (data, type, row) {
                         return '<a href="' + base + '/tickets/'+ row.id +'/edit"><i class="fa fa-pen"></i> Edit</a> | ' +
-                            '<a href="' + base + '/tickets"><i class="fa fa-trash"></i> Delete</i></a>';
+                            '<form action="' + base + '/tickets/'+ row.id +'" method="POST" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this ticket?\')">' +
+                            '<input type="hidden" name="_method" value="DELETE">' +
+                            '<input type="hidden" name="_token" value="' + csrf_token + '">' +
+                            '<button type="submit" style="background:none;border:none;color:red;cursor:pointer;"><i class="fa fa-trash"></i> Delete</button>' +
+                            '</form>';
                     },
                     width: '200px'
                 }

@@ -114,7 +114,7 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        return view('tickets.create');
+        return view('tickets.create', ['title' => 'Add New Ticket']);
     }
 
     /**
@@ -141,7 +141,7 @@ class TicketsController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        return view('tickets.edit', compact('ticket'));
+        return view('tickets.edit', compact('ticket'), ['title' => 'Edit Ticket']);
     }
 
     /**
@@ -162,7 +162,7 @@ class TicketsController extends Controller
     {
         $ticket->delete();
 
-        return redirect()->route('tickets.index')
+        return redirect()->route('tickets')
             ->with('success', 'Ticket deleted successfully');
     }
 }

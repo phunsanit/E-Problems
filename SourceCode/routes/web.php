@@ -50,7 +50,7 @@ Route::get('/refresh', function () {
         'env',
         'list', //all commands
         'package:discover',
-        //'route:list',//all routes but must be in console only
+        'route:list',//may fail if there are errors in routes
     ];
 
     $output = '<!DOCTYPE html><html lang="en"><head><title>refresh</title></head><body><dl>';
@@ -71,14 +71,6 @@ Route::get('/refresh', function () {
     return response($output)->header('Content-Type', 'text/html');
 });
 
-Route::controller(TicketsController::class)->group(function () {
-    Route::delete('/tickets/{id}', 'destroy');
-    Route::get('/tickets', 'index');
-    Route::get('/tickets/{id}', 'show');
-    Route::get('/tickets/{id}/edit', 'edit');
-    Route::get('/tickets/create', 'create');
-    Route::post('/tickets', 'store');
-    Route::put('/tickets/{id}', 'update');
-});
+Route::resource('tickets', TicketsController::class);
 
 require __DIR__.'/auth.php';
