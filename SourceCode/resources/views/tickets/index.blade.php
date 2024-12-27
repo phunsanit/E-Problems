@@ -9,8 +9,10 @@
 	@if(session('success'))
 		<p class="aze bdk">session('success') }}</p>
 	@endif
-	<table class="w-full" id="tickets-list">
-	</table>
+	<div class="overflow-x-auto">
+		<table class="table-bordered" id="tickets-list">
+		</table>
+	</div>
 </div>
 @endsection
 

@@ -71,14 +71,15 @@ $(document).ready(function () {
                 {
                     orderable: false,
                     render: function (data, type, row) {
-                        return '<a href="' + base + '/tickets/'+ row.id +'/edit"><i class="fa fa-pen"></i> Edit</a> | ' +
+                        return '<a href="' + base + '/tickets/'+ row.id +'" title="Show"><i class="fa-solid fa-magnifying-glass"></i><a> | ' +
+                            '<a href="' + base + '/tickets/'+ row.id +'/edit" title="Edit"><i class="fa fa-pen"></i></a> | ' +
                             '<form action="' + base + '/tickets/'+ row.id +'" method="POST" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this ticket?\')">' +
                             '<input type="hidden" name="_method" value="DELETE">' +
                             '<input type="hidden" name="_token" value="' + csrf_token + '">' +
-                            '<button type="submit" style="background:none;border:none;color:red;cursor:pointer;"><i class="fa fa-trash"></i> Delete</button>' +
+                            '<button type="submit" style="background:none;border:none;cursor:pointer;" title="Delete"><i class="fa fa-trash"></i></button>' +
                             '</form>';
                     },
-                    width: '200px'
+                    width: '100px'
                 }
             ],
             lengthMenu: [10, 25, 50, 75, 100],

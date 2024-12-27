@@ -114,7 +114,7 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        return view('tickets.create', ['title' => 'Add New Ticket']);
+        return view('tickets.create', ['title' => 'Create Ticket']);
     }
 
     /**
@@ -133,7 +133,7 @@ class TicketsController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        return view('tickets.show', compact('ticket'));
+        return view('tickets.show', compact('ticket'), ['title' => 'Show Ticket: ' . $ticket->id]);
     }
 
     /**
