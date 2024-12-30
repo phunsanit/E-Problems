@@ -98,6 +98,15 @@ import { faAmilia, faGithub } from '@fortawesome/free-brands-svg-icons';
 library.add(faDownload, faEnvelope, faHome, faMinus, faPen, faPhone, faPlus, faStar, faTrash, faUser);
 config.autoReplaceSvg = 'nest';
 
+แบบ import all
+
+npm install @fortawesome/fontawesome-free
+
+SourceCode/resources/js/app.ts
+
+//Font Awesome
+import '@fortawesome/fontawesome-free/css/all.css';
+
 --------------------------------------------------------------------------------------------------- vite
 
 1
@@ -444,4 +453,16 @@ composer require laravel/ui
 php artisan ui vue
 npm install && npm run dev
 
----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------- Workflow Actions
+
+Role    Action              Current Status       Next Status
+User    Create Ticket       -                    New
+Chef    Approve             New                  Approved
+Chef    Reject              New                  Rejected
+Staff   Start Processing    Approved             In Progress
+Staff   Put On Hold         In Progress          On Hold
+Staff   Close               In Progress, On Hold Closed
+User    Reopen              Closed               Reopened
+Staff   Process Again       Reopened             In Progress
+
+--------------------------------------------------------------------------------------------------- 
