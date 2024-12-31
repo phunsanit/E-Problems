@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TicketStoreRequest extends FormRequest
+class StoreTicketRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,7 +20,7 @@ class TicketStoreRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
-    {  
+    {
         return [
             'id' => 'required|integer|exists:tickets,id',
             'status_id' => 'required|integer',
@@ -34,6 +34,8 @@ class TicketStoreRequest extends FormRequest
             'created_by' => 'required|integer',
             'updated_by' => 'nullable|integer',
             'deleted_by' => 'nullable|integer',
+            'created_at' => 'nullable|date',
+            'updated_at' => 'nullable|date',
         ];
     }
 }

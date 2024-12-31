@@ -349,6 +349,7 @@ php artisan make:model Vessel
 
 //request ( validation )
 php artisan make:request TicketStoreRequest
+php artisan make:request StoreTicketRequest
 
 //Create a Controller
 
