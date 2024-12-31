@@ -22,7 +22,8 @@ class StoreTicketRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:tickets,id',
+            'id' => 'nullable|integer|exists:tickets,id',
+
             'status_id' => 'required|integer',
             'category_id' => 'required|integer',
             'vessel_id' => 'required|integer',
@@ -31,11 +32,13 @@ class StoreTicketRequest extends FormRequest
             'sla_dt' => 'nullable|date',
             'working_time' => 'nullable|integer',
             'descriptions' => 'required|string',
+/*
             'created_by' => 'required|integer',
             'updated_by' => 'nullable|integer',
             'deleted_by' => 'nullable|integer',
             'created_at' => 'nullable|date',
             'updated_at' => 'nullable|date',
+*/
         ];
     }
 }

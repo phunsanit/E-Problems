@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTicketRequest;
 use App\Models\Ticket;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -121,16 +122,16 @@ class TicketsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTicketRequest $request)
+    public function store(StoreTicketRequest $request): RedirectResponse
     {
         $model = new Ticket($request->validated());
-        if ($model->save()) {
-            return redirect()->route('tickets.index')
-                ->with('success', 'Ticket created successfully.');
-        } else {
-            return redirect()->route('tickets.index')
-                ->with('error', 'Ticket creation failed.');
-        }
+
+        $model->created_by = auth()->id();
+
+        $model->save();
+
+        return redirect()->route('tickets.index')
+            ->with('success', 'Ticket created successfully.');
     }
 
     /**
@@ -152,8 +153,10 @@ class TicketsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreTicketRequest $request, Ticket $model): RedirectResponse
+    public function update(StoreTicketRequest $request, string $id): RedirectResponse
     {
+        $model = Ticket::findOrFail($id);
+
         $model->update($request->validated());
 
         return redirect()->route('tickets.index')
