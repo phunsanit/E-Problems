@@ -16,7 +16,7 @@ $(document).ready(function () {
                         return parseInt(meta.row) + parseInt(meta.settings._iDisplayStart) + 1;
                     },
                     title: 'No.',
-                    width: '10px'
+                    width: '60px'
                 },
                 {
                     orderable: false,
@@ -35,7 +35,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'category_id',
-                    orderable: true,
+                    orderable: false,
                     render: function (data, type, row) {
                         return row.category;
                     },
@@ -43,7 +43,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'vessel_id',
-                    orderable: true,
+                    orderable: false,
                     render: function (data, type, row) {
                         return row.vessel;
                     },
@@ -52,7 +52,7 @@ $(document).ready(function () {
                 },
                 {
                     data: 'service_line_id',
-                    orderable: true,
+                    orderable: false,
                     render: function (data, type, row) {
                         return row.service_line;
                     },
@@ -60,14 +60,20 @@ $(document).ready(function () {
                 },
                 {
                     data: 'support_engineer_id',
-                    orderable: true,
+                    orderable: false,
                     render: function (data, type, row) {
                         return row.support_engineer;
                     },
                     title: 'Support Engineer'
                 },
-                { data: 'sla_dt' },
-                { data: 'working_time' },
+                {
+                    data: 'sla_dt',
+                    orderable: false
+                 },
+                {
+                    data: 'working_time',
+                    orderable: false
+                },
                 {
                     orderable: false,
                     render: function (data, type, row) {

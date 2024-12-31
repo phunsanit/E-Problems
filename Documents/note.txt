@@ -59,7 +59,6 @@ php artisan db:seed
 npm run dev
 php artisan serve
 
-
 cd resources/js/app
 npm install
 npm run format

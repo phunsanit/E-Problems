@@ -10,10 +10,10 @@
             <a class="btn btn-primary btn-sm" href="{{ url('tickets') }}"><i class="fa fa-arrow-left"></i> Back</a>
         </div>
 
-        <form action="{{ url('tickets.store') }}" method="POST">
+        <form action="{{ route('tickets.store') }}" autocomplete="off" method="POST">
             @csrf
 
-            @include('tickets.from')
+            @include('tickets.from', ['item' => $item])
 
             <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
         </form>

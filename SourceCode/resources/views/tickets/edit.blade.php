@@ -9,11 +9,11 @@
             <a class="btn btn-primary btn-sm" href="{{ url('tickets') }}"><i class="fa fa-arrow-left"></i> Back</a>
         </div>
 
-        <form action="{{ url('tickets.update',$ticket->id) }}" method="POST">
+        <form action="{{ route('tickets.update',$item->id) }}" autocomplete="off" method="POST">
             @csrf
             @method('PUT')
 
-            @include('tickets.from')
+            @include('tickets.from', ['ticket' => $item])
 
             <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
         </form>

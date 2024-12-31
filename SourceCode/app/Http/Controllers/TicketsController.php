@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TicketStoreRequest;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -114,18 +115,22 @@ class TicketsController extends Controller
      */
     public function create()
     {
-        return view('tickets.create', ['title' => 'Create Ticket']);
+        return view('tickets.create', ['item' => new Ticket(), 'title' => 'Create Ticket']);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TicketStoreRequest $request)
     {
-        Ticket::create($request->validated());
-
-        return redirect()->route('tickets.index')
-            ->with('success', 'Ticket created successfully.');
+        $model = new Ticket($request->validated());
+        if ($model->save()) {
+            return redirect()->route('tickets.index')
+                ->with('success', 'Ticket created successfully.');
+        } else {
+            return redirect()->route('tickets.index')
+                ->with('error', 'Ticket creation failed.');
+        }
     }
 
     /**
@@ -141,18 +146,22 @@ class TicketsController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        return view('tickets.edit', compact('ticket'), ['title' => 'Edit Ticket']);
+        return view('tickets.edit', ['item' => $ticket, 'title' => 'Edit Ticket']);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ticket $ticket)
+    public function update(TicketStoreRequest $request, Ticket $ticket)
     {
-        $ticket->update($request->validated());
-
-        return redirect()->route('tickets.index')
-            ->with('success', 'Ticket updated successfully');
+        $model->fill($request->validated());
+        if ($model->save()) {
+            return redirect()->route('tickets.index')
+                ->with('success', 'Ticket updated successfully');
+        } else {
+            return redirect()->route('tickets.index')
+                ->with('error', 'Ticket creation failed.');
+        }
     }
 
     /**
@@ -162,7 +171,7 @@ class TicketsController extends Controller
     {
         $ticket->delete();
 
-        return redirect()->route('tickets')
+        return redirect()->route('tickets.index')
             ->with('success', 'Ticket deleted successfully');
     }
 }

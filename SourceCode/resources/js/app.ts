@@ -1,5 +1,5 @@
 import '../css/app.css';
-//import './bootstrap';
+import './bootstrap';
 
 //Font Awesome
 import '@fortawesome/fontawesome-free/css/all.css';

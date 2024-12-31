@@ -11,7 +11,7 @@ class TicketStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,8 +27,8 @@ class TicketStoreRequest extends FormRequest
             'category_id' => 'required|integer',
             'vessel_id' => 'required|integer',
             'service_line_id' => 'required|integer',
-            'support_engineer_id' => 'required|integer',
-            'sla_dt' => 'required|date',
+            'support_engineer_id' => 'nullable|integer',
+            'sla_dt' => 'nullable|date',
             'working_time' => 'nullable|integer',
             'descriptions' => 'required|string',
             'created_by' => 'required|integer',

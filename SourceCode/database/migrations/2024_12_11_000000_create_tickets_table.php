@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('category_id')->comment('Category');
             $table->unsignedBigInteger('vessel_id')->comment('Vessel');
             $table->unsignedTinyInteger('service_line_id')->comment('Service Lines');
-            $table->unsignedBigInteger('support_engineer_id')->comment('Support Engineer ID');
-            $table->dateTime('sla_dt')->comment('SLA');
+            $table->unsignedBigInteger('support_engineer_id')->nullable()->comment('Support Engineer ID');
+            $table->dateTime('sla_dt')->nullable()->comment('SLA');
             $table->integer('working_time', false, true)->length(4)->nullable()->comment('Working Time');
             $table->text('descriptions')->comment('Descriptions');
 
