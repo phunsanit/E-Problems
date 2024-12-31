@@ -6,9 +6,13 @@
 		<h3><i class="fa-regular fa-rectangle-list"></i> Tickets</h3>
 		<a class="bg-green-500 font-bold hover:bg-green-700 px-2 py-1 rounded text-white text-xs" href="{{ url('/tickets/create') }}"><i class="fa-solid fa-plus"></i> Create New Ticket</a>
 	</div>
-	@if(session('success'))
-		<p class="aze bdk">session('success') }}</p>
+
+	@if (session('success'))
+		<div class="bg-green-500 text-white p-2 rounded mb-4 mt-2">
+			{{ session('success') }}
+		</div>
 	@endif
+
 	<div class="overflow-x-auto">
 		<table class="table-bordered" id="tickets-list">
 		</table>
