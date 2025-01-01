@@ -472,4 +472,13 @@ Staff   Close               In Progress, On Hold Closed
 User    Reopen              Closed               Reopened
 Staff   Process Again       Reopened             In Progress
 
+--------------------------------------------------------------------------------------------------- blameable
+
+https://github.com/richan-fongdasen/eloquent-blameable
+
+/config/blameable.php
+
+//'user' => \App\User::class,
+'user' => \App\Models\User::class,
+
 ---------------------------------------------------------------------------------------------------

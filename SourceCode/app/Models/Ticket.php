@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
 class Ticket extends Model
 {
+    use BlameableTrait;
     use HasFactory;
 
     /**
@@ -29,6 +31,7 @@ class Ticket extends Model
     ];
 
     // Define the relationship to the other model
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
