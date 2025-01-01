@@ -23,10 +23,15 @@ return new class extends Migration
             $table->integer('working_time', false, true)->length(4)->nullable()->comment('Working Time');
             $table->text('descriptions')->comment('Descriptions');
 
-            $table->timestamps();
+            //$table->timestamps();
 
+            $table->dateTime('created_at')->nullable()->comment('Created At');
             $table->unsignedBigInteger('created_by')->comment('Created By');
+
+            $table->dateTime('updated_at')->nullable()->comment('Updated At');
             $table->unsignedBigInteger('updated_by')->nullable()->comment('Updated By');
+
+            $table->dateTime('deleted_at')->nullable()->comment('Deteled At');
             $table->unsignedBigInteger('deleted_by')->nullable()->comment('Deleted By');
         });
     }

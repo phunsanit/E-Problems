@@ -332,8 +332,15 @@ php artisan make:seeder VesselsSeeder
 php artisan db:seed
 
 #each table
+php artisan db:seed --class=CategoriesSeeder
 php artisan db:seed --class=OrganizationsSeeder
+php artisan db:seed --class=ServiceLinesSeeder
+php artisan db:seed --class=ServiceLinesVesselsSeeder
+php artisan db:seed --class=SupportEngineersSeeder
 php artisan db:seed --class=TeamSeeder
+php artisan db:seed --class=TicketsSeeder
+php artisan db:seed --class=UsersSeeder
+php artisan db:seed --class=VesselsSeeder
 
 //Create a Model
 //model:prune                           Prune models that are no longer needed
@@ -465,4 +472,4 @@ Staff   Close               In Progress, On Hold Closed
 User    Reopen              Closed               Reopened
 Staff   Process Again       Reopened             In Progress
 
---------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------------------------------

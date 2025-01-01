@@ -159,6 +159,8 @@ class TicketsController extends Controller
 
         $model->update($request->validated());
 
+        $model->updated_by = auth()->id();
+
         return redirect()->route('tickets.index')
             ->with('success', 'Ticket updated successfully');
     }
@@ -168,7 +170,13 @@ class TicketsController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        $ticket->delete();
+        //$ticket->delete();
+    
+        //soft delete
+        $ticket->update([
+            'deleted_at' => now(),
+            'deleted_by' => auth()->id()
+        ]);
 
         return redirect()->route('tickets.index')
             ->with('success', 'Ticket deleted successfully');

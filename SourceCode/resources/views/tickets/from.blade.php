@@ -1,7 +1,6 @@
 @if(session('error'))
-		<p class="aze bdk">session('error') }}</p>
+<p class="aze bdk">session('error') }}</p>
 @endif
-
 <div class="mb-4">
     <label for="inputStatusId" class="block text-sm font-medium text-gray-700"><strong>Status ID:</strong></label>
     <input
@@ -13,10 +12,9 @@
         value="{{ old('status_id', $item['status_id']) }}"
         >
     @error('status_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputCategoryId" class="block text-sm font-medium text-gray-700"><strong>Category ID:</strong></label>
     <input
@@ -28,10 +26,9 @@
         value="{{ old('category_id', $item['category_id']) }}"
         >
     @error('category_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputVesselId" class="block text-sm font-medium text-gray-700"><strong>Vessel ID:</strong></label>
     <input
@@ -43,10 +40,9 @@
         value="{{ old('vessel_id', $item['vessel_id']) }}"
         >
     @error('vessel_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputServiceLineId" class="block text-sm font-medium text-gray-700"><strong>Service Lines ID:</strong></label>
     <input
@@ -58,10 +54,9 @@
         value="{{ old('service_line_id', $item['service_line_id']) }}"
         >
     @error('service_line_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputSupportEngineerId" class="block text-sm font-medium text-gray-700"><strong>Support Engineer ID:</strong></label>
     <input
@@ -73,10 +68,9 @@
         value="{{ old('support_engineer_id', $item['support_engineer_id']) }}"
         >
     @error('support_engineer_id')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputSlaDt" class="block text-sm font-medium text-gray-700"><strong>SLA Date and Time:</strong></label>
     <input
@@ -88,10 +82,9 @@
         value="{{ old('sla_dt', $item['sla_dt']) }}"
         >
     @error('sla_dt')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputWorkingTime" class="block text-sm font-medium text-gray-700"><strong>Working Time:</strong></label>
     <input
@@ -103,10 +96,9 @@
         value="{{ old('working_time', $item['working_time']) }}"
         >
     @error('working_time')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
-
 <div class="mb-4">
     <label for="inputDescriptions" class="block text-sm font-medium text-gray-700"><strong>Descriptions:</strong></label>
     <textarea
@@ -117,6 +109,6 @@
         style="height:150px"
         >{{ old('descriptions', $item['descriptions']) }}</textarea>
     @error('descriptions')
-        <div class="text-sm text-red-600">{{ $message }}</div>
+    <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
