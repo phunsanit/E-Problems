@@ -7,7 +7,6 @@ import '../css/app.css';
 import './bootstrap';
 
 //date-fns
-// app.ts
 import { DATETIME_PATTERNS, formatDate, getLocale } from './date-fns';
 
 declare global {
@@ -18,10 +17,6 @@ declare global {
     userLanguage: typeof userLanguage;
   }
 }
-
-console.log('navigator.language', navigator.language);
-console.log('userLanguage', userLanguage);
-console.log(getLocale('th'));
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
 window.formatDate = formatDate;

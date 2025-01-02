@@ -490,6 +490,8 @@ npm install date-fns
 
 npm install --save-dev @types/date-fns
 
+https://date-fns.org/v4.1.0/docs/format
+
 --------------------------------------------------------------------------------------------------- workflow
 
 https://laravel-workflow.com/

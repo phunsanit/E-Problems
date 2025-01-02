@@ -10,7 +10,7 @@ import subDays from 'date-fns/subDays';
 type DateFnsLocaleKey = keyof typeof locales
 
 // Common date patterns
-// /node_modules/date-fns/format.cjs
+// https://date-fns.org/v4.1.0/docs/format
 export const DATETIME_PATTERNS = {
     datetime: 'Pp',
     full: 'PPPPp',
@@ -45,8 +45,12 @@ export const getLocale = (language: string) => {
 
 /*
 const date = new Date();
-const formattedDate = formatDate(date, DATETIME_PATTERNS.full, 'th');
-console.log(formattedDate);
+
+const formattedDate1 = formatDate(date, DATETIME_PATTERNS.full);
+console.log(formattedDate1);
+
+const formattedDate2 = formatDate(date, DATETIME_PATTERNS.full, 'th');
+console.log(formattedDate2);
 
 const locale = getLocale('jp');
 console.log(locale);
