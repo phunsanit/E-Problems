@@ -481,4 +481,18 @@ https://github.com/richan-fongdasen/eloquent-blameable
 //'user' => \App\User::class,
 'user' => \App\Models\User::class,
 
----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------- date-fns
+
+suggest by moment.js
+https://dockyard.com/blog/2020/02/14/you-probably-don-t-need-moment-js-anymore
+
+npm install date-fns
+
+npm install --save-dev @types/date-fns
+
+--------------------------------------------------------------------------------------------------- workflow
+
+https://laravel-workflow.com/
+
+php artisan make:workflow ticketWorkflow
+
