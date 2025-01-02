@@ -34,6 +34,8 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { DefineComponent } from 'vue';
 import { createVueApp } from './vue'; // Import the createVueApp function
 
+import DatetimeText from '@/Components/DatetimeText.vue';
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -44,6 +46,9 @@ createInertiaApp({
     ),
     setup({ el, App, props, plugin }) {
         createVueApp(el as HTMLElement, App, props, plugin); // Call the createVueApp function
+
+        App.component('DatetimeText', DatetimeText);
+
     },
     progress: {
         color: '#4B5563',
