@@ -1,62 +1,31 @@
 //global variables
-const userLanguage = navigator.language || 'en-US';
-console.log('User Language:', userLanguage);
+const userLanguage = (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language || 'en';
+
+window.userLanguage = userLanguage;
 
 import '../css/app.css';
 import './bootstrap';
 
 //date-fns
-// utils/date.ts
-import { format } from 'date-fns';
-import formatDistance from 'date-fns/formatDistance';
-import formatRelative from 'date-fns/formatRelative';
-import subDays from 'date-fns/subDays';
-import { formatWithOptions } from 'date-fns/fp'; 
-import * as locales from 'date-fns/locale'
+// app.ts
+import { DATETIME_PATTERNS, formatDate, getLocale } from './date-fns';
 
-// Type for locale keys
-type DateFnsLocaleKey = keyof typeof locales
-
-// Function to get locale dynamically
-export const getLocale = (language: string) => {
-  // Convert language code to match date-fns locale naming
-  const localeKey = language === 'en' ? 'enUS' : language
-  
-  // Safely access locale
-  const locale = locales[localeKey as DateFnsLocaleKey]
-  return locale || locales.enUS // Fallback to English
+declare global {
+  interface Window {
+    DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
+    formatDate: typeof formatDate;
+    getLocale: typeof getLocale;
+    userLanguage: typeof userLanguage;
+  }
 }
 
-// Helper function for date formatting
-export const formatDate = (
-  date: Date | string,
-  formatString: string,
-  language: string
-): string => {
-  const dateObject = typeof date === 'string' ? new Date(date) : date
-  return formatWithOptions(
-    { locale: getLocale(language) },
-    formatString
-  )(dateObject)
-}
+console.log('navigator.language', navigator.language);
+console.log('userLanguage', userLanguage);
+console.log(getLocale('th'));
 
-// Common date patterns
-export const PATTERNS = {
-  full: 'PPPPp',    // วันอังคารที่ 15 มกราคม 2567 11:00
-  long: 'PPPP',     // วันอังคารที่ 15 มกราคม 2567
-  medium: 'PP',     // 15 ม.ค. 2567
-  short: 'P',       // 15/01/2567
-  time: 'p'         // 11:00
-} as const
-
-const currentDate = new Date();
-
-console.log('Date:', currentDate);
-
-// Format the date using the user's locale and a pattern
-const formattedDate = formatDate(currentDate, PATTERNS.full, userLanguage); 
-
-console.log('Formatted Date:', formattedDate); 
+window.DATETIME_PATTERNS = DATETIME_PATTERNS;
+window.formatDate = formatDate;
+window.getLocale = getLocale;
 
 //Font Awesome
 import '@fortawesome/fontawesome-free/css/all.css';
