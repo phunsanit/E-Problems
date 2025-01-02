@@ -7,19 +7,21 @@ import '../css/app.css';
 import './bootstrap';
 
 //date-fns
-import { DATETIME_PATTERNS, formatDate, getLocale } from './date-fns';
+import { DATETIME_PATTERNS, format, formatWithOptions, getLocale } from './date-fns';
 
 declare global {
-  interface Window {
-    DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
-    formatDate: typeof formatDate;
-    getLocale: typeof getLocale;
-    userLanguage: typeof userLanguage;
-  }
+    interface Window {
+        DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
+        format: typeof format;
+        formatWithOptions: typeof formatWithOptions;
+        getLocale: typeof getLocale;
+        userLanguage: typeof userLanguage;
+    }
 }
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
-window.formatDate = formatDate;
+window.format = format;
+window.formatWithOptions = formatWithOptions;
 window.getLocale = getLocale;
 
 //Font Awesome

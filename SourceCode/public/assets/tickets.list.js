@@ -70,7 +70,7 @@ $(document).ready(function () {
                     data: 'sla_dt',
                     orderable: false,
                     render: function (data, type, row) {
-                        return formatDate(row.sla_dt, DATETIME_PATTERNS.datetime, userLanguage);
+                        return format(new Date(row.sla_dt), DATETIME_PATTERNS.datetime, userLanguage);
                     },
                 },
                 {
