@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('ZhDbjptFzegDHkGUS3fYT6W42AKeNKcn'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
             [
                 'id' => 2,
@@ -33,7 +33,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('Fy6VLmkwRNNnTgvpFDUFdFjN3yqavqHN'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
             [
                 'id' => 3,
@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('PCK9vDcE4MeXnqyRkXncGGpFh4zVyT6E'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
             [
                 'id' => 4,
@@ -51,7 +51,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('NahBmwdcEw96H3ZMQ4BGsfsfbq3rECGz'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
             [
                 'id' => 5,
@@ -60,7 +60,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('VTqWvphc8tbFqx8f6wKPUQknTxGYMP5H'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
             [
                 'id' => 6,
@@ -69,7 +69,7 @@ class UsersSeeder extends Seeder
                 'email_verified_at' => null,
                 'password' => Hash::make('eMQbyvz8qZahWSjeK5rpAEdDeGqP7sKy'),
                 'created_at' => $currentTime,
-                'updated_at' => $currentTime,
+                'updated_at' => null,
             ],
         ]);
     }

@@ -1,23 +1,21 @@
 //global variables
-const userLanguage = (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language || 'en';
+const datetimeOptions = {
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    month: 'short',
+    year: 'numeric'
+};
+window.datetimeOptions = datetimeOptions;
 
-window.userLanguage = userLanguage;
+const locales = (navigator.languages && navigator.languages.length) ? navigator.languages : navigator.language || 'en';
+window.locales = locales;
 
 import '../css/app.css';
 import './bootstrap';
 
 //date-fns
 import { DATETIME_PATTERNS, format, formatWithOptions, getLocale } from './date-fns';
-
-declare global {
-    interface Window {
-        DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
-        format: typeof format;
-        formatWithOptions: typeof formatWithOptions;
-        getLocale: typeof getLocale;
-        userLanguage: typeof userLanguage;
-    }
-}
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
 window.format = format;
@@ -67,3 +65,14 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+declare global {
+    interface Window {
+        DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
+        format: typeof format;
+        formatWithOptions: typeof formatWithOptions;
+        getLocale: typeof getLocale;
+        locales: typeof locales;
+        datetimeOptions: typeof datetimeOptions;
+    }
+}

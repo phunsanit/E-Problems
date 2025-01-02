@@ -1,7 +1,6 @@
 //date-fns
 import { format } from 'date-fns';
 import { formatWithOptions } from 'date-fns/fp';
-// import { getLocale } from 'date-fns';
 import * as locales from 'date-fns/locale'
 import formatDistance from 'date-fns/formatDistance';
 import formatRelative from 'date-fns/formatRelative';
@@ -38,7 +37,7 @@ const formattedDate = format(date, 'PPPP');
 
 const formattedDate = format(date, 'PPPP', { locale: th }); //format date with locale
 
-const formattedDate = format(new Date(row.sla_dt), DATETIME_PATTERNS.datetime, userLanguage); //format date from const DATETIME_PATTERNS
+const formattedDate = format(new Date(row.sla_dt), DATETIME_PATTERNS.datetime, locales); //format date from const DATETIME_PATTERNS
 
 const formattedDate = formatWithOptions({ locale: th }, 'PPPP')(date);
 

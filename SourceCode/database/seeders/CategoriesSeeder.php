@@ -13,6 +13,8 @@ class CategoriesSeeder extends Seeder
      */
     public function run(): void
     {
+        $currentTime = Carbon::now();
+
         DB::table('categories')->insert([
             [
                 'id' => 1,
@@ -20,8 +22,8 @@ class CategoriesSeeder extends Seeder
                 'priority_id' => 1,
                 'title' => 'Web Site blocker',
                 'description' => 'add new web site blocker',
-                'created_at' => Carbon::create('2024', '12', '12', '05', '59', '33'),
-                'updated_at' => Carbon::create('2024', '12', '12', '05', '59', '33'),
+                'created_at' => $currentTime,
+                'updated_at' => null
             ],
             [
                 'id' => 2,
@@ -29,8 +31,8 @@ class CategoriesSeeder extends Seeder
                 'priority_id' => 2,
                 'title' => 'Allow access to websites',
                 'description' => 'Allow access to websites',
-                'created_at' => Carbon::create('2024', '12', '12', '05', '59', '34'),
-                'updated_at' => Carbon::create('2024', '12', '12', '05', '59', '34'),
+                'created_at' => $currentTime,
+                'updated_at' => null
             ],
             [
                 'id' => 3,
@@ -38,8 +40,8 @@ class CategoriesSeeder extends Seeder
                 'priority_id' => 3,
                 'title' => 'install program',
                 'description' => 'allow install program',
-                'created_at' => Carbon::create('2024', '12', '12', '06', '00', '15'),
-                'updated_at' => Carbon::create('2024', '12', '12', '06', '00', '15'),
+                'created_at' => $currentTime,
+                'updated_at' => null
             ],
             [
                 'id' => 4,
@@ -47,8 +49,8 @@ class CategoriesSeeder extends Seeder
                 'priority_id' => 4,
                 'title' => 'blocking program',
                 'description' => 'blocking program, disallow install program, remove program',
-                'created_at' => Carbon::create('2024', '12', '12', '05', '59', '35'),
-                'updated_at' => Carbon::create('2024', '12', '12', '05', '59', '35'),
+                'created_at' => $currentTime,
+                'updated_at' => null
             ],
         ]);
     }
