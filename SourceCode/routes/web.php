@@ -74,3 +74,19 @@ Route::get('/refresh', function () {
 Route::resource('tickets', TicketsController::class);
 
 require __DIR__.'/auth.php';
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/*
+Route::get('/tickets/Components/DatetimeText.vue', function () {
+    return response()->file(
+        resource_path('js/Components/DatetimeText.vue'), 
+        ['Content-Type' => 'application/javascript'] 
+    );
+});
+*/

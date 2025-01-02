@@ -84,4 +84,19 @@
         </div>
     </div>
 </div>
+<template>
+  <DatetimeText datetimeString="2024-03-10T10:20:30Z" />
+</template>
+@endsection
+
+@section('contentScript')
+<script type="module">
+import DatetimeText from './DatetimeText.vue';
+
+export default {
+  components: {
+    DatetimeText,
+  },
+};
+</script>
 @endsection

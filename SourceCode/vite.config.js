@@ -17,4 +17,9 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./resources', import.meta.url))
+      }
+    }
 });

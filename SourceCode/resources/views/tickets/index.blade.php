@@ -1,4 +1,5 @@
 @extends('tickets.layout')
+
 @section('content')
 <div class="border border-gray-300 my-4 nt-bold p-4 rounded-lg shadow-lg">
     <div class="flex justify-between items-center">
@@ -16,6 +17,7 @@
     </div>
 </div>
 @endsection
+
 @section('contentScript')
 <script type="module">
     window.base = '{{ url('') }}';

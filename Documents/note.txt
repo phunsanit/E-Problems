@@ -460,6 +460,12 @@ composer require laravel/ui
 php artisan ui vue
 npm install && npm run dev
 
+composer require laravel/ui
+
+php artisan ui vue --auth
+
+npm install --save-dev typescript vue-tsc --force
+
 --------------------------------------------------------------------------------------------------- Workflow Actions
 
 Role    Action              Current Status       Next Status
