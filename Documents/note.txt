@@ -8,10 +8,14 @@ development
 
 https://laravel.com/docs/11.x#meet-laravel
 
+/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.4)"
+
 0 cd to project root
-cd ln -s /Users/Shared/Gits/phunsanit/E-Problems
+
+cd /Users/Shared/Gits/phunsanit/ll-E-Problems
 
 1 create with command
+
 laravel new SourceCode
 
 2 select starter kit
@@ -46,6 +50,11 @@ DB_PASSWORD
 - copy migrations to /database/migrations
 - copy seed to /database/seeders
 - run command
+
+8 auth
+composer require laravel/breeze --dev
+php artisan breeze:install vue
+npm install && npm run dev
 
 //migrate:fresh //Drop all tables and re-run all migrations
 //migrate:install //Create the migration repository

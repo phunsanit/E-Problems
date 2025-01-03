@@ -26,13 +26,13 @@ window.getLocale = getLocale;
 import '@fortawesome/fontawesome-free/css/all.css';
 
 //jQuery
-import './jquery'; 
+import './jquery';
 
 //Vue.js
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { DefineComponent } from 'vue';
-import { createVueApp } from './vue'; // Import the createVueApp function
+import { createApp, DefineComponent, h } from 'vue';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 import DatetimeText from '@/Components/DatetimeText.vue';
 
@@ -40,15 +40,16 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(
-        `./Pages/${name}.vue`,
-        import.meta.glob<DefineComponent>('./Pages/**/*.vue'),
-    ),
+    resolve: (name) =>
+        resolvePageComponent(
+            `./Pages/${name}.vue`,
+            import.meta.glob<DefineComponent>('./Pages/**/*.vue'),
+        ),
     setup({ el, App, props, plugin }) {
-        createVueApp(el as HTMLElement, App, props, plugin); // Call the createVueApp function
-
-        App.component('DatetimeText', DatetimeText);
-
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .use(ZiggyVue)
+            .mount(el);
     },
     progress: {
         color: '#4B5563',
