@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <th>Created At:</th>
-                        <td>{{ $ticket->created_at }}</td>
+                        <td>{{ $ticket->created_at }} | <to-locale-date-string date="{{ $ticket->created_at }}" /></td>
                         <th>Created By:</th>
                         <td>{{ $ticket->creator->name }}</td>
                     </tr>
@@ -91,12 +91,5 @@
 
 @section('contentScript')
 <script type="module">
-import DatetimeText from './DatetimeText.vue';
-
-export default {
-  components: {
-    DatetimeText,
-  },
-};
 </script>
 @endsection

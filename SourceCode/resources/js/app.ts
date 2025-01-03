@@ -29,38 +29,42 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './jquery';
 
 //Vue.js
-import { createApp, h, type DefineComponent } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
-import { ZiggyVue } from 'ziggy-js';
+import { createApp, h } from "vue";
+import { createInertiaApp } from "@inertiajs/vue3";
+import { ZiggyVue } from "../../vendor/tightenco/ziggy";
+import { createVueApp } from "./vue"; // Import createVueApp
 
-const el = document.getElementById('app');
+const el = document.getElementById("app");
 
-let app; // ประกาศตัวแปร vueApp
+let app; // Declare app variable
 
 if (el) {
-    app = createApp({ // กำหนดค่า vueApp
-        el,
-        inertiaApp: createInertiaApp({
-            resolve: (name): Promise<DefineComponent> => {
-                const pages = import.meta.glob<DefineComponent>('./Pages/**/*.vue')
-                return pages[`./Pages/${name}.vue`]()
-            },
-            setup({ el, App, props, plugin }: { el: Element, App: any, props: any, plugin: any }) {
-                return createApp({ render: () => h(App, props) })
-                    .use(plugin)
-                    .use(ZiggyVue);
-            },
-        }),
-    });
+  app = createVueApp({
+    el,
+    inertiaApp: createInertiaApp({
+      resolve: (name) => {
+        const pages = import.meta.glob("./Pages/**/*.vue");
+        return pages[`./Pages/${name}.vue`]().then((module: any) => module.default);
+      },
+      setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
+          .use(plugin)
+          .use(ZiggyVue);
+      },
+    }),
+  });
 } else {
-    app = createApp({ // กำหนดค่า vueApp
-        el: '#appModule',
-        App: {
-            // ...
-        },
-        props: {},
-        plugin: {},
-    });
+  app = createVueApp({
+    el: "#appModule",
+    App: {
+      // Add your components here if needed
+      components: {
+        // ExampleComponent,
+      },
+    },
+    props: {},
+    plugin: {}
+  });
 }
 
 // global variables
