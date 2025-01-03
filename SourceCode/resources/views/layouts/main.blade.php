@@ -1,7 +1,7 @@
 @extends('layouts.html')
 
 @section('body')
-<div class="flex gap-4" id="app">
+<div class="flex gap-4" id="appModule">
     <div class="p-4 w-500">
         <h2 class="text-xl font-bold mb-4"><i class="fa-solid fa-ticket"></i> E-Problems</h2>
         <ul>

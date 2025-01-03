@@ -29,21 +29,42 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './jquery';
 
 //Vue.js
+import { createApp, DefineComponent, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createApp, DefineComponent, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
+// Vue.js Components
+import 'datatables.net-dt';
+import 'datatables.net';
+import DataTable from 'datatables.net-vue3'; 
 import DatetimeText from './Components/DatetimeText.vue';
-
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import Modal from './Components/Modal.vue';
+import NavLinks from './Components/NavLink.vue';
 
 const app = createApp({
     components: {
         DatetimeText,
     },
 });
-app.mount('#app'); 
+
+// Mount the app to the #appSPA element if it exists (for SPA pages)
+const el = document.getElementById('appSPA');
+if (el) {
+  createInertiaApp({
+    resolve: async (name): Promise<DefineComponent> => {
+      const page = await resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'));
+      return page as DefineComponent;
+    },
+    setup({ el, App, props, plugin }) {
+      app.use(plugin)
+         .use(DataTable) 
+         .mount(el); 
+    },
+  });
+} else {
+  app.mount('#appModule');
+}
 
 // global variables
 declare global {

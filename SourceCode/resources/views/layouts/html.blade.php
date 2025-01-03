@@ -7,8 +7,8 @@
     @vite(['resources/css/app.css'])
 </head>
 <body>
-@vite(['resources/js/app.ts'])
 @yield('body')
+@vite(['resources/js/app.ts'])
 @yield('contentScript')
 </body>
 </html>
