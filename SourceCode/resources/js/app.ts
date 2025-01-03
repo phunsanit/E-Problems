@@ -21,7 +21,8 @@ const DATETIME_PATTERNS = 'yyyy-MM-dd HH:mm:ss';
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
 window.format = format;
-// window.formatWithOptions = formatWithOptions;
+import { formatWithOptions } from 'date-fns/fp';
+window.formatWithOptions = formatWithOptions;
 window.getLocale = getLocale;
 
 //Font Awesome
@@ -33,40 +34,33 @@ import './jquery';
 //Vue.js
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
-import { ZiggyVue } from "../../vendor/tightenco/ziggy";
-import { createVueApp } from "./vue"; // Import createVueApp
+import { ZiggyVue } from 'ziggy-js';
 
-const el = document.getElementById("app");
+// Import component
+import toLocaleDateString from './Components/toLocaleDateString.vue';
+
+let el = document.getElementById('app');
 
 let app; // Declare app variable
 
-if (el) {
-    app = createVueApp({
-        el,
-        inertiaApp: createInertiaApp({
-            resolve: (name) => {
-                const pages = import.meta.glob("./Pages/**/*.vue");
-                return pages[`./Pages/${name}.vue`]().then((module: any) => module.default);
-            },
-            setup({ el, App, props, plugin }) {
-                return createApp({ render: () => h(App, props) })
-                    .use(plugin)
-                    .use(ZiggyVue);
-            },
-        }),
+if (el) { //inertiajs
+    createInertiaApp({
+        resolve: name => import(`./Pages/${name}`),
+        setup({ el, App, props, plugin }) {
+            app = createApp({ render: () => h(App, props) })
+                .use(plugin)
+                .use(ZiggyVue)
+        },
     });
 } else {
-    app = createVueApp({
-        el: "#appModule",
-        App: {
-            // Add your components here if needed
-            components: {
-                // ExampleComponent,
-            },
-        },
-        props: {},
-        plugin: {}
-    });
+    el = document.getElementById('appModule');
+    app = createApp({})// different from createInertiaApp
+}
+
+//common components for all pages
+if (app && el) {
+    app.component('toLocaleDateString', toLocaleDateString)
+        .mount(el);
 }
 
 // global variables

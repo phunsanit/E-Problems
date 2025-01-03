@@ -56,9 +56,7 @@
                     </tr>
                     <tr>
                         <th>Created At:</th>
-                        <td>{{ $ticket->created_at }}
-                            to-locale-date-string date="{{ $ticket->created_at }}"
-                        </td>
+                        <td><to-locale-date-string datetime="{{ $ticket->created_at }}" /></td>
                         <th>Created By:</th>
                         <td>{{ $ticket->creator->name }}</td>
                     </tr>
