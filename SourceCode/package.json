@@ -5,7 +5,8 @@
         "datatables.net-dt": "^2.1.8",
         "datatables.net-vue3": "^3.0.3",
         "date-fns": "^4.1.0",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "ziggy-js": "^2.4.2"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^2.0.0",
