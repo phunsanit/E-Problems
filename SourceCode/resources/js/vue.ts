@@ -1,7 +1,6 @@
 // vue.ts
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
-import DataTable from 'datatables.net-vue3';
 
 // Import component
 import toLocaleDateString from './Components/toLocaleDateString.vue';
@@ -13,9 +12,6 @@ export const createVueApp = (options: {
     plugin?: any,
     inertiaApp?: any,
 }) => {
-
-    //console.log('options.plugin', options.plugin);
-
     const app = options.inertiaApp
         ? options.inertiaApp.use(DataTable)
         : createApp({ render: () => h(options.App, options.props) })
@@ -24,9 +20,8 @@ export const createVueApp = (options: {
 
             //.use(options.plugin)
             .use(ZiggyVue)
-            .use(DataTable);
 
-    app.mount(options.el);
+            .mount(options.el);
 
     return app;
 };

@@ -56,7 +56,9 @@
                     </tr>
                     <tr>
                         <th>Created At:</th>
-                        <td>{{ $ticket->created_at }} | <to-locale-date-string date="{{ $ticket->created_at }}" /></td>
+                        <td>{{ $ticket->created_at }}
+                            to-locale-date-string date="{{ $ticket->created_at }}"
+                        </td>
                         <th>Created By:</th>
                         <td>{{ $ticket->creator->name }}</td>
                     </tr>
@@ -84,9 +86,6 @@
         </div>
     </div>
 </div>
-<template>
-  <DatetimeText datetimeString="2024-03-10T10:20:30Z" />
-</template>
 @endsection
 
 @section('contentScript')

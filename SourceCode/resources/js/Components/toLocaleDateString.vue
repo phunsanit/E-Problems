@@ -1,7 +1,3 @@
-<template>
-  <div>{{ formattedDate }}</div>
-</template>
-
 <script>
 export default {
   computed: {
@@ -32,3 +28,7 @@ export default {
   }
 };
 </script>
+
+<template>
+  <div>{{ formattedDate }}</div>
+</template>
