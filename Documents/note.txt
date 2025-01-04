@@ -359,6 +359,7 @@ php artisan make:model Category
 php artisan make:model Organization
 php artisan make:model ServiceLine
 php artisan make:model ServiceLineVessel
+php artisan make:model Status
 php artisan make:model SupportEngineer
 php artisan make:model Ticket
 php artisan make:model Vessel
@@ -370,6 +371,7 @@ php artisan make:request StoreTicketRequest
 //Create a Controller
 
 php artisan make:controller TicketsController
+php artisan make:controller AssetCacheController
 php artisan make:controller TicketsController --resource --model=Ticket
 
 php artisan make:command MakeViewCommand
@@ -515,8 +517,10 @@ php artisan make:workflow ticketWorkflow
 
 --------------------------------------------------------------------------------------------------- API
 
+https://laravel.com/docs/11.x/routing#api-routes
+
 php artisan install:api
 
- INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. 
+INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. 
 
 --------------------------------------------------------------------------------------------------- 

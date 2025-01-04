@@ -15,15 +15,15 @@ class SupportEngineer extends Model
     }
 
     /**
-     * The attributes that are mass assignable.
+     * Get the options for the select input
      *
-     * @var list<string>
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getSetMembers()
+    public static function getOptions()
     {
-        return self::where('support_engineers.enable', true)
+        return self::where('enable', true)
             ->join('users', 'users.id', '=', 'support_engineers.user_id')
             ->orderBy('users.name')
-            ->get(['users.id', 'users.name as set']);
+            ->get(['users.name as text', 'users.id as value']);
     }
 }
