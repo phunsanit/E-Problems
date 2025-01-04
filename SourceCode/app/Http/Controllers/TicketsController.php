@@ -170,13 +170,15 @@ class TicketsController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //$ticket->delete();
-    
-        //soft delete
+        $ticket->delete();
+
+        /*soft delete
+        laravel 11 support soft delete https://laravel.com/docs/11.x/eloquent#soft-deleting
         $ticket->update([
-            'deleted_at' => now(),
-            'deleted_by' => auth()->id()
+        'deleted_at' => now(),
+        'deleted_by' => auth()->id()
         ]);
+         */
 
         return redirect()->route('tickets.index')
             ->with('success', 'Ticket deleted successfully');
