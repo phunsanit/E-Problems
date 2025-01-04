@@ -36,8 +36,8 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from 'ziggy-js';
 
-// Import component
-import toLocaleDateString from './Components/toLocaleDateString.vue';
+// import component
+import LocaleDateString from './Components/LocaleDateString.vue';
 
 let el = document.getElementById('app');
 
@@ -48,6 +48,7 @@ if (el) { //inertiajs
         resolve: name => import(`./Pages/${name}`),
         setup({ el, App, props, plugin }) {
             app = createApp({ render: () => h(App, props) })
+
                 .use(plugin)
                 .use(ZiggyVue)
         },
@@ -59,7 +60,8 @@ if (el) { //inertiajs
 
 //common components for all pages
 if (app && el) {
-    app.component('toLocaleDateString', toLocaleDateString)
+    app.component('LocaleDateString', LocaleDateString)
+
         .mount(el);
 }
 

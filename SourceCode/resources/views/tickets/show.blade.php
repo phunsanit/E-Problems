@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <th>SLA:</th>
-                        <td colspan="3">{{ $ticket->sla_dt }}</td>
+                        <td colspan="3"><locale-date-string datetime="{{ $ticket->sla_dt }}" /></td>
                     </tr>
                     <tr>
                         <th>Working Time:</th>
@@ -56,7 +56,7 @@
                     </tr>
                     <tr>
                         <th>Created At:</th>
-                        <td><to-locale-date-string datetime="{{ $ticket->created_at }}" /></td>
+                        <td><locale-date-string datetime="{{ $ticket->created_at }}" /></td>
                         <th>Created By:</th>
                         <td>{{ $ticket->creator->name }}</td>
                     </tr>
@@ -64,18 +64,9 @@
                     @if($ticket->updated_at)
                     <tr>
                         <th>Updated At:</th>
-                        <td>{{ $ticket->updated_at }}</td>
+                        <td><locale-date-string datetime="{{ $ticket->updated_at }}" /></td>
                         <th>Updated By:</th>
                         <td>{{ $ticket->updater->name }}</td>
-                    </tr>
-                    @endif
-
-                    @if($ticket->deleted_at)
-                    <tr>
-                        <th>Deleted At:</th>
-                        <td>{{ $ticket->deleted_at }}</td>
-                        <th>Deleted By:</th>
-                        <td>{{ $ticket->deletor->name }}</td>
                     </tr>
                     @endif
 
