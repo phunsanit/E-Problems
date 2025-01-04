@@ -10,8 +10,14 @@ interface Window {
   };
 }
 export default {
+  props: {
+    datetime: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
-    formattedDate() {
+    formattedDate(this: { datetime: string }) {
       const date: Date = new Date(this.datetime);
       if (!window.datetimeOptions) {
         console.warn('window.datetimeOptions is undefined, using default options');
@@ -36,13 +42,7 @@ export default {
       return date.toLocaleDateString(userLocales, datetimeOptions);
     }
   },
-  name: 'LocaleDate',
-  props: {
-    datetime: {
-      type: String,
-      required: true
-    }
-  }
+  name: 'LocaleDate'
 }
 </script>
 
