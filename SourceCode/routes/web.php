@@ -26,13 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 //refresh cache
 Route::get('/refresh', function () {
     //php artisan optimize:clear
     $commands = [
-
         //clear
         'auth:clear-resets',
         'optimize:clear',
@@ -46,31 +45,39 @@ Route::get('/refresh', function () {
         'stub:publish',
         //'ziggy:generate',
 
-        //infomation
+        //information
         'about',
         //'db:show',
         'env',
         'list', //all commands
         'package:discover',
-        'route:list',//may fail if there are errors in routes
+        'route:list', //may fail if there are errors in routes
     ];
 
     $output = '<!DOCTYPE html><html lang="en"><head><title>refresh</title></head><body><dl>';
 
     foreach ($commands as $command) {
-        if (Artisan::call($command) === 0) {
+        try {
+            Artisan::call($command);
+
             $results = Artisan::output();
             $results = explode("\n", $results);
             $results = implode("</dd><dd>", $results);
             $output .= '<dt>php artisan ' . $command . '</dt><dd>' . $results . '</dd>';
-        } else {
-            $output .= '<dt>php artisan ' . $command . '</dt><dd><h2>Error executing command</h2></dd>';
+        } catch (Exception $e) {
+            $output .= '<dt>php artisan ' . $command . '</dt><dd><h2 style="color: red;">Error executing command</h2>: ' . $e->getMessage() . '</dd>';
         }
     }
 
     $output .= '</dl><br>All caches have been cleared and recreated.</body></html>';
 
-    return response($output)->header('Content-Type', 'text/html');
+    return response($output)
+        ->header('charset', 'utf-8')
+        ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->header('Content-Type', 'text/html')
+        ->header('Expires', 'Thu, 01 Jan 1970 00:00:00 GMT')
+        ->header('Pragma', 'no-cache')
+        ->header('X-Accel-Buffering', 'no');
 });
 
 Route::resource('tickets', TicketsController::class);
