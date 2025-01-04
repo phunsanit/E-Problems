@@ -12,8 +12,17 @@ interface Window {
 export default {
   computed: {
     formattedDate() {
-      const date = new Date(this.datetime);
-      const locales = [...window.userLocales];
+      const date: Date = new Date(this.datetime);
+      if (!window.datetimeOptions) {
+        console.warn('window.datetimeOptions is undefined, using default options');
+        window.datetimeOptions = {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric'
+        };
+      }
       const datetimeOptions = {
         ...window.datetimeOptions,
         year: window.datetimeOptions.year as 'numeric' | '2-digit',
@@ -22,7 +31,9 @@ export default {
         hour: window.datetimeOptions.hour as 'numeric' | '2-digit',
         minute: window.datetimeOptions.minute as 'numeric' | '2-digit'
       };
-      return date.toLocaleDateString(locales, datetimeOptions);
+      const userLocales = window.userLocales ? [...window.userLocales] : ['en-US'];
+
+      return date.toLocaleDateString(userLocales, datetimeOptions);
     }
   },
   name: 'LocaleDate',
