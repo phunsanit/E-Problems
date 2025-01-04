@@ -1,14 +1,23 @@
 //date-fns
+import { enUS as defaultLocale } from 'date-fns/locale';
 import { format } from 'date-fns';
 import { formatWithOptions } from 'date-fns/fp';
 import * as locales from 'date-fns/locale'
 import formatDistance from 'date-fns/formatDistance';
-import formatRelative from 'date-fns/formatRelative';
+// import { formatRelative } from 'date-fns';
 import subDays from 'date-fns/subDays';
 
 // Type for locale keys
 type DateFnsLocaleKey = keyof typeof locales
-export { format, formatWithOptions };
+export {
+    defaultLocale,
+    format,
+    formatDistance,
+    formatWithOptions,
+    locales,
+    subDays,
+
+};
 // Common date patterns
 // https://date-fns.org/v4.1.0/docs/format
 export const DATETIME_PATTERNS = {
@@ -28,6 +37,17 @@ export const getLocale = (language: string) => {
     // Safely access locale
     const locale = locales[localeKey as DateFnsLocaleKey]
     return locale || locales.enUS // Fallback to English
+}
+
+declare global {
+    interface Window {
+        DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
+        format: typeof format;
+        formatDistance: typeof formatDistance;
+        formatWithOptions: typeof formatWithOptions;
+        getLocale: typeof getLocale;
+        locales: typeof locales;
+    }
 }
 
 /*

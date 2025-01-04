@@ -13,7 +13,7 @@ export default {
   computed: {
     formattedDate() {
       const date = new Date(this.datetime);
-      const locales = [...window.locales];
+      const locales = [...window.userLocales];
       const datetimeOptions = {
         ...window.datetimeOptions,
         year: window.datetimeOptions.year as 'numeric' | '2-digit',

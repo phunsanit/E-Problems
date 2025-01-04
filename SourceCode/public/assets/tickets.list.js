@@ -1,8 +1,6 @@
 $(document).ready(function () {
     const dateStart = new Date(0);
 
-    let dateEnd = dateStart;
-
     $('#tickets-list').DataTable(
         {
             ajax: {
@@ -73,7 +71,7 @@ $(document).ready(function () {
                     data: 'sla_dt',
                     orderable: false,
                     render: function (data, type, row) {
-                        return new Date(row.sla_dt).toLocaleDateString(locales, datetimeOptions);
+                        return new Date(row.sla_dt).toLocaleDateString(userLocales, datetimeOptions);
                     },
                     title: 'SLA'
                 },
@@ -81,8 +79,10 @@ $(document).ready(function () {
                     data: 'working_time',
                     orderable: false,
                     render: function (data, type, row) {
+                        let dateEnd = dateStart;
+
                         dateEnd.setMinutes(Number(row.working_time));
-                
+
                         return window.formatDistance(dateStart, dateEnd, { includeSeconds: false });
                     },
                     title: 'Working Time'

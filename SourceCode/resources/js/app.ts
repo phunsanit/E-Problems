@@ -8,19 +8,22 @@ const datetimeOptions = {
 };
 window.datetimeOptions = datetimeOptions;
 
-const locales = (navigator.languages && navigator.languages.length) ? navigator.languages : navigator.language || 'en';
-window.locales = locales;
+const userLocales = (navigator.languages && navigator.languages.length) ? navigator.languages : navigator.language || 'en';
+window.userLocales = userLocales;
 
 import '../css/app.css';
 import './bootstrap';
 
 //date-fns
-const DATETIME_PATTERNS = 'yyyy-MM-dd HH:mm:ss';
-
-import { enUS as getLocale } from 'date-fns/locale';
-import { format } from 'date-fns';
-import { formatDistance } from 'date-fns/formatDistance';
-import { formatWithOptions } from 'date-fns/fp';
+import {
+    DATETIME_PATTERNS,
+    format,
+    formatDistance,
+    formatWithOptions,
+    getLocale,
+    locales,
+    subDays
+} from './date-fns';
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
 window.format = format;
@@ -74,11 +77,7 @@ if (app && el) {
 // global variables
 declare global {
     interface Window {
-        DATETIME_PATTERNS: typeof DATETIME_PATTERNS;
-        format: typeof format;
-        formatWithOptions: typeof formatWithOptions;
-        getLocale: typeof getLocale;
-        locales: typeof locales;
         datetimeOptions: typeof datetimeOptions;
+        userLocales: typeof userLocales;
     }
 }
