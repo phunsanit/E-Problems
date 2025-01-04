@@ -9,6 +9,7 @@ interface Window {
     minute: 'numeric' | '2-digit';
   };
 }
+
 export default {
   computed: {
     formattedDate(this: { datetime: string }) {

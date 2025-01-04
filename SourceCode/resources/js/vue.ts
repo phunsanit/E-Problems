@@ -5,6 +5,7 @@ import { ZiggyVue } from 'ziggy-js';
 // import component
 import DateLocale from './Components/DateLocale.vue';
 import Dropdown from './Components/Dropdown.vue';
+import SelectFromJSON from './Components/SelectFromJSON.vue';
 import TimeLocale from './Components/TimeLocale.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,9 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //common components for all pages
     if (app && el) {
         app
+            .component('date-locale', DateLocale)
             .component('Dropdown', Dropdown)
-            .component('DateLocale', DateLocale)
-            .component('TimeLocale', TimeLocale)
+            .component('select-from-json', SelectFromJSON)
+            .component('time-locale', TimeLocale)
 
             .mount(el);
     }
