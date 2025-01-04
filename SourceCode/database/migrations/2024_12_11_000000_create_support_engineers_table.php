@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('support_engineers', function (Blueprint $table) {
             $table->bigIncrements('user_id')->comment('User ID');
 
+            $table->boolean('enable')->default(true)->comment('Enable');
             $table->tinyInteger('level')->comment('Level');
 
             $table->timestamps(0);
