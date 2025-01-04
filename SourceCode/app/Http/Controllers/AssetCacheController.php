@@ -61,7 +61,7 @@ class AssetCacheController extends Controller
             if (method_exists($modelClass, 'getOptions')) {
                 $options = (new $modelClass)->getOptions();
 
-                $filePath = public_path('build/assets/' . $name . '_options.json');
+                $filePath = public_path('assets/options/' . $name . '.json');
 
                 file_put_contents($filePath, json_encode($options));
 
