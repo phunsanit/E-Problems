@@ -3,6 +3,7 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from 'ziggy-js';
 
 // import component
+import Dropdown from './Components/Dropdown.vue';
 import LocaleDate from './Components/LocaleDate.vue';
 import LocaleTime from './Components/LocaleTime.vue';
 
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //common components for all pages
     if (app && el) {
         app
+            .component('Dropdown', Dropdown)
             .component('LocaleDate', LocaleDate)
             .component('LocaleTime', LocaleTime)
 

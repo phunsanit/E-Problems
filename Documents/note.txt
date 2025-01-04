@@ -513,3 +513,10 @@ https://laravel-workflow.com/
 
 php artisan make:workflow ticketWorkflow
 
+--------------------------------------------------------------------------------------------------- API
+
+php artisan install:api
+
+ INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. 
+
+--------------------------------------------------------------------------------------------------- 

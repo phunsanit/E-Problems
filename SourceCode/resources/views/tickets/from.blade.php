@@ -1,6 +1,7 @@
 @if(session('error'))
 <p class="aze bdk">session('error') }}</p>
 @endif
+
 <div class="mb-4">
     <label for="inputStatusId" class="block text-sm font-medium text-gray-700"><strong>Status ID:</strong></label>
     <input

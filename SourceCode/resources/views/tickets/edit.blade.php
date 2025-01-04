@@ -9,7 +9,7 @@
         <form action="{{ route('tickets.update',$item->id) }}" autocomplete="off" method="POST">
             @csrf
             @method('PUT')
-            <input type="text" name="id" value="{{ $item->id }}">
+            <input type="hidden" name="id" value="{{ $item->id }}">
             @include('tickets.from', ['ticket' => $item])
             <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
         </form>
