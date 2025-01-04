@@ -3,9 +3,9 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from 'ziggy-js';
 
 // import component
+import DateLocale from './Components/DateLocale.vue';
 import Dropdown from './Components/Dropdown.vue';
-import LocaleDate from './Components/LocaleDate.vue';
-import LocaleTime from './Components/LocaleTime.vue';
+import TimeLocale from './Components/TimeLocale.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
     let el = document.getElementById('app');
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (app && el) {
         app
             .component('Dropdown', Dropdown)
-            .component('LocaleDate', LocaleDate)
-            .component('LocaleTime', LocaleTime)
+            .component('DateLocale', DateLocale)
+            .component('TimeLocale', TimeLocale)
 
             .mount(el);
     }

@@ -36,7 +36,7 @@ export default {
       return date.toLocaleDateString(userLocales, datetimeOptions);
     }
   },
-  name: 'LocaleDate',
+  name: 'DateLocale',
   props: {
     datetime: {
       type: String,

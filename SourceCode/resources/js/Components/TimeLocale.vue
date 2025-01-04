@@ -11,7 +11,7 @@ export default {
       return formatDistance(startDate, endDate, { addSuffix: false });
     }
   },
-  name: 'LocaleTime',
+  name: 'TimeLocale',
   props: {
     minutes: {
       type: String,
