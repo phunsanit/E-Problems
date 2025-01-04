@@ -1,4 +1,8 @@
 $(document).ready(function () {
+    const dateStart = new Date(0);
+
+    let dateEnd = dateStart;
+
     $('#tickets-list').DataTable(
         {
             ajax: {
@@ -24,7 +28,7 @@ $(document).ready(function () {
                         return '<input type=checkbox value="' + row.DISTRICT_CODE + '">';
                     },
                     title: '<input class="checkAll" type="checkbox">',
-                    width: '10px',
+                    width: '10px'
                 },
                 {
                     data: 'id',
@@ -48,7 +52,6 @@ $(document).ready(function () {
                         return row.vessel;
                     },
                     title: 'Vessel'
-
                 },
                 {
                     data: 'service_line_id',
@@ -72,10 +75,17 @@ $(document).ready(function () {
                     render: function (data, type, row) {
                         return new Date(row.sla_dt).toLocaleDateString(locales, datetimeOptions);
                     },
+                    title: 'SLA'
                 },
                 {
                     data: 'working_time',
-                    orderable: false
+                    orderable: false,
+                    render: function (data, type, row) {
+                        dateEnd.setMinutes(Number(row.working_time));
+                
+                        return window.formatDistance(dateStart, dateEnd, { includeSeconds: false });
+                    },
+                    title: 'Working Time'
                 },
                 {
                     orderable: false,

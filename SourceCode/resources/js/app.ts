@@ -15,13 +15,16 @@ import '../css/app.css';
 import './bootstrap';
 
 //date-fns
-import { format } from 'date-fns';
-import { enUS as getLocale } from 'date-fns/locale';
 const DATETIME_PATTERNS = 'yyyy-MM-dd HH:mm:ss';
+
+import { enUS as getLocale } from 'date-fns/locale';
+import { format } from 'date-fns';
+import { formatDistance } from 'date-fns/formatDistance';
+import { formatWithOptions } from 'date-fns/fp';
 
 window.DATETIME_PATTERNS = DATETIME_PATTERNS;
 window.format = format;
-import { formatWithOptions } from 'date-fns/fp';
+window.formatDistance = formatDistance;
 window.formatWithOptions = formatWithOptions;
 window.getLocale = getLocale;
 
@@ -37,7 +40,8 @@ import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from 'ziggy-js';
 
 // import component
-import LocaleDateString from './Components/LocaleDateString.vue';
+import LocaleDate from './Components/LocaleDate.vue';
+import LocaleTime from './Components/LocaleTime.vue';
 
 let el = document.getElementById('app');
 
@@ -60,7 +64,9 @@ if (el) { //inertiajs
 
 //common components for all pages
 if (app && el) {
-    app.component('LocaleDateString', LocaleDateString)
+    app
+        .component('LocaleDate', LocaleDate)
+        .component('LocaleTime', LocaleTime)
 
         .mount(el);
 }
