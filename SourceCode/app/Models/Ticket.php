@@ -44,7 +44,7 @@ class Ticket extends Model
 
     public function supportEngineer()
     {
-        // skip table support_engineers because don't use current status
+        // skip table team_user because don't use current status
         return $this->belongsTo(User::class, 'support_engineer_id');
     }
 
