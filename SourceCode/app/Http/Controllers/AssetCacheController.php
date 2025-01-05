@@ -45,8 +45,12 @@ class AssetCacheController extends Controller
                 $model = 'Status';
                 break;
 
-            case 'support_engineer_id':
-                $model = 'SupportEngineer';
+            case 'team_id':
+                $model = 'Team';
+                break;
+
+            case 'team_support_id':
+                $model = 'TeamUser';
                 break;
 
             case 'vessel_id':

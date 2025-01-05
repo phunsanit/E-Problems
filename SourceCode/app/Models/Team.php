@@ -51,4 +51,14 @@ class Team extends JetstreamTeam
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * Get the options for the select input
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getOptions()
+    {
+        return self::orderBy('name')
+            ->get(['name as text', 'id as value']);
+    }
 }

@@ -1,8 +1,6 @@
 @if(session('error'))
 <p class="aze bdk">session('error') }}</p>
 @endif
-
-
 <div class="mb-4">
     <label for="inputStatusId" class="block text-sm font-medium text-gray-700"><strong>Status ID:</strong></label>
     <select-from-json
@@ -57,14 +55,13 @@
 </div>
 <div class="mb-4">
     <label for="inputSupportEngineerId" class="block text-sm font-medium text-gray-700"><strong>Support Engineer ID:</strong></label>
-    <input
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('support_engineer_id') border-red-500 @enderror"
-        id="inputSupportEngineerId"
-        name="support_engineer_id"
-        placeholder="Support Engineer ID"
-        type="number"
-        value="{{ old('support_engineer_id', $item['support_engineer_id']) }}"
-        >
+    <select-from-json
+    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    id="inputSupportEngineerId"
+    json="{{ url('assets/options/team_support_id.json') }}"
+    name="support_engineer_id"
+    selected="{{ old('support_engineer_id', $item['support_engineer_id']) }}"
+    />
     @error('support_engineer_id')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror

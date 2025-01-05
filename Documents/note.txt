@@ -333,6 +333,7 @@ php artisan make:seeder OrganizationsSeeder
 php artisan make:seeder ServiceLinesSeeder
 php artisan make:seeder ServiceLinesVesselsSeeder
 php artisan make:seeder SupportEngineersSeeder
+php artisan make:seeder TeamUserSeeder
 php artisan make:seeder TicketsSeeder
 php artisan make:seeder UsersSeeder
 php artisan make:seeder VesselsSeeder
@@ -347,9 +348,11 @@ php artisan db:seed --class=ServiceLinesSeeder
 php artisan db:seed --class=ServiceLinesVesselsSeeder
 php artisan db:seed --class=SupportEngineersSeeder
 php artisan db:seed --class=TeamSeeder
+php artisan db:seed --class=TeamUserSeeder
 php artisan db:seed --class=TicketsSeeder
 php artisan db:seed --class=UsersSeeder
 php artisan db:seed --class=VesselsSeeder
+php artisan db:seed --TeamUserSeeder
 
 //Create a Model
 //model:prune                           Prune models that are no longer needed
@@ -361,6 +364,8 @@ php artisan make:model ServiceLine
 php artisan make:model ServiceLineVessel
 php artisan make:model Status
 php artisan make:model SupportEngineer
+php artisan make:model Team
+php artisan make:model TeamUser
 php artisan make:model Ticket
 php artisan make:model Vessel
 
@@ -522,5 +527,15 @@ https://laravel.com/docs/11.x/routing#api-routes
 php artisan install:api
 
 INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. 
+
+--------------------------------------------------------------------------------------------------- Environment
+
+
+
+--------------------------------------------------------------------------------------------------- Jetstream
+
+https://jetstream.laravel.com/installation.html
+
+- team support
 
 --------------------------------------------------------------------------------------------------- 
