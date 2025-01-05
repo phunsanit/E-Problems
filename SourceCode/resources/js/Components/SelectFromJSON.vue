@@ -23,43 +23,52 @@ export default {
     },
     props: {
         autofocus: {
-            type: Boolean,
-            default: false
+            default: false,
+            type: Boolean
         },
         disabled: {
-            type: Boolean,
-            default: false
+            default: false,
+            type: Boolean
         },
         form: {
-            type: String,
-            default: ''
+            default: '',
+            type: String
         },
         json: {
-            type: String,
-            required: true
+            required: true,
+            type: String
         },
         multiple: {
-            type: Boolean,
-            default: false
+            default: false,
+            type: Boolean
         },
         name: {
-            type: String,
-            required: true
+            required: true,
+            type: String
         },
         required: {
-            type: Boolean,
-            default: false
+            default: false,
+            type: Boolean
         },
         size: {
-            type: Number,
-            default: 1
+            default: 1,
+            type: Number
         }
     }
 };
 </script>
 
 <template>
-    <select :name="name" v-model="selectedOption">
+    <select
+        :autofocus="autofocus"
+        :disabled="disabled"
+        :multiple="multiple"
+        :name="name"
+        :required="required"
+        v-bind:form="form !== '' ? form : null"
+        v-bind:size="size !== 1 ? size : null"
+        v-model="selectedOption"
+    >
         <option v-for="option in options" :key="option.value" :value="option.value">
             {{ option.text }}
         </option>

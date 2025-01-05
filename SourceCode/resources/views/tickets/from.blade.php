@@ -2,8 +2,13 @@
 <p class="aze bdk">session('error') }}</p>
 @endif
 
+
 <div class="mb-4">
     <label for="inputStatusId" class="block text-sm font-medium text-gray-700"><strong>Status ID:</strong></label>
+    <select-from-json json="{{ url('assets/options/vessel_id.json') }}" name="status_id" /> 
+
+    
+    
     <input
         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('status_id') border-red-500 @enderror"
         id="inputStatusId"
