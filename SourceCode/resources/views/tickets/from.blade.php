@@ -18,42 +18,39 @@
 </div>
 <div class="mb-4">
     <label for="inputCategoryId" class="block text-sm font-medium text-gray-700"><strong>Category ID:</strong></label>
-    <input
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('category_id') border-red-500 @enderror"
-        id="inputCategoryId"
-        name="category_id"
-        placeholder="Category ID"
-        type="number"
-        value="{{ old('category_id', $item['category_id']) }}"
-        >
+    <select-from-json
+    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    id="inputCategoryId"
+    json="{{ url('assets/options/category_id.json') }}"
+    name="category_id"
+    selected="{{ old('category_id', $item['category_id']) }}"
+    />
     @error('category_id')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-4">
     <label for="inputVesselId" class="block text-sm font-medium text-gray-700"><strong>Vessel ID:</strong></label>
-    <input
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('vessel_id') border-red-500 @enderror"
-        id="inputVesselId"
-        name="vessel_id"
-        placeholder="Vessel ID"
-        type="number"
-        value="{{ old('vessel_id', $item['vessel_id']) }}"
-        >
+    <select-from-json
+    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    id="inputVesselId"
+    json="{{ url('assets/options/vessel_id.json') }}"
+    name="vessel_id"
+    selected="{{ old('vessel_id', $item['vessel_id']) }}"
+    />
     @error('vessel_id')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
 </div>
 <div class="mb-4">
     <label for="inputServiceLineId" class="block text-sm font-medium text-gray-700"><strong>Service Lines ID:</strong></label>
-    <input
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('service_line_id') border-red-500 @enderror"
-        id="inputServiceLineId"
-        name="service_line_id"
-        placeholder="Service Lines ID"
-        type="number"
-        value="{{ old('service_line_id', $item['service_line_id']) }}"
-        >
+    <select-from-json
+    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    id="inputServiceLineId"
+    json="{{ url('assets/options/service_line_id.json') }}"
+    name="service_line_id"
+    selected="{{ old('service_line_id', $item['service_line_id']) }}"
+    />
     @error('service_line_id')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
