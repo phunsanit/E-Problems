@@ -9,4 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 //for all users
-Route::get('asset/selectOptions', [AssetCacheController::class, 'SelectOptions']);
+Route::get('asset/getSelectOptions', [AssetCacheController::class, 'getSelectOptions']);

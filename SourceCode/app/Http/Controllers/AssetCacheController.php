@@ -7,18 +7,48 @@ use Illuminate\Http\Request;
 class AssetCacheController extends Controller
 {
     /**
-     * SelectOption
+     * cacheSelectOptions
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param string $model The model to get the options from
+     * @param string $key The key to use for the cache file
+     * @return write the options to a json file
      *
      * create a json file with the data from the model for the select option
      */
-    public function SelectOptions(request $request)
+    public function cacheSelectOptions($model, $key)
+    {
+        // Perform operations with the model
+        $modelClass = "App\\Models\\{$model}";
+        if (class_exists($modelClass)) {
+            if (method_exists($modelClass, 'getOptions')) {
+                $options = (new $modelClass)->getOptions();
+
+                $filePath = public_path('assets/options/' . $key . '.json');
+
+                file_put_contents($filePath, json_encode($options));
+
+                return response()->json($options);
+            } else {
+                \Log::error('AssetCacheController: Method getOptions() not found in model: ' . $model);
+            }
+        } else {
+            \Log::error('AssetCacheController: Model ' . $model . ' not found');
+        }
+    }
+
+    /**
+     * getSelectOptions
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     *
+     * create a json file with the data from the model for the select option and return the data
+     */
+    public function getSelectOptions(Request $request)
     {
         // Validate the request
         $validator = \Validator::make($request->all(), [
-            'name' => 'required|string',
+            'key' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -26,9 +56,10 @@ class AssetCacheController extends Controller
         }
 
         // Get configuration
-        $name = $request->input('name');
+        $key = $request->input('key');
 
-        switch ($name) {
+        switch ($key) {
+
             case 'category_id':
                 $model = 'Category';
                 break;
@@ -58,29 +89,21 @@ class AssetCacheController extends Controller
                 break;
 
             default:
-                \Log::error('AssetCacheController: no assets configuration for ' . $name);
+                \Log::error('AssetCacheController: no assets configuration for ' . $key);
                 return response()->json(['error' => 'Internal server error'], 500);
                 break;
+
         }
 
-        // Perform operations with the model
-        $modelClass = "App\\Models\\{$model}";
-        if (class_exists($modelClass)) {
-            if (method_exists($modelClass, 'getOptions')) {
-                $options = (new $modelClass)->getOptions();
+        $this->CacheSelectOptions($key, $model);
 
-                $filePath = public_path('assets/options/' . $name . '.json');
+        $filePath = public_path('assets/options/' . $key . '.json');
 
-                file_put_contents($filePath, json_encode($options));
-
-                return response()->json($options);
-            } else {
-                \Log::error('AssetCacheController: Method getOptions() not found in model: ' . $model);
-                return response()->json(['error' => 'Internal server error'], 500);
-            }
+        if (file_exists($filePath)) {
+            $options = json_decode(file_get_contents($filePath), true);
+            return response()->json($options);
         } else {
-            \Log::error('AssetCacheController: Model ' . $model . ' not found');
-            return response()->json(['error' => 'Internal server error'], 500);
+            return response()->json(['error' => 'Cache file not found'], 404);
         }
     }
 }
