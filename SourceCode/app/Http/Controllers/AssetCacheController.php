@@ -33,6 +33,10 @@ class AssetCacheController extends Controller
                 $model = 'Category';
                 break;
 
+            case 'organization_id':
+                $model = 'Organization';
+                break;
+
             case 'service_line_id':
                 $model = 'ServiceLine';
                 break;
