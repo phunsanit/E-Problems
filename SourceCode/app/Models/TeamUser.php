@@ -24,7 +24,7 @@ class TeamUser extends Model
     }
 
     /**
-     * Get the options for the select input
+     * Get the optgroup and options for the select input
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
@@ -40,7 +40,7 @@ class TeamUser extends Model
                 'options' => [],
             ];
             self::where('team_id', $optgroup->id)->get()->each(function ($teamUser) use (&$options, $optgroup) {
-                $options[$optgroup->id]['options'] = [
+                $options[$optgroup->id]['options'][] = [
                     'text' => $teamUser->user->name,
                     'value' => $teamUser->id,
                 ];

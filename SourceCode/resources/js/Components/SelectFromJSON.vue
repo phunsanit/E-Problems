@@ -2,6 +2,8 @@
 import { defineComponent, PropType } from 'vue';
 
 interface SelectOption {
+  label?: string;
+  options?: SelectOption[];
   text: string;
   value: string;
 }
@@ -82,16 +84,16 @@ export default defineComponent({
 </script>
 
 <template>
-  <select
-    v-bind="$props"
-    v-model="selectedOption"
-  >
-    <option
-      v-for="option in options"
-      :key="option.value"
-      :value="option.value"
-    >
-      {{ option.text }}
-    </option>
+  <select>
+    <template v-for="option in options">
+      <optgroup v-if="option.label" :label="option.label" :key="option.label">
+        <option v-for="subOption in option.options" :key="subOption.value" :value="subOption.value">
+          {{ subOption.text }}
+        </option>
+      </optgroup>
+      <option v-else :value="option.value" :key="option.value">
+        {{ option.text }}
+      </option>
+    </template>
   </select>
 </template>
