@@ -5,18 +5,13 @@
 
 <div class="mb-4">
     <label for="inputStatusId" class="block text-sm font-medium text-gray-700"><strong>Status ID:</strong></label>
-    <select-from-json json="{{ url('assets/options/vessel_id.json') }}" name="status_id" /> 
-
-    
-    
-    <input
-        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm @error('status_id') border-red-500 @enderror"
-        id="inputStatusId"
-        name="status_id"
-        placeholder="Status ID"
-        type="number"
-        value="{{ old('status_id', $item['status_id']) }}"
-        >
+    <select-from-json
+    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+    id="inputStatusId"
+    json="{{ url('assets/options/status_id.json') }}"
+    name="status_id"
+    selected="{{ old('status_id', $item['status_id']) }}"
+    />
     @error('status_id')
     <div class="text-sm text-red-600">{{ $message }}</div>
     @enderror
