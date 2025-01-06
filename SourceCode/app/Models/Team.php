@@ -2,16 +2,21 @@
 
 namespace App\Models;
 
+use App\Observers\TeamObserver;
+use App\Traits\HasOptionsTrait;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Jetstream\Events\TeamCreated;
 use Laravel\Jetstream\Events\TeamDeleted;
 use Laravel\Jetstream\Events\TeamUpdated;
 use Laravel\Jetstream\Team as JetstreamTeam;
 
+#[ObservedBy([TeamObserver::class])]
 class Team extends JetstreamTeam
 {
     /** @use HasFactory<\Database\Factories\TeamFactory> */
     use HasFactory;
+    use HasOptionsTrait;
 
     /**
      * The attributes that are mass assignable.

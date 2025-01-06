@@ -4,8 +4,11 @@ namespace App\Models;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Observers\TeamUserObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([TeamUserObserver::class])]
 class TeamUser extends Model
 {
     /**
