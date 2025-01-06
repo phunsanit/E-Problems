@@ -7,24 +7,30 @@ use App\Models\Vessel;
 
 class VesselObserver
 {
-    public function created(Vessel $vessel)
+    private function createdUpdateAssetCache(Vessel $item)
     {
-        AssetCacheController::cacheSelectOptions('vessel_id', 'Vessel');
-    }
+        $controller = new AssetCacheController();
 
-    public function updated(Vessel $vessel)
-    {
-        $controller = new AssetCacheController(); // Create an instance of the controller
         $controller->cacheSelectOptions('vessel_id', 'Vessel');
     }
 
-    public function deleted(Vessel $vessel)
+    private function created(Vessel $item)
     {
-        AssetCacheController::cacheSelectOptions('vessel_id', 'Vessel');
+        $this->createdUpdateAssetCache($item);
     }
 
-    public function forceDeleted(Vessel $vessel)
+    public function deleted(Vessel $item)
     {
-        AssetCacheController::cacheSelectOptions('vessel_id', 'Vessel');
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function forceDeleted(Vessel $item)
+    {
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function updated(Vessel $item)
+    {
+        $this->createdUpdateAssetCache($item);
     }
 }

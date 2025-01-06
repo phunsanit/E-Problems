@@ -7,24 +7,30 @@ use App\Models\Team;
 
 class TeamObserver
 {
-    public function created(Team $team)
+    private function createdUpdateAssetCache(Team $item)
     {
-        AssetCacheController::cacheSelectOptions('team_id', 'Team');
-    }
+        $controller = new AssetCacheController();
 
-    public function updated(Team $team)
-    {
-        $controller = new AssetCacheController(); // Create an instance of the controller
         $controller->cacheSelectOptions('team_id', 'Team');
     }
 
-    public function deleted(Team $team)
+    private function created(Team $item)
     {
-        AssetCacheController::cacheSelectOptions('team_id', 'Team');
+        $this->createdUpdateAssetCache($item);
     }
 
-    public function forceDeleted(Team $team)
+    public function deleted(Team $item)
     {
-        AssetCacheController::cacheSelectOptions('team_id', 'Team');
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function forceDeleted(Team $item)
+    {
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function updated(Team $item)
+    {
+        $this->createdUpdateAssetCache($item);
     }
 }

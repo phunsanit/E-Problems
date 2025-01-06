@@ -7,24 +7,30 @@ use App\Models\ServiceLine;
 
 class ServiceLineObserver
 {
-    public function created(ServiceLine $organization)
+    private function createdUpdateAssetCache(ServiceLine $item)
     {
-        AssetCacheController::cacheSelectOptions('service_line_id', 'ServiceLine');
-    }
+        $controller = new AssetCacheController();
 
-    public function updated(ServiceLine $organization)
-    {
-        $controller = new AssetCacheController(); // Create an instance of the controller
         $controller->cacheSelectOptions('service_line_id', 'ServiceLine');
     }
 
-    public function deleted(ServiceLine $organization)
+    private function created(ServiceLine $item)
     {
-        AssetCacheController::cacheSelectOptions('service_line_id', 'ServiceLine');
+        $this->createdUpdateAssetCache($item);
     }
 
-    public function forceDeleted(ServiceLine $organization)
+    public function deleted(ServiceLine $item)
     {
-        AssetCacheController::cacheSelectOptions('service_line_id', 'ServiceLine');
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function forceDeleted(ServiceLine $item)
+    {
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function updated(ServiceLine $item)
+    {
+        $this->createdUpdateAssetCache($item);
     }
 }

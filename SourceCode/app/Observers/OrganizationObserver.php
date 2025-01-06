@@ -7,24 +7,30 @@ use App\Models\Organization;
 
 class OrganizationObserver
 {
-    public function created(Organization $organization)
+    private function createdUpdateAssetCache(Organization $item)
     {
-        AssetCacheController::cacheSelectOptions('organization_id', 'Organization');
-    }
+        $controller = new AssetCacheController();
 
-    public function updated(Organization $organization)
-    {
-        $controller = new AssetCacheController(); // Create an instance of the controller
         $controller->cacheSelectOptions('organization_id', 'Organization');
     }
 
-    public function deleted(Organization $organization)
+    private function created(Organization $item)
     {
-        AssetCacheController::cacheSelectOptions('organization_id', 'Organization');
+        $this->createdUpdateAssetCache($item);
     }
 
-    public function forceDeleted(Organization $organization)
+    public function deleted(Organization $item)
     {
-        AssetCacheController::cacheSelectOptions('organization_id', 'Organization');
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function forceDeleted(Organization $item)
+    {
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function updated(Organization $item)
+    {
+        $this->createdUpdateAssetCache($item);
     }
 }

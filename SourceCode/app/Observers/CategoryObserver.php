@@ -7,24 +7,30 @@ use App\Models\Category;
 
 class CategoryObserver
 {
-    public function created(Category $category)
+    private function createdUpdateAssetCache(Category $item)
     {
-        AssetCacheController::cacheSelectOptions('category_id', 'Category');
-    }
+        $controller = new AssetCacheController();
 
-    public function updated(Category $category)
-    {
-        $controller = new AssetCacheController(); // Create an instance of the controller
         $controller->cacheSelectOptions('category_id', 'Category');
     }
 
-    public function deleted(Category $category)
+    private function created(Category $item)
     {
-        AssetCacheController::cacheSelectOptions('category_id', 'Category');
+        $this->createdUpdateAssetCache($item);
     }
 
-    public function forceDeleted(Category $category)
+    public function deleted(Category $item)
     {
-        AssetCacheController::cacheSelectOptions('category_id', 'Category');
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function forceDeleted(Category $item)
+    {
+        $this->createdUpdateAssetCache($item);
+    }
+
+    public function updated(Category $item)
+    {
+        $this->createdUpdateAssetCache($item);
     }
 }

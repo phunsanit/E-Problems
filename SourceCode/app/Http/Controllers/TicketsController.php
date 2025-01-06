@@ -157,9 +157,9 @@ class TicketsController extends Controller
     {
         $model = Ticket::findOrFail($id);
 
-        $model->update($request->validated());
-
         $model->updated_by = auth()->id();
+
+        $model->update($request->validated());
 
         return redirect()->route('tickets.index')
             ->with('success', 'Ticket updated successfully');
