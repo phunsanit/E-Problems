@@ -538,4 +538,8 @@ https://jetstream.laravel.com/installation.html
 
 - team support
 
+--------------------------------------------------------------------------------------------------- event
+
+php artisan make:observer OrganizationObserver
+
 --------------------------------------------------------------------------------------------------- 
