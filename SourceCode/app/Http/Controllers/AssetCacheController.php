@@ -9,13 +9,13 @@ class AssetCacheController extends Controller
     /**
      * cacheSelectOptions
      *
-     * @param string $model The model to get the options from
      * @param string $key The key to use for the cache file
+     * @param string $model The model to get the options from
      * @return write the options to a json file
      *
      * create a json file with the data from the model for the select option
      */
-    public function cacheSelectOptions($model, $key)
+    public function cacheSelectOptions($key, $model)
     {
         // Perform operations with the model
         $modelClass = "App\\Models\\{$model}";
@@ -26,8 +26,6 @@ class AssetCacheController extends Controller
                 $filePath = public_path('assets/options/' . $key . '.json');
 
                 file_put_contents($filePath, json_encode($options));
-
-                return response()->json($options);
             } else {
                 \Log::error('AssetCacheController: Method getOptions() not found in model: ' . $model);
             }
@@ -95,7 +93,7 @@ class AssetCacheController extends Controller
 
         }
 
-        $this->CacheSelectOptions($key, $model);
+        $this->cacheSelectOptions($key, $model);
 
         $filePath = public_path('assets/options/' . $key . '.json');
 
