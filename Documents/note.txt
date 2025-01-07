@@ -2,7 +2,50 @@
 
 development
 
----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------- Ecosystem
+
+Frontend
+
+    Breeze: Scaffolding สำหรับ authentication แบบง่ายๆ มี Blade templates และ Tailwind CSS
+    Inertia: สร้าง single-page applications (SPAs) โดยใช้ Vue, React หรือ Svelte ร่วมกับ Laravel เป็น backend
+    Jetstream: Scaffolding สำหรับ authentication แบบ advanced กว่า Breeze มี Livewire และ Inertia ให้เลือกใช้
+    Livewire: สร้าง dynamic interfaces โดยใช้ PHP แทน JavaScript ลดความซับซ้อนในการพัฒนา frontend
+
+Authentication & Authorization
+
+    Sanctum: จัดการ API authentication แบบง่ายๆ เหมาะสำหรับ SPAs และ mobile applications
+    Socialite: จัดการ social authentication เช่น Facebook, Google, Twitter
+    Passport: จัดการ API authentication โดยใช้ OAuth2 เหมาะสำหรับ API ที่ต้องการความปลอดภัยสูง
+
+Deployment & Server Management
+
+    Envoyer: Zero-downtime deployment สำหรับ แอปพลิเคชัน Laravel
+    Forge: Server management สำหรับ deploy แอปพลิเคชัน Laravel ไปยัง DigitalOcean, Linode, AWS และ อื่นๆ
+    Vapor: Serverless deployment platform สำหรับ AWS Lambda
+    Sail: CLI สำหรับจัดการ Docker environment ที่ใช้พัฒนา Laravel 
+
+Debugging & Monitoring
+
+    Horizon: Monitor queues แบบ real-time
+    Telescope: Debug แอปพลิเคชัน โดยดูข้อมูล requests, exceptions, queries, mail และ อื่นๆ
+    Pulse: Real-time monitoring สำหรับ performance และ errors ของแอปพลิเคชัน
+
+Testing
+
+    Dusk: End-to-end testing สำหรับ JavaScript โดยใช้ ChromeDriver
+
+Other Tools & Packages
+
+    Cashier: จัดการ subscriptions และ billing สำหรับ Stripe และ Paddle
+    Herd: Database GUI สำหรับ Laravel
+    Nova: Admin panel สำหรับ Eloquent models
+    Octane: Application server ที่ช่วยเพิ่ม performance ของ Laravel
+    Pennant: Feature flags สำหรับ Laravel
+    Pint: Code style fixer สำหรับ PHP
+    Prompts: Interactive CLI prompts สำหรับ Laravel
+    Reverb: WebSockets สำหรับ Laravel
+    Scout: Full-text search สำหรับ Eloquent models
+    Spark: Scaffolding สำหรับ SaaS applications  
 
 --------------------------------------------------------------------------------------------------- Laravel Installer
 
@@ -425,7 +468,11 @@ php artisan make:livewire Dashboard
 
 code app/Livewire/Dashboard.php
 
+php artisan jetstream:install livewire --teams
+
 code resources/views/livewire/dashboard.blade.php
+
+https://jetstream.laravel.com/installation.html
 
 --------------------------------------------------------------------------------------------------- livewire:publish
 
@@ -530,8 +577,6 @@ INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] t
 
 --------------------------------------------------------------------------------------------------- Environment
 
-
-
 --------------------------------------------------------------------------------------------------- Jetstream
 
 https://jetstream.laravel.com/installation.html
@@ -547,6 +592,8 @@ php artisan make:observer TeamObserver
 php artisan make:observer TeamUserObserver
 php artisan make:observer VesselObserver
 
+--------------------------------------------------------------------------------------------------- trait
 
+php artisan make:trait HasOptionsTrait
 
 --------------------------------------------------------------------------------------------------- 
