@@ -1,5 +1,4 @@
 <script lang="ts">
-import { error } from 'jquery';
 import { defineComponent, PropType } from 'vue';
 
 interface SelectOption {
@@ -52,6 +51,7 @@ export default defineComponent({
       selectedOption: this.selected as string | null, // Initialize with prop value
     };
   },
+  emits: ['update:selected'],
   methods: {
     async fetchOptions() {
       this.error = null;
