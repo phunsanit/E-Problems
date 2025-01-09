@@ -96,9 +96,11 @@ export default defineComponent({
     multiple: { default: false, type: Boolean },
     name: { required: true, type: String },
     required: { default: false, type: Boolean },
-    selected: { default: null, type: String },
+    selected: {
+      default: null,
+      type: [String, Array] as PropType<string | string[]>
+    },
     size: { default: 1, type: Number },
-    slot: { default: null, type: String },
     style: { default: null, type: String },
     tabindex: { default: null, type: String },
     title: { default: null, type: String },
@@ -121,15 +123,13 @@ export default defineComponent({
     </template>
     <template v-else v-for="option in options">
       <optgroup v-if="option.label" :label="option.label" :key="option.label">
-        <option :key="subOption.value"
-          :selected="Array.isArray(selectedOption) ? selectedOption.includes(subOption.value) : selectedOption === subOption.value"
-          :value="subOption.value" v-for="subOption in option.options">
+        <option v-for="subOption in option.options" :key="subOption.value" :value="subOption.value"
+          :selected="Array.isArray(selectedOption) ? selectedOption.includes(subOption.value) : selectedOption === subOption.value">
           {{ subOption.text }}
         </option>
       </optgroup>
-      <option :key="option.value"
-        :selected="Array.isArray(selectedOption) ? selectedOption.includes(option.value) : selectedOption === option.value"
-        :value="option.value" v-else>
+      <option v-else :key="option.value" :value="option.value"
+        :selected="Array.isArray(selectedOption) ? selectedOption.includes(option.value) : selectedOption === option.value">
         {{ option.text }}
       </option>
     </template>
