@@ -48,7 +48,7 @@ export default defineComponent({
       error: null as string | null,
       loading: true,
       options: [] as SelectOption[],
-      selectedOption: this.selected as string | null, // Initialize with prop value
+      selectedOption: this.selected as string | string[] | null, // Initialize with prop value
     };
   },
   emits: ['update:selected'],
@@ -67,6 +67,11 @@ export default defineComponent({
         this.loading = false;
       }
     },
+    onSelectChange(event: HTMLSelectElement) {
+      const value = this.multiple ? Array.from(event.selectedOptions).map(option => option.value) : event.value;
+      this.$emit('update:selected', value);
+      this.selectedOption = value;
+    }
   },
   name: 'SelectFromJSON',
   props: {
@@ -106,7 +111,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <select v-bind="$props" :value="selectedOption" @change="selectedOption = ($event.target as HTMLSelectElement).value">
+  <select :value="selectedOption" @change="onSelectChange($event.target as HTMLSelectElement)"
+    aria-label="Select an option" v-bind="$props">
     <template v-if="loading">
       <option disabled>Loading...</option>
     </template>
@@ -115,11 +121,15 @@ export default defineComponent({
     </template>
     <template v-else v-for="option in options">
       <optgroup v-if="option.label" :label="option.label" :key="option.label">
-        <option v-for="subOption in option.options" :key="subOption.value" :value="subOption.value">
+        <option :key="subOption.value"
+          :selected="Array.isArray(selectedOption) ? selectedOption.includes(subOption.value) : selectedOption === subOption.value"
+          :value="subOption.value" v-for="subOption in option.options">
           {{ subOption.text }}
         </option>
       </optgroup>
-      <option v-else :key="option.value" :value="option.value">
+      <option :key="option.value"
+        :selected="Array.isArray(selectedOption) ? selectedOption.includes(option.value) : selectedOption === option.value"
+        :value="option.value" v-else>
         {{ option.text }}
       </option>
     </template>
