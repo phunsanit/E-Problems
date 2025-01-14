@@ -1,12 +1,15 @@
-import { createApp, h } from "vue";
-import { createInertiaApp } from "@inertiajs/vue3";
-import { ZiggyVue } from 'ziggy-js';
+import { createApp, DefineComponent, h } from 'vue';
+import { createInertiaApp } from '@inertiajs/vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 
 // import component
 import DateLocale from './Components/DateLocale.vue';
 import Dropdown from './Components/Dropdown.vue';
 import SelectFromJSON from './Components/SelectFromJSON.vue';
 import TimeLocale from './Components/TimeLocale.vue';
+
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 document.addEventListener('DOMContentLoaded', () => {
     let el = document.getElementById('app');
@@ -15,13 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (el) { //inertiajs
         createInertiaApp({
-            resolve: name => import(`./Pages/${name}`),
+            resolve: (name) =>
+                resolvePageComponent(
+                    `./Pages/${name}.vue`,
+                    import.meta.glob<DefineComponent>('./Pages/**/*.vue'),
+                ),
             setup({ el, App, props, plugin }) {
                 app = createApp({ render: () => h(App, props) })
 
                     .use(plugin)
                     .use(ZiggyVue)
             },
+            progress: {
+                color: '#4B5563'
+            },
+            title: (title) => `${title} - ${appName}`
         });
     } else {
         el = document.getElementById('appModule');

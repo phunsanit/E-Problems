@@ -13,22 +13,22 @@ Frontend
 
 Authentication & Authorization
 
+    Passport: จัดการ API authentication โดยใช้ OAuth2 เหมาะสำหรับ API ที่ต้องการความปลอดภัยสูง
     Sanctum: จัดการ API authentication แบบง่ายๆ เหมาะสำหรับ SPAs และ mobile applications
     Socialite: จัดการ social authentication เช่น Facebook, Google, Twitter
-    Passport: จัดการ API authentication โดยใช้ OAuth2 เหมาะสำหรับ API ที่ต้องการความปลอดภัยสูง
 
 Deployment & Server Management
 
     Envoyer: Zero-downtime deployment สำหรับ แอปพลิเคชัน Laravel
     Forge: Server management สำหรับ deploy แอปพลิเคชัน Laravel ไปยัง DigitalOcean, Linode, AWS และ อื่นๆ
+    Sail: CLI สำหรับจัดการ Docker environment ที่ใช้พัฒนา Laravel
     Vapor: Serverless deployment platform สำหรับ AWS Lambda
-    Sail: CLI สำหรับจัดการ Docker environment ที่ใช้พัฒนา Laravel 
 
 Debugging & Monitoring
 
     Horizon: Monitor queues แบบ real-time
-    Telescope: Debug แอปพลิเคชัน โดยดูข้อมูล requests, exceptions, queries, mail และ อื่นๆ
     Pulse: Real-time monitoring สำหรับ performance และ errors ของแอปพลิเคชัน
+    Telescope: Debug แอปพลิเคชัน โดยดูข้อมูล requests, exceptions, queries, mail และ อื่นๆ
 
 Testing
 
@@ -38,14 +38,14 @@ Other Tools & Packages
 
     Cashier: จัดการ subscriptions และ billing สำหรับ Stripe และ Paddle
     Herd: Database GUI สำหรับ Laravel
-    Nova: Admin panel สำหรับ Eloquent models
+    Nova: Admin panel สำหรับ Eloquent models  ( not free )
     Octane: Application server ที่ช่วยเพิ่ม performance ของ Laravel
     Pennant: Feature flags สำหรับ Laravel
     Pint: Code style fixer สำหรับ PHP
     Prompts: Interactive CLI prompts สำหรับ Laravel
     Reverb: WebSockets สำหรับ Laravel
     Scout: Full-text search สำหรับ Eloquent models
-    Spark: Scaffolding สำหรับ SaaS applications  
+    Spark: Scaffolding สำหรับ SaaS applications
 
 --------------------------------------------------------------------------------------------------- Laravel Installer
 
@@ -573,7 +573,7 @@ https://laravel.com/docs/11.x/routing#api-routes
 
 php artisan install:api
 
-INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model. 
+INFO  API scaffolding installed. Please add the [Laravel\Sanctum\HasApiTokens] trait to your User model.
 
 --------------------------------------------------------------------------------------------------- Environment
 
@@ -596,4 +596,4 @@ php artisan make:observer VesselObserver
 
 php artisan make:trait HasOptionsTrait
 
---------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------------------------------

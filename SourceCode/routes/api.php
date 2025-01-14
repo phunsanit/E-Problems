@@ -8,5 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-//for all users
-Route::get('asset/getSelectOptions', [AssetCacheController::class, 'getSelectOptions']);
+// only logged in users can access this route
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('asset/getSelectOptions', [AssetCacheController::class, 'getSelectOptions']);
+});
